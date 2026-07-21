@@ -93,7 +93,17 @@ document.getElementById('open-editor-btn').addEventListener('click', () => {
 document.getElementById('quiz-open-editor-btn').addEventListener('click', () => {
     const subject = document.getElementById('subject-select').value;
     if (!subject) return;
-    window.open(`editor.html?subject=${encodeURIComponent(subject)}`, '_blank');
+    
+    let url = `editor.html?subject=${encodeURIComponent(subject)}`;
+    
+    if (filteredQuestions && filteredQuestions.length > 0 && currentQuestionIndex < filteredQuestions.length) {
+        const currentQ = filteredQuestions[currentQuestionIndex];
+        if (currentQ && currentQ.id) {
+            url += `&scrollId=${encodeURIComponent(currentQ.id)}`;
+        }
+    }
+    
+    window.open(url, '_blank');
 });
 
 function setupCategories() {

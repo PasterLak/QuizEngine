@@ -1,8 +1,10 @@
 let currentSubject = '';
+let targetScrollId = '';
 
 function initEditor() {
     const params = new URLSearchParams(window.location.search);
     currentSubject = params.get('subject');
+    targetScrollId = params.get('scrollId');
     
     if (!currentSubject) {
         document.getElementById('editor-subject-title').textContent = 'Error: No subject specified';
@@ -29,12 +31,36 @@ async function loadJsonFile() {
             const formatted = JSON.stringify(parsed, null, 2);
             document.getElementById('json-textarea').value = formatted;
             updateHighlighting();
+            scrollToTarget();
         } catch (e) {
             document.getElementById('json-textarea').value = text;
             updateHighlighting();
+            scrollToTarget();
         }
     } catch (error) {
         alert('Could not load questions.json for this subject.');
+    }
+}
+
+function scrollToTarget() {
+    if (!targetScrollId) return;
+    
+    const textarea = document.getElementById('json-textarea');
+    const text = textarea.value;
+    const searchString = `"id": "${targetScrollId}"`;
+    const index = text.indexOf(searchString);
+    
+    if (index !== -1) {
+        textarea.focus();
+        textarea.setSelectionRange(index, index + searchString.length);
+        
+        const linesBefore = text.substring(0, index).split('\n').length;
+        const totalLines = text.split('\n').length;
+        
+        const scrollPos = (textarea.scrollHeight / totalLines) * Math.max(0, linesBefore - 5);
+        textarea.scrollTop = scrollPos;
+        
+        syncScroll();
     }
 }
 
