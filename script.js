@@ -125,8 +125,8 @@ async function init() {
         select.innerHTML = '<option value="">Select subject...</option>';
         subjects.forEach(sub => {
             const opt = document.createElement('option');
-            opt.value = sub;
-            opt.textContent = sub;
+            opt.value = sub.folder;
+            opt.textContent = sub.name;
             select.appendChild(opt);
         });
         
