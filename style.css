@@ -402,4 +402,23 @@ button:disabled {
     #quiz-open-editor-btn {
         width: 100%;
     }
+
+    @media (max-width: 768px) {
+    #bottom-actions {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #quiz-open-editor-btn {
+        width: auto;
+        flex-shrink: 0;
+    }
+
+    #exit-btn {
+        width: auto;
+        flex-shrink: 0;
+    }
+}
+
 }
