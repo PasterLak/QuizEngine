@@ -6,6 +6,22 @@ let currentQuestionType = '';
 let correctCount = 0;
 let incorrectCount = 0;
 
+function getIncorrectIds() {
+    try {
+        return JSON.parse(localStorage.getItem('quiz_incorrect_ids')) || {};
+    } catch(e) {
+        return {};
+    }
+}
+
+function saveIncorrectIds(data) {
+    try {
+        localStorage.setItem('quiz_incorrect_ids', JSON.stringify(data));
+    } catch(e) {}
+}
+
+let incorrectIdsBySubject = getIncorrectIds();
+
 async function init() {
     try {
         const res = await fetch('subjects.json');
@@ -27,17 +43,21 @@ async function init() {
     }
 }
 
+function getFilteredCount(category) {
+    if (category === 'All') return allQuestions.length;
+    if (category === 'Type: Single Choice') return allQuestions.filter(q => q.questionType === 1).length;
+    if (category === 'Type: Multiple Choice') return allQuestions.filter(q => q.questionType === 2).length;
+    if (category === 'Type: Text Input') return allQuestions.filter(q => q.questionType === 3).length;
+    return allQuestions.filter(q => q.section === category).length;
+}
+
 function updateQuestionCountDisplay() {
     if (allQuestions.length === 0) {
         document.getElementById('question-count-display').textContent = '';
         return;
     }
     const selectedCategory = document.getElementById('category-select').value;
-    let count = allQuestions.length;
-    
-    if (selectedCategory !== 'All') {
-        count = allQuestions.filter(q => q.section === selectedCategory).length;
-    }
+    const count = getFilteredCount(selectedCategory);
     
     document.getElementById('question-count-display').textContent = `Total questions: ${count}`;
 }
@@ -46,6 +66,10 @@ document.getElementById('category-select').addEventListener('change', updateQues
 
 document.getElementById('subject-select').addEventListener('change', async (event) => {
     const subject = event.target.value;
+    const practiceBtn = document.getElementById('practice-incorrect-btn');
+    
+    practiceBtn.style.display = 'none';
+
     if (!subject) {
         document.getElementById('category-select').disabled = true;
         document.getElementById('start-btn').disabled = true;
@@ -74,6 +98,17 @@ document.getElementById('subject-select').addEventListener('change', async (even
     if (allQuestions.length === 0) {
         document.getElementById('setup-error').textContent = `No questions found in questions/${subject}/questions.json`;
         return;
+    }
+
+    // Cleanup saved IDs that no longer exist in JSON
+    if (incorrectIdsBySubject[subject] && incorrectIdsBySubject[subject].length > 0) {
+        incorrectIdsBySubject[subject] = incorrectIdsBySubject[subject].filter(id => allQuestions.some(q => q.id === id));
+        saveIncorrectIds(incorrectIdsBySubject);
+        
+        if (incorrectIdsBySubject[subject].length > 0) {
+            practiceBtn.style.display = 'inline-block';
+            practiceBtn.textContent = `Practice Incorrect [${incorrectIdsBySubject[subject].length}]`;
+        }
     }
 
     document.getElementById('setup-error').textContent = '';
@@ -110,6 +145,7 @@ function setupCategories() {
     const categories = [...new Set(allQuestions.map(q => q.section).filter(Boolean))];
     const select = document.getElementById('category-select');
     select.innerHTML = '<option value="All">All Categories</option>';
+    
     categories.forEach(cat => {
         const count = allQuestions.filter(q => q.section === cat).length;
         const option = document.createElement('option');
@@ -117,16 +153,55 @@ function setupCategories() {
         option.textContent = `Category ${cat} [${count}]`;
         select.appendChild(option);
     });
+
+    const singleCount = allQuestions.filter(q => q.questionType === 1).length;
+    if (singleCount > 0) {
+        const opt = document.createElement('option');
+        opt.value = 'Type: Single Choice';
+        opt.textContent = `Single Choice Only [${singleCount}]`;
+        select.appendChild(opt);
+    }
+
+    const multiCount = allQuestions.filter(q => q.questionType === 2).length;
+    if (multiCount > 0) {
+        const opt = document.createElement('option');
+        opt.value = 'Type: Multiple Choice';
+        opt.textContent = `Multiple Choice Only [${multiCount}]`;
+        select.appendChild(opt);
+    }
+
+    const textCount = allQuestions.filter(q => q.questionType === 3).length;
+    if (textCount > 0) {
+        const opt = document.createElement('option');
+        opt.value = 'Type: Text Input';
+        opt.textContent = `Text Input Only [${textCount}]`;
+        select.appendChild(opt);
+    }
 }
 
 document.getElementById('start-btn').addEventListener('click', () => {
     const selectedCategory = document.getElementById('category-select').value;
+    
     if (selectedCategory === 'All') {
         filteredQuestions = [...allQuestions];
+    } else if (selectedCategory === 'Type: Single Choice') {
+        filteredQuestions = allQuestions.filter(q => q.questionType === 1);
+    } else if (selectedCategory === 'Type: Multiple Choice') {
+        filteredQuestions = allQuestions.filter(q => q.questionType === 2);
+    } else if (selectedCategory === 'Type: Text Input') {
+        filteredQuestions = allQuestions.filter(q => q.questionType === 3);
     } else {
         filteredQuestions = allQuestions.filter(q => q.section === selectedCategory);
     }
     
+    startQuizFlow();
+});
+
+document.getElementById('practice-incorrect-btn').addEventListener('click', () => {
+    const subject = document.getElementById('subject-select').value;
+    if (!subject || !incorrectIdsBySubject[subject]) return;
+    
+    filteredQuestions = allQuestions.filter(q => incorrectIdsBySubject[subject].includes(q.id));
     startQuizFlow();
 });
 
@@ -157,6 +232,16 @@ document.getElementById('retry-btn').addEventListener('click', handleRetry);
 document.getElementById('exit-btn').addEventListener('click', () => {
     document.getElementById('quiz-container').style.display = 'none';
     document.getElementById('setup-container').style.display = 'block';
+    
+    const subject = document.getElementById('subject-select').value;
+    const practiceBtn = document.getElementById('practice-incorrect-btn');
+    
+    if (incorrectIdsBySubject[subject] && incorrectIdsBySubject[subject].length > 0) {
+        practiceBtn.style.display = 'inline-block';
+        practiceBtn.textContent = `Practice Incorrect [${incorrectIdsBySubject[subject].length}]`;
+    } else {
+        practiceBtn.style.display = 'none';
+    }
 });
 
 function updateProgressDisplay() {
@@ -276,6 +361,7 @@ function calculateSimilarity(s1, s2) {
 document.getElementById('submit-btn').addEventListener('click', () => {
     const q = filteredQuestions[currentQuestionIndex];
     const resultArea = document.getElementById('result-area');
+    const subject = document.getElementById('subject-select').value;
     let isCorrect = false;
     let feedback = '';
 
@@ -323,10 +409,26 @@ document.getElementById('submit-btn').addEventListener('click', () => {
 
     if (isCorrect) {
         correctCount++;
+        // Remove from persistent incorrect list if correct
+        if (incorrectIdsBySubject[subject]) {
+            incorrectIdsBySubject[subject] = incorrectIdsBySubject[subject].filter(id => id !== q.id);
+            saveIncorrectIds(incorrectIdsBySubject);
+        }
     } else {
         incorrectCount++;
+        
+        // Add to current session incorrect list
         if (!incorrectQuestions.includes(q)) {
             incorrectQuestions.push(q);
+        }
+        
+        // Add to persistent incorrect list
+        if (!incorrectIdsBySubject[subject]) {
+            incorrectIdsBySubject[subject] = [];
+        }
+        if (!incorrectIdsBySubject[subject].includes(q.id)) {
+            incorrectIdsBySubject[subject].push(q.id);
+            saveIncorrectIds(incorrectIdsBySubject);
         }
     }
 
@@ -375,6 +477,12 @@ window.updateQuizData = function(jsonString) {
                     } else {
                         incorrectCount = Math.max(0, incorrectCount - 1);
                         incorrectQuestions = incorrectQuestions.filter(iq => iq.id !== q.id);
+                        
+                        const subject = document.getElementById('subject-select').value;
+                        if (incorrectIdsBySubject[subject]) {
+                            incorrectIdsBySubject[subject] = incorrectIdsBySubject[subject].filter(id => id !== q.id);
+                            saveIncorrectIds(incorrectIdsBySubject);
+                        }
                     }
                 }
                 
