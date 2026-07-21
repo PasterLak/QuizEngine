@@ -466,22 +466,83 @@ function showQuestion() {
     document.getElementById('prev-btn').style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
 
     if (currentQuestionIndex >= filteredQuestions.length) {
-        document.getElementById('question-text').innerHTML = studyMode ? '<h2>Study Mode Finished</h2>' : '<h2>Quiz Finished!</h2>';
-        document.getElementById('input-container').innerHTML = '';
-        document.getElementById('submit-btn').style.display = 'none';
-        document.getElementById('next-btn').style.display = 'none';
-        document.getElementById('prev-btn').style.display = 'none';
-        document.getElementById('category-letter').textContent = '';
-        document.getElementById('category-topic').textContent = '';
-        document.getElementById('question-filename').textContent = '';
-        document.getElementById('star-container').style.display = 'none';
-        
-        document.getElementById('progress-text').innerHTML = studyMode
-            ? 'Study Mode'
-            : `<span class="score-green">${correctCount}</span> / <span class="score-red">${incorrectCount}</span>`;
-        clearQuizProgress();
-        return;
+
+    const percent = filteredQuestions.length === 0 
+        ? 0 
+        : Math.round((correctCount / filteredQuestions.length) * 100);
+
+    let html = `
+        <div style="text-align:center; margin-top:40px;">
+            <h2 style="font-size:32px; margin-bottom:20px;">
+                ${studyMode ? 'Study Mode Finished' : 'Quiz Finished!'}
+            </h2>
+
+            <div style="font-size:48px; font-weight:bold; margin-bottom:20px;">
+                ${percent}%
+            </div>
+    `;
+
+   if (!studyMode) {
+    if (percent === 100) {
+        html += `
+            <div style="font-size:22px; margin-top:20px;">
+                Congratulations, all answers are correct! 🚀
+            </div>
+        `;
+    } else if (percent >= 80) {
+        html += `
+            <div style="font-size:22px; margin-top:20px;">
+                Great job, you got almost everything right! 🔥
+            </div>
+        `;
+    } else if (percent >= 60) {
+        html += `
+            <div style="font-size:22px; margin-top:20px;">
+                Good work, keep pushing and you'll master it! 💪
+            </div>
+        `;
+    } else if (percent >= 40) {
+        html += `
+            <div style="font-size:22px; margin-top:20px;">
+                Not bad, but there’s room for improvement. Keep practicing! 📘
+            </div>
+        `;
+    } else if (percent >= 20) {
+        html += `
+            <div style="font-size:22px; margin-top:20px;">
+                You’re getting started — keep going, you can do better! 🌱
+            </div>
+        `;
+    } else {
+        html += `
+            <div style="font-size:22px; margin-top:20px;">
+                Don’t give up — you can improve with practice! ⭐
+            </div>
+        `;
     }
+}
+
+
+    html += `</div>`;
+
+    document.getElementById('question-text').innerHTML = html;
+    document.getElementById('input-container').innerHTML = '';
+    document.getElementById('submit-btn').style.display = 'none';
+    document.getElementById('next-btn').style.display = 'none';
+    document.getElementById('prev-btn').style.display = 'none';
+    document.getElementById('category-letter').textContent = '';
+    document.getElementById('category-topic').textContent = '';
+    document.getElementById('question-filename').textContent = '';
+    document.getElementById('star-container').style.display = 'none';
+
+    document.getElementById('progress-text').innerHTML = studyMode
+        ? 'Study Mode'
+        : `<span class="score-green">${correctCount}</span> / <span class="score-red">${incorrectCount}</span>`;
+
+    clearQuizProgress();
+    return;
+}
+
 
     const q = filteredQuestions[currentQuestionIndex];
     currentQuestionType = q.questionType;
