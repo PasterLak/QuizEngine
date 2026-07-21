@@ -1,3 +1,5 @@
+// editor-script.js
+
 let currentSubject = '';
 let targetScrollId = '';
 
@@ -21,22 +23,42 @@ function initEditor() {
 
 async function loadJsonFile() {
     try {
+
+        if (
+            window.opener &&
+            !window.opener.closed &&
+            typeof window.opener.getCurrentQuestionsJson === 'function'
+        ) {
+
+            const text = window.opener.getCurrentQuestionsJson();
+
+            if (text) {
+                document.getElementById('json-textarea').value = text;
+                updateHighlighting();
+                scrollToTarget();
+                return;
+            }
+        }
+
         const path = `questions/${currentSubject}/questions.json`;
         const res = await fetch(path);
-        if (!res.ok) throw new Error('File not found');
+
+        if (!res.ok)
+            throw new Error('File not found');
+
         const text = await res.text();
-        
+
         try {
             const parsed = JSON.parse(text);
             const formatted = JSON.stringify(parsed, null, 2);
             document.getElementById('json-textarea').value = formatted;
-            updateHighlighting();
-            scrollToTarget();
-        } catch (e) {
+        } catch {
             document.getElementById('json-textarea').value = text;
-            updateHighlighting();
-            scrollToTarget();
         }
+
+        updateHighlighting();
+        scrollToTarget();
+
     } catch (error) {
         alert('Could not load questions.json for this subject.');
     }

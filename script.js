@@ -1,3 +1,5 @@
+// scripts.js
+
 let allQuestions = [];
 let filteredQuestions = [];
 let incorrectQuestions = [];
@@ -5,6 +7,7 @@ let currentQuestionIndex = 0;
 let currentQuestionType = '';
 let correctCount = 0;
 let incorrectCount = 0;
+let currentQuestionsJson = null;
 
 function getIncorrectIds() {
     try {
@@ -90,6 +93,7 @@ document.getElementById('subject-select').addEventListener('change', async (even
         const res = await fetch(path);
         if (res.ok) {
             const data = await res.json();
+            currentQuestionsJson = JSON.stringify(data, null, 2);
             allQuestions = data.questions || [];
         }
     } catch (e) {
@@ -446,6 +450,8 @@ document.getElementById('next-btn').addEventListener('click', () => {
 
 window.updateQuizData = function(jsonString) {
     try {
+        currentQuestionsJson = jsonString;
+
         const data = JSON.parse(jsonString);
         allQuestions = data.questions || [];
         
@@ -491,6 +497,10 @@ window.updateQuizData = function(jsonString) {
         }
     } catch (e) {
     }
+};
+
+window.getCurrentQuestionsJson = function () {
+    return currentQuestionsJson;
 };
 
 window.onload = init;

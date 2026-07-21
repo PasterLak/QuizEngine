@@ -13,7 +13,7 @@
       "section": "A1",
       "topic": "Fundamentals",
       "questionType": 3,
-      "question": "What was the reason for introducing Agile Computing?",
+      "question": "What was the reason for introducing Agile Computing(max. one phrase)?",
       "points": 8,
       "sourceImage": 1,
       "answers": [
@@ -78,7 +78,7 @@
       "section": "A1",
       "topic": "Fundamentals",
       "questionType": 3,
-      "question": "Explain the concept of continuous improvement in Agile project management.",
+      "question": "Explain the concept of continuous improvement in Agile project management(max. one phrase)?",
       "points": 8,
       "sourceImage": 4,
       "answers": [
