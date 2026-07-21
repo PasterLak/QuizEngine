@@ -1,7 +1,6 @@
-// editor-script.js
-
 let currentSubject = '';
 let targetScrollId = '';
+let isDirty = false;
 
 function initEditor() {
     const params = new URLSearchParams(window.location.search);
@@ -17,21 +16,21 @@ function initEditor() {
     loadJsonFile();
     
     const textarea = document.getElementById('json-textarea');
-    textarea.addEventListener('input', updateHighlighting);
+    textarea.addEventListener('input', () => {
+        isDirty = true;
+        updateHighlighting();
+    });
     textarea.addEventListener('scroll', syncScroll);
 }
 
 async function loadJsonFile() {
     try {
-
         if (
             window.opener &&
             !window.opener.closed &&
             typeof window.opener.getCurrentQuestionsJson === 'function'
         ) {
-
             const text = window.opener.getCurrentQuestionsJson();
-
             if (text) {
                 document.getElementById('json-textarea').value = text;
                 updateHighlighting();
@@ -58,7 +57,6 @@ async function loadJsonFile() {
 
         updateHighlighting();
         scrollToTarget();
-
     } catch (error) {
         alert('Could not load questions.json for this subject.');
     }
@@ -133,7 +131,25 @@ document.getElementById('save-btn').addEventListener('click', () => {
         if (window.opener && !window.opener.closed && typeof window.opener.updateQuizData === 'function') {
             window.opener.updateQuizData(text);
         }
+        
+        isDirty = false;
+        alert('Data updated live in the quiz!');
+    } catch (err) {
+        alert('Save operation failed: ' + err.message);
+    }
+});
 
+document.getElementById('download-btn').addEventListener('click', () => {
+    const text = document.getElementById('json-textarea').value;
+    
+    try {
+        JSON.parse(text);
+    } catch (e) {
+        alert('Invalid JSON format! Please fix errors before downloading.');
+        return;
+    }
+
+    try {
         const blob = new Blob([text], { type: 'application/json' });
         const a = document.createElement('a');
         
@@ -145,11 +161,21 @@ document.getElementById('save-btn').addEventListener('click', () => {
         document.body.removeChild(a);
         
         URL.revokeObjectURL(a.href);
-        
-        alert('Data updated live in the quiz! File downloaded to replace the old questions.json.');
     } catch (err) {
-        alert('Save operation failed: ' + err.message);
+        alert('Download operation failed: ' + err.message);
     }
+});
+
+document.getElementById('close-btn').addEventListener('click', () => {
+    if (isDirty) {
+        if (confirm('You have unsaved changes. Do you want to save before closing?')) {
+            document.getElementById('save-btn').click();
+        }
+    }
+    if (window.opener && !window.opener.closed) {
+        window.opener.focus();
+    }
+    window.close();
 });
 
 window.onload = initEditor;
