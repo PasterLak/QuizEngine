@@ -283,21 +283,23 @@ document.getElementById('star-container').addEventListener('click', () => {
 function setupCategories() {
     const categories = [...new Set(allQuestions.map(q => q.section).filter(Boolean))];
     const select = document.getElementById('category-select');
-    select.innerHTML = '<option value="All">All Categories</option>';
+    select.innerHTML = '<option value="All">📚 All Categories</option>';
     
-    categories.forEach(cat => {
-        const count = allQuestions.filter(q => q.section === cat).length;
-        const option = document.createElement('option');
-        option.value = cat;
-        option.textContent = `Category ${cat} [${count}]`;
-        select.appendChild(option);
-    });
+    const subject = document.getElementById('subject-select').value;
+    const starred = starredIdsBySubject[subject] || [];
+    const starredCount = allQuestions.filter(q => starred.includes(q.id)).length;
+    if (starredCount > 0) {
+        const opt = document.createElement('option');
+        opt.value = 'Starred';
+        opt.textContent = `★ Starred [${starredCount}]`;
+        select.appendChild(opt);
+    }
 
     const singleCount = allQuestions.filter(q => q.questionType === 1).length;
     if (singleCount > 0) {
         const opt = document.createElement('option');
         opt.value = 'Type: Single Choice';
-        opt.textContent = `Single Choice Only [${singleCount}]`;
+        opt.textContent = `🔘 Single Choice Only [${singleCount}]`;
         select.appendChild(opt);
     }
 
@@ -305,7 +307,7 @@ function setupCategories() {
     if (multiCount > 0) {
         const opt = document.createElement('option');
         opt.value = 'Type: Multiple Choice';
-        opt.textContent = `Multiple Choice Only [${multiCount}]`;
+        opt.textContent = `☑️ Multiple Choice Only [${multiCount}]`;
         select.appendChild(opt);
     }
 
@@ -313,19 +315,17 @@ function setupCategories() {
     if (textCount > 0) {
         const opt = document.createElement('option');
         opt.value = 'Type: Text Input';
-        opt.textContent = `Text Input Only [${textCount}]`;
+        opt.textContent = `✍️ Text Input Only [${textCount}]`;
         select.appendChild(opt);
     }
 
-    const subject = document.getElementById('subject-select').value;
-    const starred = starredIdsBySubject[subject] || [];
-    const starredCount = allQuestions.filter(q => starred.includes(q.id)).length;
-    if (starredCount > 0) {
-        const opt = document.createElement('option');
-        opt.value = 'Starred';
-        opt.textContent = `Starred [${starredCount}]`;
-        select.appendChild(opt);
-    }
+    categories.forEach(cat => {
+        const count = allQuestions.filter(q => q.section === cat).length;
+        const option = document.createElement('option');
+        option.value = cat;
+        option.textContent = `Category ${cat} [${count}]`;
+        select.appendChild(option);
+    });
 }
 
 document.getElementById('start-btn').addEventListener('click', () => {
