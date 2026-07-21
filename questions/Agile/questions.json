@@ -170,12 +170,12 @@
       "section": "A1",
       "topic": "Fundamentals",
       "questionType": 3,
-      "question": "Describe the concept of the incremental approach in Agile project management.",
+      "question": "Describe the concept of the incremental approach in Agile project management(max. one phrase).",
       "points": 6,
       "sourceImage": 8,
       "answers": [
         {
-          "text": "Developing a product in increments based on feature priority, enabling frequent delivery of usable components and adaptation to changing requirements throughout the project lifecycle.",
+          "text": "Involves developing a product in increments based on feature priority, which allows for frequent delivery of usable components and facilitates adaptation to changing requirements throughout the project lifecycle.",
           "correct": true
         }
       ]
@@ -285,12 +285,12 @@
       "section": "A2",
       "topic": "Agile principles",
       "questionType": 3,
-      "question": "Explain the purpose of continuous attention to technical excellence in agile development.",
+      "question": "Explain the purpose of continuous attention to technical excellence in agile development(max. one phrase).",
       "points": 6,
       "sourceImage": 13,
       "answers": [
         {
-          "text": "It ensures that developed products meet high-quality standards, incorporate best practices, and remain adaptable to changing requirements.",
+          "text": "It ensures that the developed products meet high-quality standards, incorporate best practices, and remain adaptable to changing requirements.",
           "correct": true
         }
       ]
@@ -300,12 +300,12 @@
       "section": "A3",
       "topic": "From waterfall to agile",
       "questionType": 3,
-      "question": "Describe the key differences between a waterfall model and an agile model in their approach to software development.",
+      "question": "Describe the key differences between a waterfall model and an agile model in their approach to software development(max. one phrase).",
       "points": 6,
       "sourceImage": 14,
       "answers": [
         {
-          "text": "The waterfall model follows a linear, sequential process in which each phase is completed before the next, while agile uses iterative increments, frequent feedback, and adaptation.",
+          "text": "The waterfall model follows a linear, sequential approach where each phase (requirements, design, development, testing, deployment) is completed before moving to the next, with little room for revisiting or adaptating previous phases.",
           "correct": true
         }
       ]
@@ -361,12 +361,12 @@
       "section": "A4",
       "topic": "Project plan",
       "questionType": 3,
-      "question": "Describe the traditional role of a project plan.",
+      "question": "Describe the traditional role of a project plan(max. one phrase).",
       "points": 6,
       "sourceImage": 17,
       "answers": [
         {
-          "text": "A comprehensive document that helps project managers execute and oversee project phases.",
+          "text": "Comprehensive document that aids project managers in executing and overseeing project phases.",
           "correct": true
         }
       ]
@@ -376,12 +376,12 @@
       "section": "A4",
       "topic": "Project plan",
       "questionType": 3,
-      "question": "Explain how an agile project plan differs from a plan used in a defined development model.",
+      "question": "Explain how an agile project plan differs from a plan used in a defined development model(max. one phrase).",
       "points": 8,
       "sourceImage": 18,
       "answers": [
         {
-          "text": "An agile project plan is treated as a flexible guide that adapts to changing requirements.",
+          "text": "An agile project plan is viewed as a flexible guide that adapts to changing requirements.",
           "correct": true
         }
       ]
@@ -441,12 +441,12 @@
       "section": "A5",
       "topic": "Agile triangle",
       "questionType": 3,
-      "question": "Describe the key differences between the traditional iron triangle of constraints and the agile iron triangle.",
+      "question": "Describe the key differences between the traditional iron triangle of constraints and the agile iron triangle(max. one phrase).",
       "points": 6,
       "sourceImage": 21,
       "answers": [
         {
-          "text": "The traditional iron triangle treats predefined scope, cost, and schedule as fixed constraints, while the agile iron triangle emphasizes responding to change and delivering customer value, with scope and cost as variables.",
+          "text": "The traditional iron triangle focuses predefined scope, cost, and schedule as fixed constraints for the project success, while the agile iron triangle emphasize the ability to respond to change and deliver value to the customer, with scope and cost as variables.",
           "correct": true
         }
       ]
@@ -506,12 +506,12 @@
       "section": "B1",
       "topic": "Roles in agile teams",
       "questionType": 3,
-      "question": "Briefly describe the role of a product manager or product owner in agile projects.",
+      "question": "Briefly describe the role of a product manager or product owner in agile projects(max. two phrase).",
       "points": 6,
       "sourceImage": 24,
       "answers": [
         {
-          "text": "The product manager or product owner ensures that the delivered product meets customer requirements.",
+          "text": "The role of a product manager (or product owner) in agile projects is to ensure that the delivered product meets customer requirements.",
           "correct": true
         }
       ]
@@ -548,12 +548,12 @@
       "section": "B2",
       "topic": "Roles in agile teams",
       "questionType": 3,
-      "question": "Name the three variables used to calculate speed according to the concept of team velocity in agile projects.",
+      "question": "Name the three variables used to calculate speed according to the concept of team velocity in agile projects(max. 6 words!).",
       "points": 3,
       "sourceImage": 26,
       "answers": [
         {
-          "text": "Lead time, cycle time, response time.",
+          "text": "Lead time, cycle time, response time",
           "correct": true
         }
       ]
@@ -590,12 +590,12 @@
       "section": "C2",
       "topic": "Managing risks",
       "questionType": 3,
-      "question": "Describe key components of an exception plan in agile risk management.",
+      "question": "Describe key components of an 'exception plan' in agile risk management(max. 20 words).",
       "points": 8,
       "sourceImage": 28,
       "answers": [
         {
-          "text": "Circumstances for the exception, causes of the circumstance, tolerance limits, possible solutions, recommended solutions, and a request for stakeholder decision.",
+          "text": "Circumstances for the exception, causes of the circumstance, tolerance limits, possible solutions, recommended solutions, request for stakeholder decision.",
           "correct": true
         }
       ]
@@ -697,12 +697,12 @@
       "section": "C4",
       "topic": "Analyzing, monitoring, and controlling risks",
       "questionType": 3,
-      "question": "Explain the role of landing zones in agile risk management.",
+      "question": "Explain the role of landing zones in agile risk management(max. one phrase).",
       "points": 6,
       "sourceImage": 33,
       "answers": [
         {
-          "text": "Landing zones define an acceptable range of product functionality and characteristics agreed upon by the team and customer during planning.",
+          "text": "Landing zones define a range of acceptable product functionality and characteristics agreed upon between the team and customer during planning.",
           "correct": true
         }
       ]
@@ -712,7 +712,7 @@
       "section": "C4",
       "topic": "Analyzing, monitoring, and controlling risks",
       "questionType": 3,
-      "question": "What is a short, fixed-length sprint called in which a team examines a solution aspect or builds a prototype to demonstrate feasibility?",
+      "question": "How is a short sprint called ,that usually is of fixed length and in which a team examines a solution aspect or makes a prototype to demonstrate the feasibility of this solution? (max. one word)",
       "points": 1,
       "sourceImage": 34,
       "answers": [
@@ -835,12 +835,12 @@
       "section": "D3",
       "topic": "Agile quality management",
       "questionType": 3,
-      "question": "Explain the concept of escaped defects in quality assurance.",
+      "question": "Explain the concept of escaped defects in quality assurance.(max. one phrase)",
       "points": 8,
       "sourceImage": 39,
       "answers": [
         {
-          "text": "Defects that bypassed quality assurance processes and were identified after product release or during subsequent iterations.",
+          "text": "It refers to defects that have bypassed quality assurance processes and have been identified after the product is released or during subsequent iterations.",
           "correct": true
         }
       ]
@@ -909,7 +909,7 @@
       "sourceImage": 42,
       "answers": [
         {
-          "text": "Agile project management cannot work with other plan-driven or process models",
+          "text": "Agile project management can’t work with other plan-driven or process models",
           "correct": true
         },
         {
@@ -985,7 +985,7 @@
       "section": "F2",
       "topic": "Misconceptions about agility",
       "questionType": 3,
-      "question": "Summarize the key points about Capability Maturity Model Integration (CMMI).",
+      "question": "Summarize the key points about Capability Maturity Model Integration (CMMI).(max. 15 words)",
       "points": 8,
       "sourceImage": 45,
       "answers": [
@@ -1000,12 +1000,12 @@
       "section": "F3",
       "topic": "Transition to agility",
       "questionType": 3,
-      "question": "What does the term project criticality refer to?",
+      "question": "What does the term project criticality refer to?(max. one phrase)",
       "points": 8,
       "sourceImage": 46,
       "answers": [
         {
-          "text": "The severity of the impact that a project's failure could have on stakeholders such as customers.",
+          "text": "Project criticality refers to the severity of the impact a project’s failure could have, on stakeholders such as customers.",
           "correct": true
         }
       ]
@@ -1115,12 +1115,12 @@
       "section": "F3",
       "topic": "Transition to agility",
       "questionType": 3,
-      "question": "Why is continuous customer involvement crucial in agile methodologies?",
+      "question": "Why is continuous customer involvement crucial in agile methodologies?(max. one phrase)",
       "points": 8,
       "sourceImage": 51,
       "answers": [
         {
-          "text": "It allows requirements to evolve as work progresses and helps ensure that the final product meets the customer's needs effectively.",
+          "text": "This ensures that requirements can evolve as work progresses and that the final product meets the customer’s needs effectively.",
           "correct": true
         }
       ]
@@ -1184,7 +1184,7 @@
       "section": "G1",
       "topic": "Scrum",
       "questionType": 3,
-      "question": "Who in the Scrum team is responsible for providing a clear vision for the product to be developed?",
+      "question": "Who in the Scrum team is responsible to provide a clear vision for the product to be developed?(max. 2 words)",
       "points": 2,
       "sourceImage": 54,
       "answers": [
@@ -1199,7 +1199,7 @@
       "section": "G1",
       "topic": "Scrum",
       "questionType": 1,
-      "question": "Who in the Scrum team ensures that the delivered product meets customer requirements, a role often assumed by a local customer or customer representative?",
+      "question": "Who in the Scrum team is responsible for ensuring that the product delivered as part of a project meets customer requirements? This role is often assumed by a local customer or a customer representative?",
       "points": 1,
       "sourceImage": 55,
       "answers": [
@@ -1227,19 +1227,19 @@
       "sourceImage": 56,
       "answers": [
         {
-          "text": "They ensure that new product features are explained to the customer clearly and in a catchy manner",
+          "text": "She/he ensures that new product features are explained to the customer clearly and in a catchy manner",
           "correct": false
         },
         {
-          "text": "They explain to customers the needs and constraints of the project team",
+          "text": "She/he explains to customers the needs and constraints of the project team",
           "correct": false
         },
         {
-          "text": "They are responsible for tracking and monitoring project progress",
+          "text": "She/he is responsible for tracking and monitoring project progress",
           "correct": true
         },
         {
-          "text": "They help team members achieve project goals and ensure that a project moves in the right direction",
+          "text": "She/he helps team members achieve project goals and ensure that a project is moving in the right direction",
           "correct": true
         }
       ]
@@ -1249,7 +1249,7 @@
       "section": "G4",
       "topic": "Scrum",
       "questionType": 1,
-      "question": "What is the meeting called in which team members discuss the previous 24 hours, the next 24 hours, and any obstacles?",
+      "question": "How is the meeting called in which team members discuss what was done during the previous 24 hours, what will happen during the next 24 hours, and any obstacles that have arisen?",
       "points": 1,
       "sourceImage": 57,
       "answers": [
@@ -1272,12 +1272,12 @@
       "section": "G4",
       "topic": "Scrum",
       "questionType": 3,
-      "question": "What is a Scrum meeting called that coordinates work across multiple teams in a large project?",
+      "question": "How is a meeting called in Scrum that takes place in large projects with multiple teams, to coordinate the work of the teams?",
       "points": 2,
       "sourceImage": 58,
       "answers": [
         {
-          "text": "Scrum of Scrums",
+          "text": "Scrum of scrums",
           "correct": true
         }
       ]
@@ -1287,7 +1287,7 @@
       "section": "G4",
       "topic": "Scrum",
       "questionType": 3,
-      "question": "What is the Scrum activity called in which the team defines the tasks and goals for the upcoming iteration?",
+      "question": "How is the Scrum activity called in which the team defines the tasks and goals for the upcoming iteration?(max. 2 words)",
       "points": 2,
       "sourceImage": 59,
       "answers": [
@@ -1302,7 +1302,7 @@
       "section": "G4",
       "topic": "Scrum",
       "questionType": 2,
-      "question": "In a Scrum team, Mike ensures that the delivered product meets customer requirements. Which roles or responsibilities does Mike have?",
+      "question": "In a Scrum team, Mike is responsible for ensuring that the product delivered as part of a project meets customer requirements. What kind of  roles/responsibilities has Mike in the Scrum team?",
       "points": 2,
       "sourceImage": 60,
       "answers": [
@@ -1319,7 +1319,7 @@
           "correct": true
         },
         {
-          "text": "He organizes the burndown charts",
+          "text": "He organizes the burn-down charts",
           "correct": false
         }
       ]
@@ -1329,12 +1329,12 @@
       "section": "G4",
       "topic": "Scrum",
       "questionType": 1,
-      "question": "Which Scrum role helps team members achieve project goals and ensures that a project is moving in the right direction?",
+      "question": "In Scrum teams, there is usually one person that helps team members archive project goals and ensures that a project is moving in the right direction. Which role has this person usually in Scrum teams?",
       "points": 1,
       "sourceImage": 61,
       "answers": [
         {
-          "text": "Scrum Master",
+          "text": "Scrum master",
           "correct": true
         },
         {
@@ -1352,7 +1352,7 @@
       "section": "G4",
       "topic": "Scrum",
       "questionType": 3,
-      "question": "What is the meeting at the end of each sprint in which the Scrum team evaluates the sprint results?",
+      "question": "What is the name of a meeting at the end of each sprint in which the Scrum team, along with Scrum Master, Product Owner and Developers, evaluate the results of the sprint.(max. 3 words)",
       "points": 3,
       "sourceImage": 62,
       "answers": [
@@ -1367,7 +1367,7 @@
       "section": "G4",
       "topic": "Scrum",
       "questionType": 3,
-      "question": "Who in the Scrum team measures how well a project performs in terms of return on investment?",
+      "question": "Who in the Scrum team measures how well a project performs in terms of return on investment, or ROI?(max. 2 words)",
       "points": 2,
       "sourceImage": 63,
       "answers": [
@@ -1382,7 +1382,7 @@
       "section": "G4",
       "topic": "Scrum",
       "questionType": 3,
-      "question": "What is the role called that the Scrum Master adopts to facilitate collaboration, encourage participation and shared responsibility, and remove organizational impediments?",
+      "question": "What is the name of the role the Scrum master adopts in order to facilitate collaboration, support everyone’s best thinking and work ,encourage the team’s participation ,undestanding ,and shared responsibility, and to change or remove organizational impediments(max. 2 words)",
       "points": 2,
       "sourceImage": 64,
       "answers": [
@@ -1424,7 +1424,7 @@
       "section": "G4",
       "topic": "Scrum",
       "questionType": 3,
-      "question": "What is the meeting called in which the Scrum Master and development team discuss how the sprint went and how it could improve?",
+      "question": "After each sprint review meeting, the Scrum Master conducts a meeting with the development team to discuss how the sprint went and how it could have been improved. How is this meeting called?(max. 2 words)",
       "points": 2,
       "sourceImage": 66,
       "answers": [
@@ -1439,7 +1439,7 @@
       "section": "G4",
       "topic": "Scrum",
       "questionType": 2,
-      "question": "Which instruments does a Scrum team use to track its progress?",
+      "question": "To track its progress, a Scrum team uses which instruments?",
       "points": 2,
       "sourceImage": 67,
       "answers": [
@@ -1504,12 +1504,12 @@
       "section": "H1",
       "topic": "Phases in agile projects",
       "questionType": 2,
-      "question": "Identify the differences between the agile Adapting phase and the traditional Controlling phase.",
+      "question": "Identify the differences between the agile Adapting and the traditional Controlling phases.",
       "points": 2,
       "sourceImage": 70,
       "answers": [
         {
-          "text": "Adapting involves reassessing project deliverables, whereas Controlling involves working according to a predefined project plan",
+          "text": "Adapting involves reassessing project deliverables, whereas Controlling involves working according to a pre-defined project plan",
           "correct": true
         },
         {
@@ -1608,7 +1608,7 @@
       "section": "H1",
       "topic": "Phases in agile projects",
       "questionType": 3,
-      "question": "Which phase of an agile project involves designing, building, and testing features in increments useful to the customer?",
+      "question": "Which phase of an agile project involves designing, building, and testing features in increments useful to the customer?(max. 1 word)",
       "points": 2,
       "sourceImage": 74,
       "answers": [
@@ -1661,7 +1661,7 @@
       "section": "I9",
       "topic": "XP",
       "questionType": 3,
-      "question": "Name three important principles propagated by XP.",
+      "question": "Name three important principles propagated by XP. (max. 10 words)",
       "points": 6,
       "sourceImage": 77,
       "answers": [
@@ -1676,12 +1676,12 @@
       "section": "I9",
       "topic": "Agile methods",
       "questionType": 3,
-      "question": "Which methodology encourages no more than 40 hours of work per week to maintain a sustainable work pace?",
+      "question": "Which methodology encourages no more than 40 hours of work per week to maintain a sustainable work pace?(max. 2 words)",
       "points": 2,
       "sourceImage": 78,
       "answers": [
         {
-          "text": "XP / Extreme Programming",
+          "text": "XP / extreme Programming",
           "correct": true
         }
       ]
@@ -1691,7 +1691,7 @@
       "section": "I9",
       "topic": "Adaptive Software Development (ASD)",
       "questionType": 1,
-      "question": "Which phases are part of the Adaptive Software Development methodology?",
+      "question": "The Adaptive Software Development (ASD) methodology consists of which of the following phases?",
       "points": 1,
       "sourceImage": 79,
       "answers": [
@@ -1714,12 +1714,12 @@
       "section": "I9",
       "topic": "Crystal",
       "questionType": 3,
-      "question": "What is a project in the Crystal methodology called when it includes up to around six co-located members?",
+      "question": "How is a project in the Crystal methodology called that includes up to around six members and these members are all expected to be co-located? (max. 2 words)",
       "points": 2,
       "sourceImage": 80,
       "answers": [
         {
-          "text": "Crystal Clear",
+          "text": "Crystal clear",
           "correct": true
         }
       ]
@@ -1729,7 +1729,7 @@
       "section": "I9",
       "topic": "Dynamic Systems Development Method (DSDM)",
       "questionType": 1,
-      "question": "Which stage is part of the DSDM project life cycle?",
+      "question": "Which stage is part of the Dynamic Systems Development (DSDM) project life cycle?",
       "points": 1,
       "sourceImage": 81,
       "answers": [
@@ -1775,7 +1775,7 @@
       "section": "I9",
       "topic": "Adaptive Software Development (ASD)",
       "questionType": 3,
-      "question": "What is the ASD phase called that includes feedback from end users who have tried the developed software?",
+      "question": "How is the phase in ASD called that includes feedback from end users who have tried using the developed software? (max. 1 word)",
       "points": 1,
       "sourceImage": 83,
       "answers": [
@@ -1828,7 +1828,7 @@
       "section": "I9",
       "topic": "Lean development",
       "questionType": 1,
-      "question": "According to Lean development, how does the principle of delivering software quickly translate into practice?",
+      "question": "According to Lean development, how does the principle of deliver software quickly translate into practice?",
       "points": 1,
       "sourceImage": 86,
       "answers": [
@@ -1851,7 +1851,7 @@
       "section": "I9",
       "topic": "Lean development",
       "questionType": 3,
-      "question": "Briefly explain the principle of eliminating waste in Lean development.",
+      "question": "Briefly explain the principle of eliminating waste in Lean development.(max. one phrase)",
       "points": 6,
       "sourceImage": 87,
       "answers": [
@@ -1866,12 +1866,12 @@
       "section": "I9",
       "topic": "XP",
       "questionType": 3,
-      "question": "What is meant by sustainable pace in the context of XP?",
+      "question": "What is meant by sustainable pace in the context of XP?(max. one phrase)",
       "points": 6,
       "sourceImage": 88,
       "answers": [
         {
-          "text": "Team members work no more than 40 hours per week to ensure consistent and reliable software delivery, avoid burnout, and maintain high-quality output.",
+          "text": "Practice of team members working no more than 40 hours per week to ensure consistent and reliable delivery of software",
           "correct": true
         }
       ]
@@ -1881,7 +1881,7 @@
       "section": "I9",
       "topic": "Feature-Driven Development (FDD)",
       "questionType": 1,
-      "question": "What is a distinguishing feature of Feature-Driven Development?",
+      "question": "What is a distinguishing feature of Feature-Driven Development(FDD)?",
       "points": 1,
       "sourceImage": 89,
       "answers": [
@@ -1904,7 +1904,7 @@
       "section": "I9",
       "topic": "Unified Process (UP)",
       "questionType": 1,
-      "question": "During which phase of the Unified Process does the project proceed with iterations focused on developing small, production-worthy pieces of software?",
+      "question": "During which phase of the Unified Process(UP) does the project proceed with iterations focused on developing small, production-worthy pieces of software?",
       "points": 1,
       "sourceImage": 90,
       "answers": [
