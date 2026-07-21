@@ -74,7 +74,6 @@ function updateResumeButtonVisibility() {
         return;
     }
 
-    resumeBtn.textContent = `Resume ${selectedProgress.subject} Session`;
     resumeBtn.style.display = 'inline-block';
 }
 
