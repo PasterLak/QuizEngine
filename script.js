@@ -385,7 +385,6 @@ function startQuizFlow() {
     document.getElementById('setup-container').style.display = 'none';
     document.getElementById('quiz-container').style.display = 'block';
     
-    updateRetryButtonsVisibility();
     saveQuizProgress();
     showQuestion();
 }
@@ -418,17 +417,12 @@ function resumeQuizFlow(progress) {
     document.getElementById('setup-container').style.display = 'none';
     document.getElementById('quiz-container').style.display = 'block';
 
-    updateRetryButtonsVisibility();
     saveQuizProgress();
     showQuestion();
 }
 
-function handleRetry() {
-    filteredQuestions = [...incorrectQuestions];
-    startQuizFlow();
-}
 
-document.getElementById('retry-btn').addEventListener('click', handleRetry);
+
 
 document.getElementById('exit-btn').addEventListener('click', () => {
     document.getElementById('quiz-container').style.display = 'none';
@@ -464,18 +458,6 @@ function updateProgressDisplay() {
     `;
 }
 
-function updateRetryButtonsVisibility() {
-    if (studyMode) {
-        document.getElementById('retry-btn').style.display = 'none';
-        return;
-    }
-
-    if (incorrectCount > 0) {
-        document.getElementById('retry-btn').style.display = 'inline-block';
-    } else {
-        document.getElementById('retry-btn').style.display = 'none';
-    }
-}
 
 function showQuestion() {
     document.getElementById('result-area').innerHTML = '';
@@ -483,7 +465,7 @@ function showQuestion() {
     document.getElementById('next-btn').style.display = studyMode ? 'inline-block' : 'none';
     document.getElementById('prev-btn').style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
     
-    updateRetryButtonsVisibility();
+   
     
     if (currentQuestionIndex >= filteredQuestions.length) {
         document.getElementById('question-text').innerHTML = studyMode ? '<h2>Study Mode Finished</h2>' : '<h2>Quiz Finished!</h2>';
@@ -704,7 +686,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {
     }
 
     updateProgressDisplay();
-    updateRetryButtonsVisibility();
+    
     resultArea.innerHTML = feedback;
     document.getElementById('submit-btn').style.display = 'none';
     document.getElementById('next-btn').style.display = 'inline-block';
