@@ -61,20 +61,24 @@ function clearStatistics() {
 
 function updateResumeButtonVisibility() {
     const resumeBtn = document.getElementById('resume-progress-btn');
+    const clearStatsBtn = document.getElementById('clear-stats-btn');
     const selectedSubject = document.getElementById('subject-select').value;
     const selectedProgress = getQuizProgress();
 
-    if (!selectedSubject || !selectedProgress) {
+    let hasProgress = selectedSubject && selectedProgress && selectedProgress.subject === selectedSubject;
+    let hasIncorrectStats = selectedSubject && incorrectIdsBySubject[selectedSubject] && incorrectIdsBySubject[selectedSubject].length > 0;
+
+    if (hasProgress) {
+        resumeBtn.style.display = 'inline-block';
+    } else {
         resumeBtn.style.display = 'none';
-        return;
     }
 
-    if (selectedProgress.subject !== selectedSubject) {
-        resumeBtn.style.display = 'none';
-        return;
+    if (hasProgress || hasIncorrectStats) {
+        clearStatsBtn.style.display = 'inline-block';
+    } else {
+        clearStatsBtn.style.display = 'none';
     }
-
-    resumeBtn.style.display = 'inline-block';
 }
 
 function getIncorrectIds() {
@@ -154,6 +158,7 @@ document.getElementById('subject-select').addEventListener('change', async (even
         document.getElementById('start-btn').disabled = true;
         document.getElementById('open-editor-btn').disabled = true;
         document.getElementById('question-count-display').textContent = '';
+        updateResumeButtonVisibility();
         return;
     }
 
@@ -178,6 +183,7 @@ document.getElementById('subject-select').addEventListener('change', async (even
     
     if (allQuestions.length === 0) {
         document.getElementById('setup-error').textContent = `No questions found in questions/${subject}/questions.json`;
+        updateResumeButtonVisibility();
         return;
     }
 
@@ -197,7 +203,7 @@ document.getElementById('subject-select').addEventListener('change', async (even
     document.getElementById('start-btn').disabled = false;
     document.getElementById('open-editor-btn').disabled = false;
     updateQuestionCountDisplay();
-        updateResumeButtonVisibility();
+    updateResumeButtonVisibility();
 });
 
 document.getElementById('open-editor-btn').addEventListener('click', () => {
