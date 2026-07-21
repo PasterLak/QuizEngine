@@ -44,12 +44,16 @@
         </div>
         <div id="question-text"></div>
         <div id="input-container"></div>
-        <button id="submit-btn">Submit</button>
-        <button id="next-btn" style="display: none;">Next</button>
+        <div class="action-buttons-group">
+            <button id="submit-btn">Submit</button>
+            
+            <button id="next-btn" style="display: none;">Next</button>
+            <button id="prev-btn" style="display: none;">Previous</button>
+        </div>
         <div id="result-area"></div>
         <div id="bottom-actions">
-            <div>
-                <button id="exit-btn">Exit to Menu</button>
+            <div class="left-bottom-actions">
+                <button id="exit-btn">Back to Menu</button>
                 <button id="retry-btn" style="display: none;">Retry Incorrect</button>
             </div>
             <button id="quiz-open-editor-btn" style="background-color: #2196F3; color: white;">Open JSON Editor</button>

@@ -14,7 +14,7 @@ body, html {
     top: 0;
     left: 0;
     width: 100%;
-    height: 50px;
+    height: 60px;
     background-color: #2d2d2d;
     display: flex;
     justify-content: space-between;
@@ -29,6 +29,13 @@ body, html {
     font-size: 16px;
     font-weight: bold;
     color: #fff;
+    word-break: break-all;
+    margin-right: 10px;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
 }
 
 #save-btn {
@@ -46,11 +53,41 @@ body, html {
     background-color: #45a049;
 }
 
+#download-btn {
+    padding: 8px 20px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#download-btn:hover {
+    background-color: #0b7dda;
+}
+
+#close-btn {
+    padding: 8px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#close-btn:hover {
+    background-color: #d32f2f;
+}
+
 #editor-container {
     position: relative;
     width: 100%;
-    height: calc(100% - 50px);
-    margin-top: 50px;
+    height: calc(100% - 60px);
+    margin-top: 60px;
 }
 
 textarea, pre {
@@ -93,3 +130,16 @@ pre {
 .token.boolean { color: #569cd6; }
 .token.null { color: #569cd6; }
 .token.property { color: #9cdcfe; }
+
+@media (max-width: 600px) {
+    #editor-header {
+        padding: 0 10px;
+    }
+    #editor-subject-title {
+        font-size: 12px;
+    }
+    #save-btn, #download-btn, #close-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}

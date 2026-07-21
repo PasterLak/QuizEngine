@@ -1,5 +1,3 @@
-// scripts.js
-
 let allQuestions = [];
 let filteredQuestions = [];
 let incorrectQuestions = [];
@@ -41,6 +39,12 @@ async function init() {
         });
         
         select.disabled = false;
+
+        const lastSubject = localStorage.getItem('last_subject');
+        if (lastSubject && subjects.includes(lastSubject)) {
+            select.value = lastSubject;
+            select.dispatchEvent(new Event('change'));
+        }
     } catch (error) {
         document.getElementById('setup-error').textContent = 'Error: Create subjects.json file with subject folder names.';
     }
@@ -81,6 +85,7 @@ document.getElementById('subject-select').addEventListener('change', async (even
         return;
     }
 
+    localStorage.setItem('last_subject', subject);
     document.getElementById('setup-error').textContent = 'Loading...';
     document.getElementById('category-select').disabled = true;
     document.getElementById('start-btn').disabled = true;
@@ -104,7 +109,6 @@ document.getElementById('subject-select').addEventListener('change', async (even
         return;
     }
 
-    // Cleanup saved IDs that no longer exist in JSON
     if (incorrectIdsBySubject[subject] && incorrectIdsBySubject[subject].length > 0) {
         incorrectIdsBySubject[subject] = incorrectIdsBySubject[subject].filter(id => allQuestions.some(q => q.id === id));
         saveIncorrectIds(incorrectIdsBySubject);
@@ -260,7 +264,6 @@ function updateProgressDisplay() {
 function updateRetryButtonsVisibility() {
     if (incorrectCount > 0) {
         document.getElementById('retry-btn').style.display = 'inline-block';
-        document.getElementById('retry-btn').style.marginLeft = '15px';
     } else {
         document.getElementById('retry-btn').style.display = 'none';
     }
@@ -270,6 +273,7 @@ function showQuestion() {
     document.getElementById('result-area').innerHTML = '';
     document.getElementById('submit-btn').style.display = 'inline-block';
     document.getElementById('next-btn').style.display = 'none';
+    document.getElementById('prev-btn').style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
     
     updateRetryButtonsVisibility();
     
@@ -277,6 +281,7 @@ function showQuestion() {
         document.getElementById('question-text').innerHTML = '<h2>Quiz Finished!</h2>';
         document.getElementById('input-container').innerHTML = '';
         document.getElementById('submit-btn').style.display = 'none';
+        document.getElementById('prev-btn').style.display = 'none';
         document.getElementById('category-letter').textContent = '';
         document.getElementById('category-topic').textContent = '';
         document.getElementById('question-filename').textContent = '';
@@ -413,20 +418,15 @@ document.getElementById('submit-btn').addEventListener('click', () => {
 
     if (isCorrect) {
         correctCount++;
-        // Remove from persistent incorrect list if correct
         if (incorrectIdsBySubject[subject]) {
             incorrectIdsBySubject[subject] = incorrectIdsBySubject[subject].filter(id => id !== q.id);
             saveIncorrectIds(incorrectIdsBySubject);
         }
     } else {
         incorrectCount++;
-        
-        // Add to current session incorrect list
         if (!incorrectQuestions.includes(q)) {
             incorrectQuestions.push(q);
         }
-        
-        // Add to persistent incorrect list
         if (!incorrectIdsBySubject[subject]) {
             incorrectIdsBySubject[subject] = [];
         }
@@ -446,6 +446,13 @@ document.getElementById('submit-btn').addEventListener('click', () => {
 document.getElementById('next-btn').addEventListener('click', () => {
     currentQuestionIndex++;
     showQuestion();
+});
+
+document.getElementById('prev-btn').addEventListener('click', () => {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        showQuestion();
+    }
 });
 
 window.updateQuizData = function(jsonString) {
