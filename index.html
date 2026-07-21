@@ -48,10 +48,15 @@
         <div id="question-text"></div>
         <div id="input-container"></div>
         <div class="action-buttons-group">
-            <button id="submit-btn">Submit</button>
-            
-            <button id="next-btn" style="display: none;">Next</button>
-            <button id="prev-btn" style="display: none;">Previous</button>
+            <div class="left-actions">
+                <button id="submit-btn">Submit</button>
+                <button id="next-btn" style="display: none;">Next</button>
+                <button id="prev-btn" style="display: none;">Previous</button>
+            </div>
+            <div id="star-container" class="star-container" style="display: none;">
+                <span class="star-label">Mark question</span>
+                <span id="star-btn" class="star-icon">☆</span>
+            </div>
         </div>
         <div id="result-area"></div>
         <div id="bottom-actions">

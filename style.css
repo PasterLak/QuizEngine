@@ -122,6 +122,36 @@ select:disabled {
     font-weight: bold;
 }
 
+.star-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.star-container:hover .star-icon {
+    transform: scale(1.1);
+}
+
+.star-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    user-select: none;
+}
+
+.star-icon {
+    font-size: 28px;
+    color: #ffc107;
+    user-select: none;
+    transition: transform 0.2s;
+    margin: 0;
+}
+
+.star-icon.starred {
+    color: #ff9800;
+}
+
 #progress-text {
     font-size: 20px;
     font-weight: bold;
@@ -147,6 +177,14 @@ select:disabled {
 }
 
 .action-buttons-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.left-actions {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
@@ -347,6 +385,11 @@ button:disabled {
 
     #question-filename {
         margin: 10px auto;
+    }
+
+    .star-container {
+        justify-content: center;
+        width: 100%;
     }
 
     #progress-text {

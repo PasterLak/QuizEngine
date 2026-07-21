@@ -95,7 +95,22 @@ function saveIncorrectIds(data) {
     } catch(e) {}
 }
 
+function getStarredIds() {
+    try {
+        return JSON.parse(localStorage.getItem('quiz_starred_ids')) || {};
+    } catch(e) {
+        return {};
+    }
+}
+
+function saveStarredIds(data) {
+    try {
+        localStorage.setItem('quiz_starred_ids', JSON.stringify(data));
+    } catch(e) {}
+}
+
 let incorrectIdsBySubject = getIncorrectIds();
+let starredIdsBySubject = getStarredIds();
 quizProgress = getQuizProgress();
 
 async function init() {
@@ -131,6 +146,11 @@ function getFilteredCount(category) {
     if (category === 'Type: Single Choice') return allQuestions.filter(q => q.questionType === 1).length;
     if (category === 'Type: Multiple Choice') return allQuestions.filter(q => q.questionType === 2).length;
     if (category === 'Type: Text Input') return allQuestions.filter(q => q.questionType === 3).length;
+    if (category === 'Starred') {
+        const subject = document.getElementById('subject-select').value;
+        const starred = starredIdsBySubject[subject] || [];
+        return allQuestions.filter(q => starred.includes(q.id)).length;
+    }
     return allQuestions.filter(q => q.section === category).length;
 }
 
@@ -197,6 +217,11 @@ document.getElementById('subject-select').addEventListener('change', async (even
         }
     }
 
+    if (starredIdsBySubject[subject] && starredIdsBySubject[subject].length > 0) {
+        starredIdsBySubject[subject] = starredIdsBySubject[subject].filter(id => allQuestions.some(q => q.id === id));
+        saveStarredIds(starredIdsBySubject);
+    }
+
     document.getElementById('setup-error').textContent = '';
     setupCategories();
     document.getElementById('category-select').disabled = false;
@@ -226,6 +251,33 @@ document.getElementById('quiz-open-editor-btn').addEventListener('click', () => 
     }
     
     window.open(url, '_blank');
+});
+
+document.getElementById('star-container').addEventListener('click', () => {
+    const subject = document.getElementById('subject-select').value;
+    if (currentQuestionIndex >= filteredQuestions.length) return;
+    
+    const q = filteredQuestions[currentQuestionIndex];
+    if (!q) return;
+
+    if (!starredIdsBySubject[subject]) {
+        starredIdsBySubject[subject] = [];
+    }
+
+    const starBtn = document.getElementById('star-btn');
+    const idx = starredIdsBySubject[subject].indexOf(q.id);
+    
+    if (idx === -1) {
+        starredIdsBySubject[subject].push(q.id);
+        starBtn.textContent = '★';
+        starBtn.classList.add('starred');
+    } else {
+        starredIdsBySubject[subject].splice(idx, 1);
+        starBtn.textContent = '☆';
+        starBtn.classList.remove('starred');
+    }
+    
+    saveStarredIds(starredIdsBySubject);
 });
 
 function setupCategories() {
@@ -264,6 +316,16 @@ function setupCategories() {
         opt.textContent = `Text Input Only [${textCount}]`;
         select.appendChild(opt);
     }
+
+    const subject = document.getElementById('subject-select').value;
+    const starred = starredIdsBySubject[subject] || [];
+    const starredCount = allQuestions.filter(q => starred.includes(q.id)).length;
+    if (starredCount > 0) {
+        const opt = document.createElement('option');
+        opt.value = 'Starred';
+        opt.textContent = `Starred [${starredCount}]`;
+        select.appendChild(opt);
+    }
 }
 
 document.getElementById('start-btn').addEventListener('click', () => {
@@ -277,6 +339,10 @@ document.getElementById('start-btn').addEventListener('click', () => {
         filteredQuestions = allQuestions.filter(q => q.questionType === 2);
     } else if (selectedCategory === 'Type: Text Input') {
         filteredQuestions = allQuestions.filter(q => q.questionType === 3);
+    } else if (selectedCategory === 'Starred') {
+        const subject = document.getElementById('subject-select').value;
+        const starred = starredIdsBySubject[subject] || [];
+        filteredQuestions = allQuestions.filter(q => starred.includes(q.id));
     } else {
         filteredQuestions = allQuestions.filter(q => q.section === selectedCategory);
     }
@@ -379,6 +445,7 @@ document.getElementById('exit-btn').addEventListener('click', () => {
     }
 
     saveQuizProgress({ pendingAdvance: document.getElementById('submit-btn').style.display === 'none' });
+    setupCategories(); 
 });
 
 function updateProgressDisplay() {
@@ -427,6 +494,7 @@ function showQuestion() {
         document.getElementById('category-letter').textContent = '';
         document.getElementById('category-topic').textContent = '';
         document.getElementById('question-filename').textContent = '';
+        document.getElementById('star-container').style.display = 'none';
         
         document.getElementById('progress-text').innerHTML = studyMode
             ? 'Study Mode'
@@ -437,6 +505,18 @@ function showQuestion() {
 
     const q = filteredQuestions[currentQuestionIndex];
     currentQuestionType = q.questionType;
+    const subject = document.getElementById('subject-select').value;
+    const starBtn = document.getElementById('star-btn');
+    const starContainer = document.getElementById('star-container');
+    
+    starContainer.style.display = 'flex';
+    if (starredIdsBySubject[subject] && starredIdsBySubject[subject].includes(q.id)) {
+        starBtn.textContent = '★';
+        starBtn.classList.add('starred');
+    } else {
+        starBtn.textContent = '☆';
+        starBtn.classList.remove('starred');
+    }
 
     updateProgressDisplay();
     document.getElementById('category-letter').textContent = q.section || '';
