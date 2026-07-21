@@ -8,6 +8,77 @@ let currentQuestionType = '';
 let correctCount = 0;
 let incorrectCount = 0;
 let currentQuestionsJson = null;
+let studyMode = false;
+let quizProgress = null;
+
+function getQuizProgress() {
+    try {
+        return JSON.parse(localStorage.getItem('quiz_progress')) || null;
+    } catch (e) {
+        return null;
+    }
+}
+
+function saveQuizProgress(extra = {}) {
+    if (!document.getElementById('subject-select').value || filteredQuestions.length === 0) return;
+
+    const progress = {
+        subject: document.getElementById('subject-select').value,
+        category: document.getElementById('category-select').value,
+        studyMode,
+        shuffleQuestions: document.getElementById('shuffle-questions').checked,
+        shuffleOptions: document.getElementById('shuffle-options').checked,
+        questionIds: filteredQuestions.map(question => question.id),
+        currentQuestionIndex,
+        correctCount,
+        incorrectCount,
+        ...extra
+    };
+
+    quizProgress = progress;
+
+    try {
+        localStorage.setItem('quiz_progress', JSON.stringify(progress));
+    } catch (e) {}
+    updateResumeButtonVisibility();
+}
+
+function clearQuizProgress() {
+    quizProgress = null;
+    try {
+        localStorage.removeItem('quiz_progress');
+    } catch (e) {}
+    updateResumeButtonVisibility();
+}
+
+function clearStatistics() {
+    incorrectIdsBySubject = {};
+    saveIncorrectIds(incorrectIdsBySubject);
+    clearQuizProgress();
+
+    const practiceBtn = document.getElementById('practice-incorrect-btn');
+    practiceBtn.style.display = 'none';
+    practiceBtn.textContent = 'Practice Incorrect [0]';
+}
+
+function updateResumeButtonVisibility() {
+    const resumeBtn = document.getElementById('resume-progress-btn');
+    const selectedSubject = document.getElementById('subject-select').value;
+    const selectedProgress = getQuizProgress();
+
+    if (!selectedSubject || !selectedProgress) {
+        resumeBtn.style.display = 'none';
+        return;
+    }
+
+    if (selectedProgress.subject !== selectedSubject) {
+        resumeBtn.style.display = 'none';
+        return;
+    }
+
+    resumeBtn.textContent = `Resume ${selectedProgress.subject} Session`;
+    resumeBtn.style.display = 'inline-block';
+}
 
 function getIncorrectIds() {
     try {
@@ -24,6 +95,7 @@ function saveIncorrectIds(data) {
 }
 
 let incorrectIdsBySubject = getIncorrectIds();
+quizProgress = getQuizProgress();
 
 async function init() {
     try {
@@ -41,6 +113,7 @@ async function init() {
         });
         
         select.disabled = false;
+        updateResumeButtonVisibility();
     } catch (error) {
         document.getElementById('setup-error').textContent = 'Error: Create subjects.json file with subject folder names.';
     }
@@ -121,6 +194,7 @@ document.getElementById('subject-select').addEventListener('change', async (even
     document.getElementById('start-btn').disabled = false;
     document.getElementById('open-editor-btn').disabled = false;
     updateQuestionCountDisplay();
+        updateResumeButtonVisibility();
 });
 
 document.getElementById('open-editor-btn').addEventListener('click', () => {
@@ -201,15 +275,29 @@ document.getElementById('start-btn').addEventListener('click', () => {
     startQuizFlow();
 });
 
+document.getElementById('resume-progress-btn').addEventListener('click', () => {
+    const progress = getQuizProgress();
+    if (!progress) return;
+    resumeQuizFlow(progress);
+});
+
+document.getElementById('clear-stats-btn').addEventListener('click', () => {
+    clearStatistics();
+});
+
 document.getElementById('practice-incorrect-btn').addEventListener('click', () => {
     const subject = document.getElementById('subject-select').value;
     if (!subject || !incorrectIdsBySubject[subject]) return;
     
     filteredQuestions = allQuestions.filter(q => incorrectIdsBySubject[subject].includes(q.id));
+    clearQuizProgress();
     startQuizFlow();
 });
 
 function startQuizFlow() {
+    clearQuizProgress();
+    studyMode = document.getElementById('study-mode').checked;
+
     if (document.getElementById('shuffle-questions').checked) {
         filteredQuestions.sort(() => Math.random() - 0.5);
     }
@@ -223,6 +311,40 @@ function startQuizFlow() {
     document.getElementById('quiz-container').style.display = 'block';
     
     updateRetryButtonsVisibility();
+    saveQuizProgress();
+    showQuestion();
+}
+
+function resumeQuizFlow(progress) {
+    const subject = document.getElementById('subject-select').value;
+    if (!subject || progress.subject !== subject) return;
+
+    const categorySelect = document.getElementById('category-select');
+    categorySelect.value = progress.category || 'All';
+    document.getElementById('shuffle-questions').checked = !!progress.shuffleQuestions;
+    document.getElementById('shuffle-options').checked = !!progress.shuffleOptions;
+    document.getElementById('study-mode').checked = !!progress.studyMode;
+
+    studyMode = !!progress.studyMode;
+
+    const questionIds = Array.isArray(progress.questionIds) ? progress.questionIds : [];
+    filteredQuestions = questionIds
+        .map(questionId => allQuestions.find(question => question.id === questionId))
+        .filter(Boolean);
+
+    if (filteredQuestions.length === 0) return;
+
+    const resumeOffset = progress.pendingAdvance ? 1 : 0;
+    currentQuestionIndex = Math.min((progress.currentQuestionIndex || 0) + resumeOffset, filteredQuestions.length - 1);
+    correctCount = progress.correctCount || 0;
+    incorrectCount = progress.incorrectCount || 0;
+    incorrectQuestions = [];
+
+    document.getElementById('setup-container').style.display = 'none';
+    document.getElementById('quiz-container').style.display = 'block';
+
+    updateRetryButtonsVisibility();
+    saveQuizProgress();
     showQuestion();
 }
 
@@ -246,18 +368,32 @@ document.getElementById('exit-btn').addEventListener('click', () => {
     } else {
         practiceBtn.style.display = 'none';
     }
+
+    saveQuizProgress({ pendingAdvance: document.getElementById('submit-btn').style.display === 'none' });
 });
 
 function updateProgressDisplay() {
     if (currentQuestionIndex >= filteredQuestions.length) return;
+    const progressText = `${currentQuestionIndex + 1} / ${filteredQuestions.length}`;
+
+    if (studyMode) {
+        document.getElementById('progress-text').textContent = `Study Mode | ${progressText}`;
+        return;
+    }
+
     document.getElementById('progress-text').innerHTML = `
         <span class="score-green">${correctCount}</span> / <span class="score-red">${incorrectCount}</span>
         <span class="score-divider">|</span>
-        ${currentQuestionIndex + 1} / ${filteredQuestions.length}
+        ${progressText}
     `;
 }
 
 function updateRetryButtonsVisibility() {
+    if (studyMode) {
+        document.getElementById('retry-btn').style.display = 'none';
+        return;
+    }
+
     if (incorrectCount > 0) {
         document.getElementById('retry-btn').style.display = 'inline-block';
         document.getElementById('retry-btn').style.marginLeft = '15px';
@@ -268,22 +404,24 @@ function updateRetryButtonsVisibility() {
 
 function showQuestion() {
     document.getElementById('result-area').innerHTML = '';
-    document.getElementById('submit-btn').style.display = 'inline-block';
-    document.getElementById('next-btn').style.display = 'none';
+    document.getElementById('submit-btn').style.display = studyMode ? 'none' : 'inline-block';
+    document.getElementById('next-btn').style.display = studyMode ? 'inline-block' : 'none';
     
     updateRetryButtonsVisibility();
     
     if (currentQuestionIndex >= filteredQuestions.length) {
-        document.getElementById('question-text').innerHTML = '<h2>Quiz Finished!</h2>';
+        document.getElementById('question-text').innerHTML = studyMode ? '<h2>Study Mode Finished</h2>' : '<h2>Quiz Finished!</h2>';
         document.getElementById('input-container').innerHTML = '';
         document.getElementById('submit-btn').style.display = 'none';
+        document.getElementById('next-btn').style.display = 'none';
         document.getElementById('category-letter').textContent = '';
         document.getElementById('category-topic').textContent = '';
         document.getElementById('question-filename').textContent = '';
         
-        document.getElementById('progress-text').innerHTML = `
-            <span class="score-green">${correctCount}</span> / <span class="score-red">${incorrectCount}</span>
-        `;
+        document.getElementById('progress-text').innerHTML = studyMode
+            ? 'Study Mode'
+            : `<span class="score-green">${correctCount}</span> / <span class="score-red">${incorrectCount}</span>`;
+        clearQuizProgress();
         return;
     }
 
@@ -299,6 +437,42 @@ function showQuestion() {
     const inputContainer = document.getElementById('input-container');
     inputContainer.innerHTML = '';
 
+    if (studyMode) {
+        const hint = document.createElement('div');
+        hint.className = 'study-answer-box';
+
+        if (currentQuestionType === 1 || currentQuestionType === 2) {
+            const correctAnswers = q.answers.filter(a => a.correct).map(a => a.text);
+            const label = document.createElement('div');
+            label.className = 'study-answer-label';
+            label.textContent = correctAnswers.length > 1 ? 'Correct answers:' : 'Correct answer:';
+
+            const value = document.createElement('div');
+            value.className = 'study-answer-value';
+            value.textContent = correctAnswers.join(', ');
+
+            hint.appendChild(label);
+            hint.appendChild(value);
+        } else {
+            const correctAnswer = q.answers[0] ? q.answers[0].text : '';
+            const label = document.createElement('div');
+            label.className = 'study-answer-label';
+            label.textContent = 'Correct answer:';
+
+            const value = document.createElement('div');
+            value.className = 'study-answer-value';
+            value.textContent = correctAnswer;
+
+            hint.appendChild(label);
+            hint.appendChild(value);
+        }
+
+        inputContainer.appendChild(hint);
+        document.getElementById('result-area').innerHTML = '<span class="study-mode-note">Study Mode active: Only the correct answers are shown.</span>';
+        saveQuizProgress({ pendingAdvance: false });
+        return;
+    }
+
     if (currentQuestionType === 1 || currentQuestionType === 2) {
         const inputType = currentQuestionType === 1 ? 'radio' : 'checkbox';
         
@@ -310,10 +484,16 @@ function showQuestion() {
         displayOptions.forEach((opt) => {
             const label = document.createElement('label');
             label.className = 'option-label';
+            if (studyMode && opt.correct) {
+                label.classList.add('study-correct-choice');
+            }
             const input = document.createElement('input');
             input.type = inputType;
             input.name = 'quiz-option';
             input.value = opt.text;
+            if (studyMode) {
+                input.disabled = true;
+            }
             label.appendChild(input);
             label.appendChild(document.createTextNode(opt.text));
             inputContainer.appendChild(label);
@@ -363,6 +543,8 @@ function calculateSimilarity(s1, s2) {
 }
 
 document.getElementById('submit-btn').addEventListener('click', () => {
+    if (studyMode) return;
+
     const q = filteredQuestions[currentQuestionIndex];
     const resultArea = document.getElementById('result-area');
     const subject = document.getElementById('subject-select').value;
@@ -441,10 +623,12 @@ document.getElementById('submit-btn').addEventListener('click', () => {
     resultArea.innerHTML = feedback;
     document.getElementById('submit-btn').style.display = 'none';
     document.getElementById('next-btn').style.display = 'inline-block';
+    saveQuizProgress({ pendingAdvance: true });
 });
 
 document.getElementById('next-btn').addEventListener('click', () => {
     currentQuestionIndex++;
+    saveQuizProgress({ pendingAdvance: false });
     showQuestion();
 });
 
@@ -502,5 +686,11 @@ window.updateQuizData = function(jsonString) {
 window.getCurrentQuestionsJson = function () {
     return currentQuestionsJson;
 };
+
+window.addEventListener('beforeunload', () => {
+    if (document.getElementById('quiz-container').style.display !== 'none') {
+        saveQuizProgress({ pendingAdvance: document.getElementById('submit-btn').style.display === 'none' });
+    }
+});
 
 window.onload = init;

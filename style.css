@@ -29,6 +29,7 @@ body {
     background: #e6e3da;
     padding: 10px;
     border-radius: 8px;
+    flex-wrap: wrap;
 }
 
 select {
@@ -239,4 +240,43 @@ button:disabled {
 .incorrect {
     color: #c62828;
     font-weight: bold;
+}
+
+.study-answer-box {
+    margin-bottom: 20px;
+    padding: 16px 18px;
+    border: 2px dashed #2e7d32;
+    border-radius: 10px;
+    background: #f6fff5;
+}
+
+.study-answer-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #2e7d32;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.study-answer-value {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1b5e20;
+}
+
+.study-mode-note {
+    display: inline-block;
+    background: #fff4d6;
+    color: #8a5b00;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-weight: bold;
+}
+
+.study-correct-choice {
+    color: #1b5e20;
+    background: #eef9ed;
+    border-radius: 6px;
+    padding: 4px 8px;
 }
