@@ -635,6 +635,7 @@ document.getElementById('next-btn').addEventListener('click', () => {
 document.getElementById('prev-btn').addEventListener('click', () => {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
+        saveQuizProgress({ pendingAdvance: false });
         showQuestion();
     }
 });
