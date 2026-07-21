@@ -8,6 +8,7 @@ let incorrectCount = 0;
 let currentQuestionsJson = null;
 let studyMode = false;
 let quizProgress = null;
+let answeredQuestions = {};
 
 function getQuizProgress() {
     try {
@@ -30,6 +31,7 @@ function saveQuizProgress(extra = {}) {
         currentQuestionIndex,
         correctCount,
         incorrectCount,
+        answeredQuestions,
         ...extra
     };
 
@@ -198,9 +200,8 @@ document.getElementById('subject-select').addEventListener('change', async (even
             currentQuestionsJson = JSON.stringify(data, null, 2);
             allQuestions = data.questions || [];
         }
-    } catch (e) {
-    }
-    
+    } catch (e) {}
+
     if (allQuestions.length === 0) {
         document.getElementById('setup-error').textContent = `No questions found in questions/${subject}/questions.json`;
         updateResumeButtonVisibility();
@@ -230,7 +231,6 @@ document.getElementById('subject-select').addEventListener('change', async (even
     updateQuestionCountDisplay();
     updateResumeButtonVisibility();
 });
-
 document.getElementById('open-editor-btn').addEventListener('click', () => {
     const subject = document.getElementById('subject-select').value;
     if (!subject) return;
@@ -347,6 +347,7 @@ document.getElementById('start-btn').addEventListener('click', () => {
         filteredQuestions = allQuestions.filter(q => q.section === selectedCategory);
     }
     
+    answeredQuestions = {};
     startQuizFlow();
 });
 
@@ -366,6 +367,7 @@ document.getElementById('practice-incorrect-btn').addEventListener('click', () =
     
     filteredQuestions = allQuestions.filter(q => incorrectIdsBySubject[subject].includes(q.id));
     clearQuizProgress();
+    answeredQuestions = {};
     startQuizFlow();
 });
 
@@ -408,6 +410,8 @@ function resumeQuizFlow(progress) {
 
     if (filteredQuestions.length === 0) return;
 
+    answeredQuestions = progress.answeredQuestions || {};
+
     const resumeOffset = progress.pendingAdvance ? 1 : 0;
     currentQuestionIndex = Math.min((progress.currentQuestionIndex || 0) + resumeOffset, filteredQuestions.length - 1);
     correctCount = progress.correctCount || 0;
@@ -420,10 +424,6 @@ function resumeQuizFlow(progress) {
     saveQuizProgress();
     showQuestion();
 }
-
-
-
-
 document.getElementById('exit-btn').addEventListener('click', () => {
     document.getElementById('quiz-container').style.display = 'none';
     document.getElementById('setup-container').style.display = 'block';
@@ -458,15 +458,12 @@ function updateProgressDisplay() {
     `;
 }
 
-
 function showQuestion() {
     document.getElementById('result-area').innerHTML = '';
     document.getElementById('submit-btn').style.display = studyMode ? 'none' : 'inline-block';
     document.getElementById('next-btn').style.display = studyMode ? 'inline-block' : 'none';
     document.getElementById('prev-btn').style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
-    
-   
-    
+
     if (currentQuestionIndex >= filteredQuestions.length) {
         document.getElementById('question-text').innerHTML = studyMode ? '<h2>Study Mode Finished</h2>' : '<h2>Quiz Finished!</h2>';
         document.getElementById('input-container').innerHTML = '';
@@ -490,7 +487,7 @@ function showQuestion() {
     const subject = document.getElementById('subject-select').value;
     const starBtn = document.getElementById('star-btn');
     const starContainer = document.getElementById('star-container');
-    
+
     starContainer.style.display = 'flex';
     if (starredIdsBySubject[subject] && starredIdsBySubject[subject].includes(q.id)) {
         starBtn.textContent = '★';
@@ -508,6 +505,8 @@ function showQuestion() {
 
     const inputContainer = document.getElementById('input-container');
     inputContainer.innerHTML = '';
+
+    const wasAnswered = answeredQuestions[q.id];
 
     if (studyMode) {
         const hint = document.createElement('div');
@@ -545,27 +544,54 @@ function showQuestion() {
         return;
     }
 
+ if (wasAnswered) {
+    document.getElementById('submit-btn').style.display = 'none';
+    document.getElementById('next-btn').style.display = 'inline-block';
+
+    if (wasAnswered.isCorrect) {
+        document.getElementById('result-area').innerHTML = '<span class="correct">Correct!</span>';
+    } else {
+        const correctAnswer = q.answers[0].text;
+        const yourAnswer = wasAnswered.selected || '';
+        document.getElementById('result-area').innerHTML =
+            `<span class="incorrect">Incorrect.</span><br><br>
+             Correct answer: ${correctAnswer}`;
+    }
+}
+
+
     if (currentQuestionType === 1 || currentQuestionType === 2) {
         const inputType = currentQuestionType === 1 ? 'radio' : 'checkbox';
         
         let displayOptions = [...q.answers];
-        if (document.getElementById('shuffle-options').checked) {
+        if (document.getElementById('shuffle-options').checked && !wasAnswered) {
             displayOptions.sort(() => Math.random() - 0.5);
         }
         
         displayOptions.forEach((opt) => {
             const label = document.createElement('label');
             label.className = 'option-label';
-            if (studyMode && opt.correct) {
-                label.classList.add('study-correct-choice');
-            }
             const input = document.createElement('input');
             input.type = inputType;
             input.name = 'quiz-option';
             input.value = opt.text;
-            if (studyMode) {
+
+            if (wasAnswered) {
                 input.disabled = true;
+
+                if (opt.correct) {
+                    label.classList.add('correct-choice');
+                }
+
+                if (!opt.correct && wasAnswered.selected.includes(opt.text)) {
+                    label.classList.add('incorrect-choice');
+                }
+
+                if (wasAnswered.selected.includes(opt.text)) {
+                    input.checked = true;
+                }
             }
+
             label.appendChild(input);
             label.appendChild(document.createTextNode(opt.text));
             inputContainer.appendChild(label);
@@ -573,47 +599,16 @@ function showQuestion() {
     } else {
         const textarea = document.createElement('textarea');
         textarea.id = 'text-answer';
+
+        if (wasAnswered) {
+    textarea.value = wasAnswered.selected || '';
+    textarea.disabled = true;
+}
+
+
         inputContainer.appendChild(textarea);
     }
 }
-
-function editDistance(s1, s2) {
-    s1 = s1.toLowerCase();
-    s2 = s2.toLowerCase();
-    let costs = [];
-    for (let i = 0; i <= s1.length; i++) {
-        let lastValue = i;
-        for (let j = 0; j <= s2.length; j++) {
-            if (i === 0) {
-                costs[j] = j;
-            } else {
-                if (j > 0) {
-                    let newValue = costs[j - 1];
-                    if (s1.charAt(i - 1) !== s2.charAt(j - 1)) {
-                        newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
-                    }
-                    costs[j - 1] = lastValue;
-                    lastValue = newValue;
-                }
-            }
-        }
-        if (i > 0) costs[s2.length] = lastValue;
-    }
-    return costs[s2.length];
-}
-
-function calculateSimilarity(s1, s2) {
-    let longer = s1;
-    let shorter = s2;
-    if (s1.length < s2.length) {
-        longer = s2;
-        shorter = s1;
-    }
-    let longerLength = longer.length;
-    if (longerLength === 0) return 100;
-    return ((longerLength - editDistance(longer, shorter)) / parseFloat(longerLength)) * 100;
-}
-
 document.getElementById('submit-btn').addEventListener('click', () => {
     if (studyMode) return;
 
@@ -655,6 +650,9 @@ document.getElementById('submit-btn').addEventListener('click', () => {
         });
 
         isCorrect = selected.length === correctAnswers.length && selected.every(val => correctAnswers.includes(val));
+
+
+
         feedback = isCorrect ? '<span class="correct">Correct!</span>' : `<span class="incorrect">Incorrect or not all options selected</span>`;
     } else {
         const textVal = document.getElementById('text-answer').value;
@@ -662,7 +660,8 @@ document.getElementById('submit-btn').addEventListener('click', () => {
         const sim = calculateSimilarity(textVal, correctAnswer);
         
         isCorrect = sim >= 80;
-        feedback = `Similarity: <strong>${sim.toFixed(1)}%</strong><br><br>Your answer: ${textVal}<br>The correct answer is: ${correctAnswer}`;
+         var c = isCorrect ? '<span class="correct">Correct!</span>' : `<span class="incorrect">Incorrect</span> | `;
+        feedback = c + `Similarity: <strong>${sim.toFixed(1)}%</strong><br><br>The correct answer is: ${correctAnswer}`;
     }
 
     if (isCorrect) {
@@ -685,6 +684,17 @@ document.getElementById('submit-btn').addEventListener('click', () => {
         }
     }
 
+   const selectedValues =
+    currentQuestionType === 3
+        ? document.getElementById('text-answer').value.trim()
+        : Array.from(document.querySelectorAll('input[name="quiz-option"]:checked')).map(el => el.value);
+
+
+    answeredQuestions[q.id] = {
+        isCorrect,
+        selected: selectedValues
+    };
+
     updateProgressDisplay();
     
     resultArea.innerHTML = feedback;
@@ -706,6 +716,44 @@ document.getElementById('prev-btn').addEventListener('click', () => {
         showQuestion();
     }
 });
+
+function editDistance(s1, s2) {
+    s1 = s1.toLowerCase();
+    s2 = s2.toLowerCase();
+    let costs = [];
+    for (let i = 0; i <= s1.length; i++) {
+        let lastValue = i;
+        for (let j = 0; j <= s2.length; j++) {
+            if (i === 0) {
+                costs[j] = j;
+            } else {
+                if (j > 0) {
+                    let newValue = costs[j - 1];
+                    if (s1.charAt(i - 1) !== s2.charAt(j - 1)) {
+                        newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+                    }
+                    costs[j - 1] = lastValue;
+                    lastValue = newValue;
+                }
+            }
+        }
+        if (i > 0) costs[s2.length] = lastValue;
+    }
+    return costs[s2.length];
+}
+
+function calculateSimilarity(s1, s2) {
+    let longer = s1;
+    let shorter = s2;
+    if (s1.length < s2.length) {
+        longer = s2;
+        shorter = s1;
+    }
+    let longerLength = longer.length;
+    if (longerLength === 0) return 100;
+    return ((longerLength - editDistance(longer, shorter)) / parseFloat(longerLength)) * 100;
+}
+
 
 window.updateQuizData = function(jsonString) {
     try {
@@ -754,8 +802,7 @@ window.updateQuizData = function(jsonString) {
                 showQuestion();
             }
         }
-    } catch (e) {
-    }
+    } catch (e) {}
 };
 
 window.getCurrentQuestionsJson = function () {
