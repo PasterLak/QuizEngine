@@ -387,11 +387,6 @@ button:disabled {
         margin: 10px auto;
     }
 
-    .star-container {
-        justify-content: center;
-        width: 100%;
-    }
-
     #progress-text {
         margin: 15px auto;
     }
