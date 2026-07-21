@@ -1,6 +1,0 @@
-{
-  "category": "A",
-  "topic": "From waterfall to agile",
-  "question": "Describe the key differences between a waterfall model and an agile model in terms of their approach to software development (max. one phrase!). [6]",
-  "answer": "The waterfall model follows a linear, sequential approach where each phase (requirements, design, development, testing, Deployment) is completed before moving to the next, with little room for revisiting or adapting previous phases."
-}

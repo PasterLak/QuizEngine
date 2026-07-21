@@ -1,0 +1,2324 @@
+{
+  "title": "Blockchain Quiz Questions",
+  "language": "en",
+  "questionTypeDefinitions": {
+    "1": "single_choice",
+    "2": "multiple_choice",
+    "3": "text_input"
+  },
+  "questionCount": 108,
+  "questions": [
+    {
+      "id": "A1-01",
+      "section": "A1",
+      "topic": "Peer-to-peer networks",
+      "questionType": 1,
+      "question": "What is true about the concept of peer-to-peer networks?",
+      "points": 1,
+      "sourceImage": 1,
+      "answers": [
+        {
+          "text": "Peer-to-peer applications allow their users to control how many node connections should be searched for or allowed at the same time.",
+          "correct": true
+        },
+        {
+          "text": "A peer-to-peer network is a centralized communication model that can establish communication to all other nodes.",
+          "correct": false
+        },
+        {
+          "text": "The computers of some users are both providers and consumers of resources.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "A1-02",
+      "section": "A1",
+      "topic": "Peer-to-peer networks",
+      "questionType": 2,
+      "question": "What are advantages of peer-to-peer networks?",
+      "points": 2,
+      "sourceImage": 2,
+      "answers": [
+        {
+          "text": "Single point of failure",
+          "correct": false
+        },
+        {
+          "text": "Mutability",
+          "correct": false
+        },
+        {
+          "text": "Velocity",
+          "correct": true
+        },
+        {
+          "text": "Transparency",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A1-03",
+      "section": "A1",
+      "topic": "Distributed ledger",
+      "questionType": 2,
+      "question": "What is true about distributed ledger technology?",
+      "points": 2,
+      "sourceImage": 3,
+      "answers": [
+        {
+          "text": "Distributed ledger technologies slow down transactions by integrating a central instance.",
+          "correct": false
+        },
+        {
+          "text": "Distributed ledgers have the tendency to raise costs per transaction.",
+          "correct": false
+        },
+        {
+          "text": "Distributed ledger technology creates a system that is more difficult to manipulate or successfully attack.",
+          "correct": true
+        },
+        {
+          "text": "Distributed ledgers have neither a central data store nor centralized management functions.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A1-04",
+      "section": "A1",
+      "topic": "Blockchain",
+      "questionType": 3,
+      "question": "What does SPOF mean in the context of network architectures?",
+      "points": 3,
+      "sourceImage": 4,
+      "answers": [
+        {
+          "text": "Single Point of Failure",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A1-05",
+      "section": "A1",
+      "topic": "Decentralized systems",
+      "questionType": 2,
+      "question": "What are the primary advantages of decentralized systems compared to centralized ones?",
+      "points": 2,
+      "sourceImage": 5,
+      "answers": [
+        {
+          "text": "Higher coordination effort",
+          "correct": false
+        },
+        {
+          "text": "Lower security concerns",
+          "correct": false
+        },
+        {
+          "text": "Higher reliability",
+          "correct": true
+        },
+        {
+          "text": "Higher computing power",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A1-06",
+      "section": "A1",
+      "topic": "Distributed ledger",
+      "questionType": 3,
+      "question": "Explain distributed ledger technology in a few words.",
+      "points": 4,
+      "sourceImage": 6,
+      "answers": [
+        {
+          "text": "Decentralized data storage and transmission across networked computers.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A1-07",
+      "section": "A1",
+      "topic": "Distributed ledger",
+      "questionType": 3,
+      "question": "List potential benefits of distributed ledger technology.",
+      "points": 5,
+      "sourceImage": 7,
+      "answers": [
+        {
+          "text": "Faster transactions, reduced costs, enhanced security, and improved transparency.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A1-08",
+      "section": "A1",
+      "topic": "Peer-to-peer (P2P) networks",
+      "questionType": 1,
+      "question": "What is a characteristic of peer-to-peer (P2P) networks?",
+      "points": 1,
+      "sourceImage": 8,
+      "answers": [
+        {
+          "text": "They rely on a central coordination point.",
+          "correct": false
+        },
+        {
+          "text": "They have strict user control over network parameters.",
+          "correct": false
+        },
+        {
+          "text": "Each node has the same capabilities and can establish communication with all other nodes.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A1-09",
+      "section": "A1",
+      "topic": "Distributed systems",
+      "questionType": 2,
+      "question": "What are the disadvantages of distributed systems compared to central individual computers?",
+      "points": 2,
+      "sourceImage": 9,
+      "answers": [
+        {
+          "text": "Coordination effort",
+          "correct": true
+        },
+        {
+          "text": "Communication effort",
+          "correct": true
+        },
+        {
+          "text": "Lower security concerns",
+          "correct": false
+        },
+        {
+          "text": "Higher reliability",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "A1-10",
+      "section": "A1",
+      "topic": "Blockchain",
+      "questionType": 1,
+      "question": "What is a primary characteristic of blockchain technology?",
+      "points": 1,
+      "sourceImage": 10,
+      "answers": [
+        {
+          "text": "It relies on a centralized database.",
+          "correct": false
+        },
+        {
+          "text": "It has a single point of failure.",
+          "correct": false
+        },
+        {
+          "text": "It enables distributed and tamper-proof data management.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A1-11",
+      "section": "A1",
+      "topic": "Blockchain",
+      "questionType": 3,
+      "question": "Describe the primary characteristics of blockchain or distributed ledger technology.",
+      "points": 4,
+      "sourceImage": 11,
+      "answers": [
+        {
+          "text": "Decentralized, tamper-proof data storage and transmission.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A4-01",
+      "section": "A4",
+      "topic": "Trust in blockchains",
+      "questionType": 1,
+      "question": "The actor who solves the hash puzzle represents the majority and is allowed to propose a transaction for posting to the blockchain. What is this mechanism called?",
+      "points": 1,
+      "sourceImage": 12,
+      "answers": [
+        {
+          "text": "Proof-of-work",
+          "correct": true
+        },
+        {
+          "text": "Proof-of-majority",
+          "correct": false
+        },
+        {
+          "text": "Proof-of-honesty",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "A4-02",
+      "section": "A4",
+      "topic": "Consensus",
+      "questionType": 2,
+      "question": "Which of the following are valid standard consensus methods?",
+      "points": 2,
+      "sourceImage": 13,
+      "answers": [
+        {
+          "text": "Proof-of-word",
+          "correct": false
+        },
+        {
+          "text": "Proof-of-reliability",
+          "correct": false
+        },
+        {
+          "text": "Proof-of-honesty",
+          "correct": true
+        },
+        {
+          "text": "Proof-of-authority",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A4-03",
+      "section": "A4",
+      "topic": "Authorization",
+      "questionType": 1,
+      "question": "What type of blockchain requires explicit access authorization?",
+      "points": 1,
+      "sourceImage": 14,
+      "answers": [
+        {
+          "text": "Public blockchain",
+          "correct": false
+        },
+        {
+          "text": "Private blockchain",
+          "correct": true
+        },
+        {
+          "text": "All blockchains",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "A4-04",
+      "section": "A4",
+      "topic": "Cryptocurrency",
+      "questionType": 2,
+      "question": "What are the characteristics of cryptocurrency transactions?",
+      "points": 2,
+      "sourceImage": 15,
+      "answers": [
+        {
+          "text": "They can be carried out without a digital wallet.",
+          "correct": false
+        },
+        {
+          "text": "They involve peer-to-peer (P2P) network monitoring.",
+          "correct": true
+        },
+        {
+          "text": "They require physical representation of currency.",
+          "correct": false
+        },
+        {
+          "text": "They use strongly encrypted hash codes.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A4-05",
+      "section": "A4",
+      "topic": "Manipulating blockchains",
+      "questionType": 3,
+      "question": "What is the consequence of changing a block's information in a blockchain?",
+      "points": 4,
+      "sourceImage": 16,
+      "answers": [
+        {
+          "text": "Breaks the hash sequence, disrupting consensus.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A4-06",
+      "section": "A4",
+      "topic": "Consensus",
+      "questionType": 3,
+      "question": "What happens if consensus is not reached in a blockchain network?",
+      "points": 4,
+      "sourceImage": 17,
+      "answers": [
+        {
+          "text": "No new blocks are added until the issue is resolved.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A6-01",
+      "section": "A6",
+      "topic": "Management of blockchain transactions",
+      "questionType": 1,
+      "question": "What is primarily used to manage blockchain transaction data and status?",
+      "points": 1,
+      "sourceImage": 18,
+      "answers": [
+        {
+          "text": "Decentralized applications",
+          "correct": false
+        },
+        {
+          "text": "Traditional databases",
+          "correct": false
+        },
+        {
+          "text": "Business logic",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A6-02",
+      "section": "A6",
+      "topic": "Benefits of blockchain technology",
+      "questionType": 2,
+      "question": "Blockchain technology is seen as a means to improve which of the following?",
+      "points": 2,
+      "sourceImage": 19,
+      "answers": [
+        {
+          "text": "Supply chain transparency",
+          "correct": true
+        },
+        {
+          "text": "Voting systems",
+          "correct": true
+        },
+        {
+          "text": "News channels",
+          "correct": false
+        },
+        {
+          "text": "None of the above",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "A6-03",
+      "section": "A6",
+      "topic": "Blockchain and industry",
+      "questionType": 3,
+      "question": "Why do many organizations prefer private blockchain systems?",
+      "points": 4,
+      "sourceImage": 20,
+      "answers": [
+        {
+          "text": "Control over access and customization.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A6-04",
+      "section": "A6",
+      "topic": "Blockchain and industry",
+      "questionType": 3,
+      "question": "What fundamental aspect does blockchain provide for business transactions?",
+      "points": 4,
+      "sourceImage": 21,
+      "answers": [
+        {
+          "text": "Trust and robust transaction processing.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "B2-01",
+      "section": "B2",
+      "topic": "Public and private keys",
+      "questionType": 1,
+      "question": "What primary goal does the use of public/private key pairs in blockchain technology serve?",
+      "points": 1,
+      "sourceImage": 22,
+      "answers": [
+        {
+          "text": "To increase transaction speed",
+          "correct": false
+        },
+        {
+          "text": "To ensure user anonymity",
+          "correct": true
+        },
+        {
+          "text": "To enhance peer communication",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "B2-02",
+      "section": "B2",
+      "topic": "Byzantine Generals Problem",
+      "questionType": 1,
+      "question": "What does the Byzantine Generals Problem illustrate in the context of blockchain?",
+      "points": 1,
+      "sourceImage": 23,
+      "answers": [
+        {
+          "text": "The need for simultaneous actions in a transaction",
+          "correct": false
+        },
+        {
+          "text": "The challenges of achieving consensus among distributed peers",
+          "correct": true
+        },
+        {
+          "text": "The importance of encryption in communications",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "B2-03",
+      "section": "B2",
+      "topic": "Byzantine Generals Problem",
+      "questionType": 3,
+      "question": "Why does the Byzantine Generals Problem relate to blockchain technology?",
+      "points": 8,
+      "sourceImage": 24,
+      "answers": [
+        {
+          "text": "It demonstrates the difficulty of achieving consensus in a decentralized environment, especially when there is a possibility of betrayal or misinformation among peers.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "B2-04",
+      "section": "B2",
+      "topic": "Immutability of the ledger",
+      "questionType": 3,
+      "question": "How is the immutability of the blockchain ledger achieved?",
+      "points": 6,
+      "sourceImage": 25,
+      "answers": [
+        {
+          "text": "The ledger is tamper-proof, ensuring no participant can alter entries once they are saved, and it is managed to be immune to attacks.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "B2-05",
+      "section": "B2",
+      "topic": "Integrity in blockchains",
+      "questionType": 2,
+      "question": "Which aspects are critical to maintaining integrity in blockchain systems?",
+      "points": 2,
+      "sourceImage": 26,
+      "answers": [
+        {
+          "text": "Knowledge of the number of peers",
+          "correct": true
+        },
+        {
+          "text": "Knowledge of the trustworthiness of peers",
+          "correct": true
+        },
+        {
+          "text": "Use of public ledgers",
+          "correct": false
+        },
+        {
+          "text": "Use of private keys",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "B2-06",
+      "section": "B2",
+      "topic": "Integrity in blockchains",
+      "questionType": 2,
+      "question": "What are the primary threats to integrity in peer-to-peer blockchain systems?",
+      "points": 2,
+      "sourceImage": 27,
+      "answers": [
+        {
+          "text": "Encryption vulnerabilities",
+          "correct": false
+        },
+        {
+          "text": "Malicious actors",
+          "correct": true
+        },
+        {
+          "text": "Technical failures",
+          "correct": true
+        },
+        {
+          "text": "High transaction fees",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "B4-01",
+      "section": "B4",
+      "topic": "Ownership",
+      "questionType": 1,
+      "question": "What is essential for proof of ownership in blockchain technology?",
+      "points": 1,
+      "sourceImage": 28,
+      "answers": [
+        {
+          "text": "Identification of the object only",
+          "correct": false
+        },
+        {
+          "text": "Assignment of the owner to the object only",
+          "correct": false
+        },
+        {
+          "text": "Identification of the owner and the object",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "B4-02",
+      "section": "B4",
+      "topic": "Double spending",
+      "questionType": 3,
+      "question": "How does blockchain prevent the double spending of digital assets?",
+      "points": 6,
+      "sourceImage": 29,
+      "answers": [
+        {
+          "text": "By synchronizing ledgers to update all transactions in real time, preventing unauthorized repeats.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "B4-03",
+      "section": "B4",
+      "topic": "Double spending",
+      "questionType": 1,
+      "question": "What does double spending exploit in blockchain systems?",
+      "points": 1,
+      "sourceImage": 30,
+      "answers": [
+        {
+          "text": "The anonymity of transactions",
+          "correct": false
+        },
+        {
+          "text": "The physical nature of digital assets",
+          "correct": false
+        },
+        {
+          "text": "The time delay in updating and synchronizing transaction information",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "B4-04",
+      "section": "B4",
+      "topic": "Design aspects",
+      "questionType": 3,
+      "question": "What are key design features of ledgers in blockchain for untrusted environments?",
+      "points": 6,
+      "sourceImage": 31,
+      "answers": [
+        {
+          "text": "Ledgers are immutable and distributed, ensuring secure and shared transaction histories.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "B4-05",
+      "section": "B4",
+      "topic": "Tasks of blockchain software",
+      "questionType": 2,
+      "question": "Which tasks must blockchain software manage in a peer-to-peer environment?",
+      "points": 2,
+      "sourceImage": 32,
+      "answers": [
+        {
+          "text": "Managing interaction between nodes",
+          "correct": false
+        },
+        {
+          "text": "Capturing the transfer of ownership",
+          "correct": true
+        },
+        {
+          "text": "Resolving conflicts between transaction histories",
+          "correct": true
+        },
+        {
+          "text": "Enhancing the speed of transaction verification",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "B5-01",
+      "section": "B5",
+      "topic": "Correctness in transactions",
+      "questionType": 1,
+      "question": "What does semantic correctness in transaction processing focus on?",
+      "points": 1,
+      "sourceImage": 33,
+      "answers": [
+        {
+          "text": "The time a transaction is executed.",
+          "correct": false
+        },
+        {
+          "text": "The intended effect of transaction data.",
+          "correct": true
+        },
+        {
+          "text": "The fee payable for executing a transaction.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "B5-02",
+      "section": "B5",
+      "topic": "Adding transactions",
+      "questionType": 2,
+      "question": "Which of the following are criteria for adding transaction data to the blockchain?",
+      "points": 2,
+      "sourceImage": 34,
+      "answers": [
+        {
+          "text": "Formal correctness.",
+          "correct": true
+        },
+        {
+          "text": "Semantic correctness.",
+          "correct": true
+        },
+        {
+          "text": "Amount of fee paid.",
+          "correct": false
+        },
+        {
+          "text": "Hash authorization.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "B5-03",
+      "section": "B5",
+      "topic": "Ownership of transactions",
+      "questionType": 3,
+      "question": "What must be verified to ensure the correct transfer of ownership in blockchain transactions?",
+      "points": 4,
+      "sourceImage": 35,
+      "answers": [
+        {
+          "text": "Owner's consent and authorization.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C1-01",
+      "section": "C1",
+      "topic": "Data structures in blockchains",
+      "questionType": 3,
+      "question": "What is the tree structure that groups many pieces of data and makes them accessible through a single hash reference called?",
+      "points": 2,
+      "sourceImage": 36,
+      "answers": [
+        {
+          "text": "Merkle tree",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C1-02",
+      "section": "C1",
+      "topic": "Detecting changes in blockchains",
+      "questionType": 2,
+      "question": "Which statements about hash values are correct?",
+      "points": 2,
+      "sourceImage": 37,
+      "answers": [
+        {
+          "text": "Hashing is used to compare data by comparing its content piece by piece.",
+          "correct": false
+        },
+        {
+          "text": "If all cryptographic hash values differ, all the data under consideration are also different.",
+          "correct": true
+        },
+        {
+          "text": "If two or more cryptographic hash values are identical, their corresponding input data is also identical.",
+          "correct": true
+        },
+        {
+          "text": "Any manipulation of the underlying data can be detected because the timestamp of the hash value differs.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C1-03",
+      "section": "C1",
+      "topic": "Cryptographic hash functions",
+      "questionType": 2,
+      "question": "Which statements about the role of cryptographic hash functions in blockchain security are true?",
+      "points": 2,
+      "sourceImage": 38,
+      "answers": [
+        {
+          "text": "They allow reverse engineering of the original data.",
+          "correct": false
+        },
+        {
+          "text": "They ensure no two different data pieces can have the same hash value.",
+          "correct": true
+        },
+        {
+          "text": "They enable quick creation of hash values from any type of data.",
+          "correct": true
+        },
+        {
+          "text": "They predict the hash value based on the input data.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C1-04",
+      "section": "C1",
+      "topic": "Cryptographic hash functions",
+      "questionType": 3,
+      "question": "What is the purpose of using cryptographic hash functions for data security in blockchains?",
+      "points": 6,
+      "sourceImage": 39,
+      "answers": [
+        {
+          "text": "To ensure data integrity and detect any changes.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C2-01",
+      "section": "C2",
+      "topic": "Hash references",
+      "questionType": 1,
+      "question": "What is the primary function of hash references in maintaining data integrity?",
+      "points": 1,
+      "sourceImage": 40,
+      "answers": [
+        {
+          "text": "To speed up data retrieval",
+          "correct": false
+        },
+        {
+          "text": "To ensure that referenced data has not been altered",
+          "correct": true
+        },
+        {
+          "text": "To increase the data storage capacity",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C2-02",
+      "section": "C2",
+      "topic": "Hash references",
+      "questionType": 3,
+      "question": "Why are hash references considered crucial for detecting data alterations in blockchain?",
+      "points": 6,
+      "sourceImage": 41,
+      "answers": [
+        {
+          "text": "They validate that the data they point to has not been modified; any change invalidates the reference, signaling an alteration.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C2-03",
+      "section": "C2",
+      "topic": "Nonce",
+      "questionType": 3,
+      "question": "What challenges does the requirement of a nonce introduce in solving hash puzzles?",
+      "points": 6,
+      "sourceImage": 42,
+      "answers": [
+        {
+          "text": "Finding the correct nonce requires trial and error, guessing until the hash value of the combined data meets the set difficulty restrictions.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C2-04",
+      "section": "C2",
+      "topic": "Hash references",
+      "questionType": 1,
+      "question": "How do corrupted hash references indicate data integrity issues?",
+      "points": 1,
+      "sourceImage": 43,
+      "answers": [
+        {
+          "text": "They enhance data encryption.",
+          "correct": false
+        },
+        {
+          "text": "They suggest data has been altered after the reference was created.",
+          "correct": true
+        },
+        {
+          "text": "They have no impact on data integrity.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C2-05",
+      "section": "C2",
+      "topic": "Hash functions",
+      "questionType": 2,
+      "question": "Which properties of cryptographic hash functions are essential for blockchain security?",
+      "points": 2,
+      "sourceImage": 44,
+      "answers": [
+        {
+          "text": "Deterministic nature",
+          "correct": true
+        },
+        {
+          "text": "Reverse engineering capability",
+          "correct": false
+        },
+        {
+          "text": "Collision-proof characteristics",
+          "correct": true
+        },
+        {
+          "text": "Predictability of hash values",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C2-06",
+      "section": "C2",
+      "topic": "Dynamic record structure",
+      "questionType": 1,
+      "question": "What is the significance of the head of the chain in a dynamic record structure?",
+      "points": 1,
+      "sourceImage": 45,
+      "answers": [
+        {
+          "text": "It is irrelevant to the structure.",
+          "correct": false
+        },
+        {
+          "text": "It references the most recently added record.",
+          "correct": true
+        },
+        {
+          "text": "It encrypts the entire data chain.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C2-07",
+      "section": "C2",
+      "topic": "Hash references",
+      "questionType": 1,
+      "question": "What is the primary function of hash references in blockchain technology?",
+      "points": 1,
+      "sourceImage": 46,
+      "answers": [
+        {
+          "text": "Ensuring data integrity",
+          "correct": true
+        },
+        {
+          "text": "Accelerating data retrieval",
+          "correct": false
+        },
+        {
+          "text": "Preventing data encryption",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C2-08",
+      "section": "C2",
+      "topic": "Hash puzzle",
+      "questionType": 3,
+      "question": "Describe the role of hash puzzles in blockchain.",
+      "points": 2,
+      "sourceImage": 47,
+      "answers": [
+        {
+          "text": "Proof of work",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C3-01",
+      "section": "C3",
+      "topic": "Merkle tree",
+      "questionType": 3,
+      "question": "Explain the significance of Merkle trees.",
+      "points": 3,
+      "sourceImage": 48,
+      "answers": [
+        {
+          "text": "Efficient grouping and access.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C3-02",
+      "section": "C3",
+      "topic": "Encryption",
+      "questionType": 2,
+      "question": "Which qualities describe an encryption method based on the pairwise use of a private key and a public key?",
+      "points": 2,
+      "sourceImage": 49,
+      "answers": [
+        {
+          "text": "Asymmetric",
+          "correct": true
+        },
+        {
+          "text": "Being called a public key method",
+          "correct": true
+        },
+        {
+          "text": "Being called a private key method",
+          "correct": false
+        },
+        {
+          "text": "Symmetric",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C3-03",
+      "section": "C3",
+      "topic": "Cryptography",
+      "questionType": 2,
+      "question": "What distinguishes asymmetric cryptography from symmetric cryptography?",
+      "points": 2,
+      "sourceImage": 50,
+      "answers": [
+        {
+          "text": "It uses the same key for encryption and decryption.",
+          "correct": false
+        },
+        {
+          "text": "It relies on a single key for encryption and decryption.",
+          "correct": false
+        },
+        {
+          "text": "It utilizes two complementary keys for encryption and decryption.",
+          "correct": true
+        },
+        {
+          "text": "It employs complex algorithms for data transmission.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C3-04",
+      "section": "C3",
+      "topic": "Cryptography",
+      "questionType": 2,
+      "question": "What are the primary functions of public and private keys in asymmetric cryptography?",
+      "points": 2,
+      "sourceImage": 51,
+      "answers": [
+        {
+          "text": "Identifying account owners and decrypting messages.",
+          "correct": true
+        },
+        {
+          "text": "Encrypting messages and ensuring data integrity.",
+          "correct": false
+        },
+        {
+          "text": "Creating digital signatures and encrypting data.",
+          "correct": false
+        },
+        {
+          "text": "Decrypting messages and authorizing transactions.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C3-05",
+      "section": "C3",
+      "topic": "Cryptography",
+      "questionType": 3,
+      "question": "Describe the main steps of creating a digital signature in asymmetric cryptography.",
+      "points": 4,
+      "sourceImage": 52,
+      "answers": [
+        {
+          "text": "Transaction, hash, encrypt, link.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C3-06",
+      "section": "C3",
+      "topic": "Digital signature",
+      "questionType": 3,
+      "question": "Explain briefly how digital signatures verify the authenticity of messages.",
+      "points": 6,
+      "sourceImage": 53,
+      "answers": [
+        {
+          "text": "Create hash, decrypt signature, compare hashes.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C3-07",
+      "section": "C3",
+      "topic": "Cryptography",
+      "questionType": 1,
+      "question": "What is the primary purpose of a private key in asymmetric cryptography?",
+      "points": 1,
+      "sourceImage": 54,
+      "answers": [
+        {
+          "text": "Identifying account owners.",
+          "correct": false
+        },
+        {
+          "text": "Encrypting messages.",
+          "correct": false
+        },
+        {
+          "text": "Decrypting encrypted text.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C3-08",
+      "section": "C3",
+      "topic": "Digital signature",
+      "questionType": 1,
+      "question": "What is the significance of creating a digital signature for a transaction in blockchain?",
+      "points": 1,
+      "sourceImage": 55,
+      "answers": [
+        {
+          "text": "Identifying the recipient of the transaction.",
+          "correct": false
+        },
+        {
+          "text": "Verifying the authenticity of the transaction.",
+          "correct": true
+        },
+        {
+          "text": "Encrypting the transaction data.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C3-09",
+      "section": "C3",
+      "topic": "Cryptography",
+      "questionType": 1,
+      "question": "What is the role of the public key in secure communication using asymmetric cryptography?",
+      "points": 1,
+      "sourceImage": 56,
+      "answers": [
+        {
+          "text": "Encrypting messages for the sender.",
+          "correct": false
+        },
+        {
+          "text": "Decrypting messages for the sender.",
+          "correct": false
+        },
+        {
+          "text": "Encrypting messages for the receiver.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C3-10",
+      "section": "C3",
+      "topic": "Cryptography",
+      "questionType": 3,
+      "question": "How does asymmetric cryptography ensure ownership transfer in blockchain transactions?",
+      "points": 4,
+      "sourceImage": 57,
+      "answers": [
+        {
+          "text": "By signing and verifying transactions.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C3-11",
+      "section": "C3",
+      "topic": "Cryptography",
+      "questionType": 1,
+      "question": "How does asymmetric cryptography ensure secure communication between parties?",
+      "points": 1,
+      "sourceImage": 58,
+      "answers": [
+        {
+          "text": "By using the same key for encryption and decryption.",
+          "correct": false
+        },
+        {
+          "text": "By encrypting messages with a private key.",
+          "correct": false
+        },
+        {
+          "text": "By ensuring only the owner of the private key can decrypt encrypted text.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C4-01",
+      "section": "C4",
+      "topic": "Modifying transactions",
+      "questionType": 3,
+      "question": "Describe the consequences of modifying a transaction in the blockchain.",
+      "points": 3,
+      "sourceImage": 59,
+      "answers": [
+        {
+          "text": "The entire blockchain becomes invalid.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C4-02",
+      "section": "C4",
+      "topic": "Modifying transactions",
+      "questionType": 1,
+      "question": "What happens if a hash reference within a block header is modified?",
+      "points": 1,
+      "sourceImage": 60,
+      "answers": [
+        {
+          "text": "Only the block header becomes invalid.",
+          "correct": false
+        },
+        {
+          "text": "The entire block becomes invalid.",
+          "correct": true
+        },
+        {
+          "text": "Only the referenced transaction becomes invalid.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C4-03",
+      "section": "C4",
+      "topic": "Modifying transactions",
+      "questionType": 2,
+      "question": "What is the impact of hash reference changes on the integrity of the Merkle tree?",
+      "points": 2,
+      "sourceImage": 61,
+      "answers": [
+        {
+          "text": "The root of the Merkle tree becomes invalid.",
+          "correct": true
+        },
+        {
+          "text": "Only the affected branch of the Merkle tree is affected.",
+          "correct": false
+        },
+        {
+          "text": "The Merkle tree structure remains unaffected.",
+          "correct": false
+        },
+        {
+          "text": "The blockchain data structure becomes invalid.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C4-04",
+      "section": "C4",
+      "topic": "Modifying transactions",
+      "questionType": 2,
+      "question": "What happens when a transaction is replaced within the blockchain?",
+      "points": 2,
+      "sourceImage": 62,
+      "answers": [
+        {
+          "text": "The entire Merkle tree structure is invalidated.",
+          "correct": true
+        },
+        {
+          "text": "Only the replaced transaction becomes invalid.",
+          "correct": false
+        },
+        {
+          "text": "The block containing the replaced transaction becomes invalid.",
+          "correct": true
+        },
+        {
+          "text": "The blockchain remains intact.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C4-05",
+      "section": "C4",
+      "topic": "Modifying transactions",
+      "questionType": 3,
+      "question": "Explain the process of ensuring data integrity when modifying transactions.",
+      "points": 4,
+      "sourceImage": 63,
+      "answers": [
+        {
+          "text": "Update all hash references in sequence.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C4-06",
+      "section": "C4",
+      "topic": "Modifying transactions",
+      "questionType": 1,
+      "question": "What is the primary challenge in maintaining data integrity in blockchain?",
+      "points": 1,
+      "sourceImage": 64,
+      "answers": [
+        {
+          "text": "Ensuring fast transaction processing.",
+          "correct": false
+        },
+        {
+          "text": "Preserving transaction order.",
+          "correct": true
+        },
+        {
+          "text": "Managing network scalability.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C4-07",
+      "section": "C4",
+      "topic": "Modifying transactions",
+      "questionType": 1,
+      "question": "How does the blockchain detect and prevent transaction manipulation through hash reference renewal?",
+      "points": 1,
+      "sourceImage": 65,
+      "answers": [
+        {
+          "text": "By encrypting all transaction data.",
+          "correct": false
+        },
+        {
+          "text": "By continuously monitoring network traffic.",
+          "correct": false
+        },
+        {
+          "text": "By renewing all hash references affected by changes.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "D1-01",
+      "section": "D1",
+      "topic": "Correctness of transactions",
+      "questionType": 2,
+      "question": "Which types of correctness are checked by validators after an actor proposes a transaction for posting?",
+      "points": 2,
+      "sourceImage": 66,
+      "answers": [
+        {
+          "text": "Semantic correctness",
+          "correct": true
+        },
+        {
+          "text": "Correctness of authorization",
+          "correct": true
+        },
+        {
+          "text": "Correctness of authentication",
+          "correct": false
+        },
+        {
+          "text": "Verification correctness",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "D1-02",
+      "section": "D1",
+      "topic": "Solving the puzzle",
+      "questionType": 1,
+      "question": "What is the remuneration for solving the blockchain puzzle called?",
+      "points": 1,
+      "sourceImage": 67,
+      "answers": [
+        {
+          "text": "Block reward",
+          "correct": true
+        },
+        {
+          "text": "Mining reward",
+          "correct": false
+        },
+        {
+          "text": "Proof reward",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "D1-03",
+      "section": "D1",
+      "topic": "Confirming the authenticity",
+      "questionType": 3,
+      "question": "What is the joint confirmation of exchange actions by all actors in a peer-to-peer blockchain network called?",
+      "points": 2,
+      "sourceImage": 68,
+      "answers": [
+        {
+          "text": "Consensus",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "D1-04",
+      "section": "D1",
+      "topic": "Confirming the authority",
+      "questionType": 3,
+      "question": "What concept describes proving trustworthiness by doing something expensive and difficult?",
+      "points": 3,
+      "sourceImage": 69,
+      "answers": [
+        {
+          "text": "Costly signaling",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "D1-05",
+      "section": "D1",
+      "topic": "Validators in blockchain",
+      "questionType": 1,
+      "question": "What is the role of validators in a blockchain?",
+      "points": 1,
+      "sourceImage": 70,
+      "answers": [
+        {
+          "text": "To propose new transactions",
+          "correct": false
+        },
+        {
+          "text": "To solve cryptographic puzzles",
+          "correct": false
+        },
+        {
+          "text": "To check the correctness of transactions",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "D1-06",
+      "section": "D1",
+      "topic": "Consensus mechanism",
+      "questionType": 1,
+      "question": "Which consensus mechanism combines Proof of Work (PoW) with Proof of Stake (PoS)?",
+      "points": 1,
+      "sourceImage": 71,
+      "answers": [
+        {
+          "text": "Proof of Importance (PoI)",
+          "correct": false
+        },
+        {
+          "text": "Proof of Activity (PoAc)",
+          "correct": true
+        },
+        {
+          "text": "Proof of Stake (PoS)",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "D1-07",
+      "section": "D1",
+      "topic": "Integrity",
+      "questionType": 1,
+      "question": "What is one way to punish actors who compromise the integrity of the blockchain?",
+      "points": 1,
+      "sourceImage": 72,
+      "answers": [
+        {
+          "text": "Rewarding them with additional tokens",
+          "correct": false
+        },
+        {
+          "text": "Reclaiming the reward for invalid blocks",
+          "correct": true
+        },
+        {
+          "text": "Increasing their chances of being selected",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "D1-08",
+      "section": "D1",
+      "topic": "Integrity",
+      "questionType": 1,
+      "question": "What characteristic distinguishes Proof of Importance (PoI) from Proof of Stake (PoS)?",
+      "points": 1,
+      "sourceImage": 73,
+      "answers": [
+        {
+          "text": "Wealth of the actors",
+          "correct": false
+        },
+        {
+          "text": "Random selection of validators",
+          "correct": false
+        },
+        {
+          "text": "Active participation in the network",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "D1-09",
+      "section": "D1",
+      "topic": "Consensus",
+      "questionType": 3,
+      "question": "Explain the concept of consensus in a blockchain.",
+      "points": 6,
+      "sourceImage": 74,
+      "answers": [
+        {
+          "text": "Agreement among network participants on the validity of transactions.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "D1-10",
+      "section": "D1",
+      "topic": "Consensus",
+      "questionType": 3,
+      "question": "What is the main drawback of the Proof of Work (PoW) consensus mechanism?",
+      "points": 6,
+      "sourceImage": 75,
+      "answers": [
+        {
+          "text": "High energy consumption and computational intensity.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "D2-01",
+      "section": "D2",
+      "topic": "Authorizing chains of transactions",
+      "questionType": 3,
+      "question": "Who decides which branch of a blockchain to expand when there is a fork?",
+      "points": 4,
+      "sourceImage": 76,
+      "answers": [
+        {
+          "text": "The actor who first solves the puzzle of a new block.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "D2-02",
+      "section": "D2",
+      "topic": "Prevention of manipulation",
+      "questionType": 2,
+      "question": "Which criteria are used to determine the valid transaction sequence in a blockchain?",
+      "points": 2,
+      "sourceImage": 77,
+      "answers": [
+        {
+          "text": "The criterion of the longest chain",
+          "correct": true
+        },
+        {
+          "text": "The criterion of the heaviest chain",
+          "correct": true
+        },
+        {
+          "text": "Random selection",
+          "correct": false
+        },
+        {
+          "text": "Consensus among all actors",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "D2-03",
+      "section": "D2",
+      "topic": "Valid transactions",
+      "questionType": 1,
+      "question": "What determines which branch of a blockchain is expanded when there is a fork?",
+      "points": 1,
+      "sourceImage": 78,
+      "answers": [
+        {
+          "text": "Coincidence",
+          "correct": false
+        },
+        {
+          "text": "Consensus among all actors",
+          "correct": true
+        },
+        {
+          "text": "Random selection",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "D2-04",
+      "section": "D2",
+      "topic": "Orphaned blocks",
+      "questionType": 1,
+      "question": "What happens to orphaned blocks in a blockchain?",
+      "points": 1,
+      "sourceImage": 79,
+      "answers": [
+        {
+          "text": "They are reclaimed for remuneration",
+          "correct": false
+        },
+        {
+          "text": "They are processed to become part of the authorized history",
+          "correct": false
+        },
+        {
+          "text": "They are abandoned by the actors",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "D2-05",
+      "section": "D2",
+      "topic": "Prevention of manipulation",
+      "questionType": 1,
+      "question": "How does the blockchain ensure resistance against manipulation?",
+      "points": 1,
+      "sourceImage": 80,
+      "answers": [
+        {
+          "text": "By majority control of computing power",
+          "correct": true
+        },
+        {
+          "text": "By random selection of blocks",
+          "correct": false
+        },
+        {
+          "text": "By enforcing strict consensus rules",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "D2-06",
+      "section": "D2",
+      "topic": "Orphaned blocks",
+      "questionType": 2,
+      "question": "How are orphaned blocks handled in a blockchain?",
+      "points": 2,
+      "sourceImage": 81,
+      "answers": [
+        {
+          "text": "They are abandoned by the actors",
+          "correct": true
+        },
+        {
+          "text": "They are reclaimed for remuneration",
+          "correct": true
+        },
+        {
+          "text": "They are processed to become part of the authorized history",
+          "correct": false
+        },
+        {
+          "text": "They are used to extend the blockchain",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "D2-07",
+      "section": "D2",
+      "topic": "Authorizing chains of transactions",
+      "questionType": 2,
+      "question": "What are the consequences of selecting a chain as the authoritative version of transaction data?",
+      "points": 2,
+      "sourceImage": 82,
+      "answers": [
+        {
+          "text": "Orphaned blocks",
+          "correct": true
+        },
+        {
+          "text": "Reclaimed remuneration",
+          "correct": false
+        },
+        {
+          "text": "Clarification of ownership",
+          "correct": true
+        },
+        {
+          "text": "Preparation of transactions",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "D2-08",
+      "section": "D2",
+      "topic": "Authorizing chains of transactions",
+      "questionType": 3,
+      "question": "What is the purpose of selecting the longest or heaviest chain?",
+      "points": 6,
+      "sourceImage": 83,
+      "answers": [
+        {
+          "text": "To determine the authoritative version of the transaction history.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "D2-09",
+      "section": "D2",
+      "topic": "Authorizing chains of transactions",
+      "questionType": 2,
+      "question": "What determines which block is added to a blockchain when conflicting branches exist?",
+      "points": 2,
+      "sourceImage": 84,
+      "answers": [
+        {
+          "text": "Coincidence",
+          "correct": true
+        },
+        {
+          "text": "Majority agreement among actors",
+          "correct": false
+        },
+        {
+          "text": "Random selection",
+          "correct": false
+        },
+        {
+          "text": "Consensus among all actors",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "E1-01",
+      "section": "E1",
+      "topic": "Smart contract",
+      "questionType": 3,
+      "question": "What is a smart contract?",
+      "points": 4,
+      "sourceImage": 85,
+      "answers": [
+        {
+          "text": "A smart contract is a computer protocol that determines interactions between actors in any type of blockchain.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "E1-02",
+      "section": "E1",
+      "topic": "Smart contracts",
+      "questionType": 1,
+      "question": "What is the core function of a smart contract?",
+      "points": 1,
+      "sourceImage": 86,
+      "answers": [
+        {
+          "text": "Determines blockchain architecture",
+          "correct": false
+        },
+        {
+          "text": "Manages network security",
+          "correct": false
+        },
+        {
+          "text": "Regulates transaction details",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "E1-03",
+      "section": "E1",
+      "topic": "Security aspects",
+      "questionType": 3,
+      "question": "What distinguishes public and private blockchains?",
+      "points": 4,
+      "sourceImage": 87,
+      "answers": [
+        {
+          "text": "Access permissions and consensus mechanisms.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "E1-04",
+      "section": "E1",
+      "topic": "Public and private blockchains",
+      "questionType": 1,
+      "question": "What distinguishes public and private blockchains?",
+      "points": 1,
+      "sourceImage": 88,
+      "answers": [
+        {
+          "text": "Network size",
+          "correct": false
+        },
+        {
+          "text": "Access permissions",
+          "correct": true
+        },
+        {
+          "text": "Encryption algorithms",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "E1-05",
+      "section": "E1",
+      "topic": "Design considerations",
+      "questionType": 2,
+      "question": "Which design parameters should be considered when developing blockchain applications?",
+      "points": 2,
+      "sourceImage": 89,
+      "answers": [
+        {
+          "text": "Public vs. private blockchain",
+          "correct": true
+        },
+        {
+          "text": "Transparency vs. privacy",
+          "correct": true
+        },
+        {
+          "text": "Network speed",
+          "correct": false
+        },
+        {
+          "text": "Proof of Work vs. Proof of Stake",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "E1-06",
+      "section": "E1",
+      "topic": "Data privacy",
+      "questionType": 2,
+      "question": "Which approaches are used to balance security and speed in blockchain systems?",
+      "points": 2,
+      "sourceImage": 90,
+      "answers": [
+        {
+          "text": "Public key encryption",
+          "correct": false
+        },
+        {
+          "text": "Proof of Work (PoW)",
+          "correct": true
+        },
+        {
+          "text": "Permissioned blockchains",
+          "correct": true
+        },
+        {
+          "text": "Data obfuscation techniques",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "E1-07",
+      "section": "E1",
+      "topic": "Public and private blockchains",
+      "questionType": 1,
+      "question": "Which consensus mechanism is suitable for private blockchains with a central authority?",
+      "points": 1,
+      "sourceImage": 91,
+      "answers": [
+        {
+          "text": "Proof-of-Authority (PoA)",
+          "correct": true
+        },
+        {
+          "text": "Proof-of-Work (PoW)",
+          "correct": false
+        },
+        {
+          "text": "Proof-of-Stake (PoS)",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "E1-08",
+      "section": "E1",
+      "topic": "Public and private blockchains",
+      "questionType": 1,
+      "question": "What is the role of the private key in blockchain security?",
+      "points": 1,
+      "sourceImage": 92,
+      "answers": [
+        {
+          "text": "Verifies network nodes",
+          "correct": false
+        },
+        {
+          "text": "Generates new blocks",
+          "correct": false
+        },
+        {
+          "text": "Authorizes ownership and transactions",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "E1-09",
+      "section": "E1",
+      "topic": "Blockchain scalability",
+      "questionType": 1,
+      "question": "What poses a challenge to blockchain scalability?",
+      "points": 1,
+      "sourceImage": 93,
+      "answers": [
+        {
+          "text": "Solving hash puzzles",
+          "correct": true
+        },
+        {
+          "text": "Consensus mechanisms",
+          "correct": false
+        },
+        {
+          "text": "Network latency",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "E1-10",
+      "section": "E1",
+      "topic": "Smart contracts",
+      "questionType": 2,
+      "question": "How does a smart contract differ from a traditional legal contract?",
+      "points": 2,
+      "sourceImage": 94,
+      "answers": [
+        {
+          "text": "Human interpretation",
+          "correct": false
+        },
+        {
+          "text": "Requires notary public approval",
+          "correct": false
+        },
+        {
+          "text": "Protocol-based",
+          "correct": true
+        },
+        {
+          "text": "Automated execution",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "E1-11",
+      "section": "E1",
+      "topic": "Data privacy",
+      "questionType": 2,
+      "question": "What are the challenges of ensuring data privacy in blockchains?",
+      "points": 2,
+      "sourceImage": 95,
+      "answers": [
+        {
+          "text": "Regulatory compliance",
+          "correct": true
+        },
+        {
+          "text": "Network congestion",
+          "correct": false
+        },
+        {
+          "text": "Lack of flexibility",
+          "correct": true
+        },
+        {
+          "text": "Consensus mechanism efficiency",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "E1-12",
+      "section": "E1",
+      "topic": "Security aspects",
+      "questionType": 3,
+      "question": "What is the role of a private key in blockchain security?",
+      "points": 4,
+      "sourceImage": 96,
+      "answers": [
+        {
+          "text": "Authorizes ownership and transactions.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "E1-13",
+      "section": "E1",
+      "topic": "Consensus algorithm",
+      "questionType": 1,
+      "question": "The blockchain trilemma includes security and decentralization. What is the third aspect?",
+      "points": 1,
+      "sourceImage": 97,
+      "answers": [
+        {
+          "text": "Usability",
+          "correct": false
+        },
+        {
+          "text": "Scalability",
+          "correct": true
+        },
+        {
+          "text": "Interoperability",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "E3-01",
+      "section": "E3",
+      "topic": "Microtransactions",
+      "questionType": 3,
+      "question": "What instrument stores the money handled by a smart-contract microtransaction?",
+      "points": 2,
+      "sourceImage": 98,
+      "answers": [
+        {
+          "text": "Digital wallet",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "E3-02",
+      "section": "E3",
+      "topic": "Blockchain and industry",
+      "questionType": 1,
+      "question": "How can smart contracts benefit the healthcare industry?",
+      "points": 1,
+      "sourceImage": 99,
+      "answers": [
+        {
+          "text": "By regulating energy consumption",
+          "correct": false
+        },
+        {
+          "text": "By automating real estate transactions",
+          "correct": false
+        },
+        {
+          "text": "By preventing incorrect payments and fraud",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "E3-03",
+      "section": "E3",
+      "topic": "Blockchain and industry",
+      "questionType": 2,
+      "question": "What challenges are associated with the consensus mechanism in blockchain design?",
+      "points": 2,
+      "sourceImage": 100,
+      "answers": [
+        {
+          "text": "Balancing security, scalability, and decentralization",
+          "correct": true
+        },
+        {
+          "text": "Ensuring data privacy",
+          "correct": false
+        },
+        {
+          "text": "Addressing environmental impact",
+          "correct": true
+        },
+        {
+          "text": "Managing network congestion",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "E3-04",
+      "section": "E3",
+      "topic": "Blockchain and industry",
+      "questionType": 3,
+      "question": "How can blockchain technology enhance transparency and efficiency in supply chains?",
+      "points": 6,
+      "sourceImage": 101,
+      "answers": [
+        {
+          "text": "By providing secure and transparent tracking of supply chain data among all stakeholders.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "E3-05",
+      "section": "E3",
+      "topic": "Blockchain and industry",
+      "questionType": 1,
+      "question": "What is a key advantage of using blockchain in the automotive industry?",
+      "points": 1,
+      "sourceImage": 102,
+      "answers": [
+        {
+          "text": "Storing easily accessible information about vehicle maintenance and ownership history",
+          "correct": true
+        },
+        {
+          "text": "Reducing manufacturing costs",
+          "correct": false
+        },
+        {
+          "text": "Enhancing fuel efficiency",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "E3-06",
+      "section": "E3",
+      "topic": "Blockchain integration",
+      "questionType": 2,
+      "question": "What practical considerations are important in blockchain integration?",
+      "points": 2,
+      "sourceImage": 103,
+      "answers": [
+        {
+          "text": "Achieving high network speeds",
+          "correct": false
+        },
+        {
+          "text": "Ensuring data security and integrity",
+          "correct": true
+        },
+        {
+          "text": "Striving for interoperability with existing systems",
+          "correct": true
+        },
+        {
+          "text": "Minimizing regulatory compliance requirements",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "E3-07",
+      "section": "E3",
+      "topic": "Consensus mechanisms",
+      "questionType": 2,
+      "question": "How do different consensus mechanisms affect blockchain performance?",
+      "points": 2,
+      "sourceImage": 104,
+      "answers": [
+        {
+          "text": "Proof of Stake (PoS) enables faster transactions at the expense of security",
+          "correct": true
+        },
+        {
+          "text": "Proof of Authority (PoA) ensures decentralization with slower transaction speeds",
+          "correct": false
+        },
+        {
+          "text": "Proof of Work (PoW) offers security but sacrifices scalability",
+          "correct": true
+        },
+        {
+          "text": "Proof of Honesty (PoH) provides higher scalability but lower transaction speeds",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "E3-08",
+      "section": "E3",
+      "topic": "Blockchain integration",
+      "questionType": 3,
+      "question": "What are the challenges associated with integrating blockchain into current company systems?",
+      "points": 6,
+      "sourceImage": 105,
+      "answers": [
+        {
+          "text": "Ensuring interoperability and compliance with legal frameworks while maintaining data integrity.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "E3-09",
+      "section": "E3",
+      "topic": "Smart contracts",
+      "questionType": 1,
+      "question": "What type of transactions can smart contracts enable?",
+      "points": 1,
+      "sourceImage": 106,
+      "answers": [
+        {
+          "text": "Microtransactions for different types of billing",
+          "correct": true
+        },
+        {
+          "text": "Macrotransactions for large-scale investments",
+          "correct": false
+        },
+        {
+          "text": "Transactional contracts for government projects",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "E3-10",
+      "section": "E3",
+      "topic": "Design of blockchains",
+      "questionType": 1,
+      "question": "Which parameter presents a challenge in the design of blockchain applications?",
+      "points": 1,
+      "sourceImage": 107,
+      "answers": [
+        {
+          "text": "Balancing security, scalability, and decentralization",
+          "correct": true
+        },
+        {
+          "text": "Achieving high network speeds",
+          "correct": false
+        },
+        {
+          "text": "Minimizing energy consumption",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "E3-11",
+      "section": "E3",
+      "topic": "Blockchain and industry",
+      "questionType": 3,
+      "question": "How can blockchain technology empower workforce management?",
+      "points": 6,
+      "sourceImage": 108,
+      "answers": [
+        {
+          "text": "By using smart contracts to automate payroll, benefits, and performance incentives, improving transparency and efficiency.",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}

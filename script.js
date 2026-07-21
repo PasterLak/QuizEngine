@@ -36,7 +36,7 @@ function updateQuestionCountDisplay() {
     let count = allQuestions.length;
     
     if (selectedCategory !== 'All') {
-        count = allQuestions.filter(q => q.category === selectedCategory).length;
+        count = allQuestions.filter(q => q.section === selectedCategory).length;
     }
     
     document.getElementById('question-count-display').textContent = `Total questions: ${count}`;
@@ -59,30 +59,18 @@ document.getElementById('subject-select').addEventListener('change', async (even
     document.getElementById('question-count-display').textContent = '';
     allQuestions = [];
     
-    const categories = ['A', 'B', 'C', 'D', 'E'];
-    const fetchPromises = [];
-    
-    for (const cat of categories) {
-        for (let i = 1; i <= 99; i++) {
-            const path = `questions/${subject}/${cat.toLowerCase()}${i}.json`;
-            fetchPromises.push(
-                fetch(path)
-                .then(async res => {
-                    if (res.ok) {
-                        const q = await res.json();
-                        q.filename = `${cat.toLowerCase()}${i}`;
-                        allQuestions.push(q);
-                    }
-                })
-                .catch(() => {})
-            );
+    try {
+        const path = `questions/${subject}/questions.json`;
+        const res = await fetch(path);
+        if (res.ok) {
+            const data = await res.json();
+            allQuestions = data.questions || [];
         }
+    } catch (e) {
     }
     
-    await Promise.all(fetchPromises);
-    
     if (allQuestions.length === 0) {
-        document.getElementById('setup-error').textContent = `No questions found in questions/${subject}/`;
+        document.getElementById('setup-error').textContent = `No questions found in questions/${subject}/questions.json`;
         return;
     }
 
@@ -94,7 +82,7 @@ document.getElementById('subject-select').addEventListener('change', async (even
 });
 
 function setupCategories() {
-    const categories = [...new Set(allQuestions.map(q => q.category).filter(Boolean))];
+    const categories = [...new Set(allQuestions.map(q => q.section).filter(Boolean))];
     const select = document.getElementById('category-select');
     select.innerHTML = '<option value="All">All Categories</option>';
     categories.forEach(cat => {
@@ -110,7 +98,7 @@ document.getElementById('start-btn').addEventListener('click', () => {
     if (selectedCategory === 'All') {
         filteredQuestions = [...allQuestions];
     } else {
-        filteredQuestions = allQuestions.filter(q => q.category === selectedCategory);
+        filteredQuestions = allQuestions.filter(q => q.section === selectedCategory);
     }
     
     startQuizFlow();
@@ -144,16 +132,6 @@ document.getElementById('exit-btn').addEventListener('click', () => {
     document.getElementById('quiz-container').style.display = 'none';
     document.getElementById('setup-container').style.display = 'block';
 });
-
-function determineType(q) {
-    if (q.options && Array.isArray(q.options)) {
-        if (Array.isArray(q.answer) && q.answer.length > 1) {
-            return 'multiple';
-        }
-        return 'single';
-    }
-    return 'text';
-}
 
 function updateProgressDisplay() {
     if (currentQuestionIndex >= filteredQuestions.length) return;
@@ -194,21 +172,21 @@ function showQuestion() {
     }
 
     const q = filteredQuestions[currentQuestionIndex];
-    currentQuestionType = determineType(q);
+    currentQuestionType = q.questionType;
 
     updateProgressDisplay();
-    document.getElementById('category-letter').textContent = q.category || '';
+    document.getElementById('category-letter').textContent = q.section || '';
     document.getElementById('category-topic').textContent = q.topic || '';
-    document.getElementById('question-filename').textContent = q.filename || '';
-    document.getElementById('question-text').textContent = q.question;
+    document.getElementById('question-filename').textContent = q.id || '';
+    document.getElementById('question-text').textContent = `${q.question} [${q.points} points]`;
 
     const inputContainer = document.getElementById('input-container');
     inputContainer.innerHTML = '';
 
-    if (currentQuestionType === 'single' || currentQuestionType === 'multiple') {
-        const inputType = currentQuestionType === 'single' ? 'radio' : 'checkbox';
+    if (currentQuestionType === 1 || currentQuestionType === 2) {
+        const inputType = currentQuestionType === 1 ? 'radio' : 'checkbox';
         
-        let displayOptions = [...q.options];
+        let displayOptions = [...q.answers];
         if (document.getElementById('shuffle-options').checked) {
             displayOptions.sort(() => Math.random() - 0.5);
         }
@@ -219,9 +197,9 @@ function showQuestion() {
             const input = document.createElement('input');
             input.type = inputType;
             input.name = 'quiz-option';
-            input.value = opt;
+            input.value = opt.text;
             label.appendChild(input);
-            label.appendChild(document.createTextNode(opt));
+            label.appendChild(document.createTextNode(opt.text));
             inputContainer.appendChild(label);
         });
     } else {
@@ -274,9 +252,10 @@ document.getElementById('submit-btn').addEventListener('click', () => {
     let isCorrect = false;
     let feedback = '';
 
-    if (currentQuestionType === 'single') {
+    if (currentQuestionType === 1) {
         const selected = document.querySelector('input[name="quiz-option"]:checked');
-        const correctAnswer = Array.isArray(q.answer) ? q.answer[0] : q.answer;
+        const correctAnswerObj = q.answers.find(a => a.correct);
+        const correctAnswer = correctAnswerObj ? correctAnswerObj.text : '';
         
         document.querySelectorAll('input[name="quiz-option"]').forEach(input => {
             if (input.value === correctAnswer) {
@@ -291,10 +270,10 @@ document.getElementById('submit-btn').addEventListener('click', () => {
             }
             feedback = isCorrect ? '<span class="correct">Correct!</span>' : `<span class="incorrect">Incorrect.</span>`;
         }
-    } else if (currentQuestionType === 'multiple') {
+    } else if (currentQuestionType === 2) {
         const selectedElements = Array.from(document.querySelectorAll('input[name="quiz-option"]:checked'));
         const selected = selectedElements.map(el => el.value);
-        const correctAnswers = Array.isArray(q.answer) ? q.answer : [q.answer];
+        const correctAnswers = q.answers.filter(a => a.correct).map(a => a.text);
         
         document.querySelectorAll('input[name="quiz-option"]').forEach(input => {
             if (correctAnswers.includes(input.value)) {
@@ -308,7 +287,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {
         feedback = isCorrect ? '<span class="correct">Correct!</span>' : `<span class="incorrect">Incorrect or not all options selected</span>`;
     } else {
         const textVal = document.getElementById('text-answer').value;
-        const correctAnswer = q.answer;
+        const correctAnswer = q.answers[0].text;
         const sim = calculateSimilarity(textVal, correctAnswer);
         
         isCorrect = sim >= 80;

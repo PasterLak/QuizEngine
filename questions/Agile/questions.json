@@ -1,0 +1,1926 @@
+{
+  "title": "Agile Software Development Quiz Questions",
+  "language": "en",
+  "questionTypeDefinitions": {
+    "1": "single_choice",
+    "2": "multiple_choice",
+    "3": "text_input"
+  },
+  "questionCount": 90,
+  "questions": [
+    {
+      "id": "A1-01",
+      "section": "A1",
+      "topic": "Fundamentals",
+      "questionType": 3,
+      "question": "What was the reason for introducing Agile Computing?",
+      "points": 8,
+      "sourceImage": 1,
+      "answers": [
+        {
+          "text": "Challenges posed by novel and exploratory projects that involve high uncertainty, rapid change, and collaborative problem-solving.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A1-02",
+      "section": "A1",
+      "topic": "Fundamentals",
+      "questionType": 2,
+      "question": "What are the overall goals of agility in project management?",
+      "points": 2,
+      "sourceImage": 2,
+      "answers": [
+        {
+          "text": "Adhere strictly to the initial plan",
+          "correct": false
+        },
+        {
+          "text": "Respond to change",
+          "correct": true
+        },
+        {
+          "text": "Extensive customer involvement",
+          "correct": true
+        },
+        {
+          "text": "Avoid cross-functional collaboration",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "A1-03",
+      "section": "A1",
+      "topic": "Fundamentals",
+      "questionType": 1,
+      "question": "In Agile project management, what is measured as progress?",
+      "points": 1,
+      "sourceImage": 3,
+      "answers": [
+        {
+          "text": "Completion of phases (design, coding, testing)",
+          "correct": false
+        },
+        {
+          "text": "Readiness of a feature for review and deployment by customers",
+          "correct": true
+        },
+        {
+          "text": "Meeting milestones on schedule",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "A1-04",
+      "section": "A1",
+      "topic": "Fundamentals",
+      "questionType": 3,
+      "question": "Explain the concept of continuous improvement in Agile project management.",
+      "points": 8,
+      "sourceImage": 4,
+      "answers": [
+        {
+          "text": "Integrating customer feedback from each iteration into subsequent cycles to enhance the product over time, while adapting to changing requirements and improving features through continuous evaluation.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A1-05",
+      "section": "A1",
+      "topic": "Fundamentals",
+      "questionType": 2,
+      "question": "What are the benefits of Agile project management compared to traditional approaches?",
+      "points": 2,
+      "sourceImage": 5,
+      "answers": [
+        {
+          "text": "Increase in project scope",
+          "correct": false
+        },
+        {
+          "text": "Speed up delivery",
+          "correct": true
+        },
+        {
+          "text": "Reduce risk",
+          "correct": true
+        },
+        {
+          "text": "Add more complexity",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "A1-06",
+      "section": "A1",
+      "topic": "Fundamentals",
+      "questionType": 1,
+      "question": "How does Agile project management handle change management?",
+      "points": 1,
+      "sourceImage": 6,
+      "answers": [
+        {
+          "text": "Through Integrated Change Control",
+          "correct": false
+        },
+        {
+          "text": "Through separate change request processes",
+          "correct": false
+        },
+        {
+          "text": "By integrating change into short cycles",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A1-07",
+      "section": "A1",
+      "topic": "Fundamentals",
+      "questionType": 2,
+      "question": "What are the primary values of the Agile Manifesto?",
+      "points": 2,
+      "sourceImage": 7,
+      "answers": [
+        {
+          "text": "Individuals and interactions",
+          "correct": true
+        },
+        {
+          "text": "Process and tools",
+          "correct": false
+        },
+        {
+          "text": "Comprehensive documentation",
+          "correct": false
+        },
+        {
+          "text": "Responding to change",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A1-08",
+      "section": "A1",
+      "topic": "Fundamentals",
+      "questionType": 3,
+      "question": "Describe the concept of the incremental approach in Agile project management.",
+      "points": 6,
+      "sourceImage": 8,
+      "answers": [
+        {
+          "text": "Developing a product in increments based on feature priority, enabling frequent delivery of usable components and adaptation to changing requirements throughout the project lifecycle.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A2-01",
+      "section": "A2",
+      "topic": "Agile principles",
+      "questionType": 2,
+      "question": "According to agile principles, what is the primary measure of progress in software development?",
+      "points": 2,
+      "sourceImage": 9,
+      "answers": [
+        {
+          "text": "Completion of project phases",
+          "correct": true
+        },
+        {
+          "text": "Customer satisfaction surveys",
+          "correct": false
+        },
+        {
+          "text": "Delivery of fully functional software",
+          "correct": true
+        },
+        {
+          "text": "Number of meetings held",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "A2-02",
+      "section": "A2",
+      "topic": "Agile principles",
+      "questionType": 1,
+      "question": "What is a core principle of agile development regarding team motivation?",
+      "points": 1,
+      "sourceImage": 10,
+      "answers": [
+        {
+          "text": "Delegating all decisions from the project leader",
+          "correct": false
+        },
+        {
+          "text": "Micromanaging each team member's work",
+          "correct": false
+        },
+        {
+          "text": "Encouraging team members to make decisions on their own",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A2-03",
+      "section": "A2",
+      "topic": "Agile principles",
+      "questionType": 2,
+      "question": "What are key aspects of face-to-face communication in agile development?",
+      "points": 2,
+      "sourceImage": 11,
+      "answers": [
+        {
+          "text": "It is always conducted in a formal meeting setting",
+          "correct": false
+        },
+        {
+          "text": "It is essential for effective information sharing among team members",
+          "correct": true
+        },
+        {
+          "text": "It is the primary communication method regardless of circumstances",
+          "correct": false
+        },
+        {
+          "text": "It is used alongside other communication media when necessary",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A2-04",
+      "section": "A2",
+      "topic": "Agile principles",
+      "questionType": 1,
+      "question": "What does sustaining a constant pace of development in agile encourage?",
+      "points": 1,
+      "sourceImage": 12,
+      "answers": [
+        {
+          "text": "Irregular working hours",
+          "correct": false
+        },
+        {
+          "text": "Working overtime to meet deadlines",
+          "correct": false
+        },
+        {
+          "text": "Consistent and sustainable work hours",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A2-05",
+      "section": "A2",
+      "topic": "Agile principles",
+      "questionType": 3,
+      "question": "Explain the purpose of continuous attention to technical excellence in agile development.",
+      "points": 6,
+      "sourceImage": 13,
+      "answers": [
+        {
+          "text": "It ensures that developed products meet high-quality standards, incorporate best practices, and remain adaptable to changing requirements.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A3-01",
+      "section": "A3",
+      "topic": "From waterfall to agile",
+      "questionType": 3,
+      "question": "Describe the key differences between a waterfall model and an agile model in their approach to software development.",
+      "points": 6,
+      "sourceImage": 14,
+      "answers": [
+        {
+          "text": "The waterfall model follows a linear, sequential process in which each phase is completed before the next, while agile uses iterative increments, frequent feedback, and adaptation.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A3-02",
+      "section": "A3",
+      "topic": "From waterfall to agile",
+      "questionType": 1,
+      "question": "What is a key limitation of the waterfall model regarding customer feedback?",
+      "points": 1,
+      "sourceImage": 15,
+      "answers": [
+        {
+          "text": "Feedback is obtained early in the process",
+          "correct": false
+        },
+        {
+          "text": "Feedback is provided during development",
+          "correct": false
+        },
+        {
+          "text": "Feedback is obtained only after testing",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A3-03",
+      "section": "A3",
+      "topic": "From waterfall to agile",
+      "questionType": 1,
+      "question": "How does an incremental model differ from a traditional waterfall model?",
+      "points": 1,
+      "sourceImage": 16,
+      "answers": [
+        {
+          "text": "It completes all development phases in a linear sequence",
+          "correct": false
+        },
+        {
+          "text": "It prioritizes features into must-have, should-have, and nice-to-have categories",
+          "correct": true
+        },
+        {
+          "text": "It releases working software only after all phases are completed",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "A4-01",
+      "section": "A4",
+      "topic": "Project plan",
+      "questionType": 3,
+      "question": "Describe the traditional role of a project plan.",
+      "points": 6,
+      "sourceImage": 17,
+      "answers": [
+        {
+          "text": "A comprehensive document that helps project managers execute and oversee project phases.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A4-02",
+      "section": "A4",
+      "topic": "Project plan",
+      "questionType": 3,
+      "question": "Explain how an agile project plan differs from a plan used in a defined development model.",
+      "points": 8,
+      "sourceImage": 18,
+      "answers": [
+        {
+          "text": "An agile project plan is treated as a flexible guide that adapts to changing requirements.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A5-01",
+      "section": "A5",
+      "topic": "Agile triangle",
+      "questionType": 1,
+      "question": "What does the agile iron triangle prioritize as the main fixed constraint for project success?",
+      "points": 1,
+      "sourceImage": 19,
+      "answers": [
+        {
+          "text": "Scope",
+          "correct": false
+        },
+        {
+          "text": "Cost",
+          "correct": false
+        },
+        {
+          "text": "Schedule",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "A5-02",
+      "section": "A5",
+      "topic": "Agile triangle",
+      "questionType": 2,
+      "question": "According to the agile iron triangle, what is the main goal of project success?",
+      "points": 2,
+      "sourceImage": 20,
+      "answers": [
+        {
+          "text": "Adapting to fixed plans",
+          "correct": true
+        },
+        {
+          "text": "Meeting predefined scope and cost",
+          "correct": false
+        },
+        {
+          "text": "Delivering value to the customer",
+          "correct": true
+        },
+        {
+          "text": "Following a strict schedule",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "A5-03",
+      "section": "A5",
+      "topic": "Agile triangle",
+      "questionType": 3,
+      "question": "Describe the key differences between the traditional iron triangle of constraints and the agile iron triangle.",
+      "points": 6,
+      "sourceImage": 21,
+      "answers": [
+        {
+          "text": "The traditional iron triangle treats predefined scope, cost, and schedule as fixed constraints, while the agile iron triangle emphasizes responding to change and delivering customer value, with scope and cost as variables.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "B1-01",
+      "section": "B1",
+      "topic": "Roles in agile teams",
+      "questionType": 1,
+      "question": "Who assumes much of the responsibility of a traditional project manager in agile projects?",
+      "points": 1,
+      "sourceImage": 22,
+      "answers": [
+        {
+          "text": "Business analyst",
+          "correct": false
+        },
+        {
+          "text": "Scrum master",
+          "correct": false
+        },
+        {
+          "text": "Project leader",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "B1-02",
+      "section": "B1",
+      "topic": "Roles in agile teams",
+      "questionType": 2,
+      "question": "What responsibilities does a Scrum Master typically have in agile projects?",
+      "points": 2,
+      "sourceImage": 23,
+      "answers": [
+        {
+          "text": "Delegating tasks to team members",
+          "correct": false
+        },
+        {
+          "text": "Tracking and monitoring project progress",
+          "correct": true
+        },
+        {
+          "text": "Managing cross-team coordination",
+          "correct": true
+        },
+        {
+          "text": "Coaching teams to achieve their goals",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "B1-03",
+      "section": "B1",
+      "topic": "Roles in agile teams",
+      "questionType": 3,
+      "question": "Briefly describe the role of a product manager or product owner in agile projects.",
+      "points": 6,
+      "sourceImage": 24,
+      "answers": [
+        {
+          "text": "The product manager or product owner ensures that the delivered product meets customer requirements.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "B2-01",
+      "section": "B2",
+      "topic": "Roles in agile teams",
+      "questionType": 2,
+      "question": "What is a key characteristic of T-shaped competence in agile teams?",
+      "points": 2,
+      "sourceImage": 25,
+      "answers": [
+        {
+          "text": "Narrow focus on a specific field",
+          "correct": false
+        },
+        {
+          "text": "Lack of breadth of knowledge",
+          "correct": false
+        },
+        {
+          "text": "Ability to collaborate with specialists from other areas",
+          "correct": true
+        },
+        {
+          "text": "Depth of knowledge not only in one area",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "B2-02",
+      "section": "B2",
+      "topic": "Roles in agile teams",
+      "questionType": 3,
+      "question": "Name the three variables used to calculate speed according to the concept of team velocity in agile projects.",
+      "points": 3,
+      "sourceImage": 26,
+      "answers": [
+        {
+          "text": "Lead time, cycle time, response time.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C2-01",
+      "section": "C2",
+      "topic": "Managing risks",
+      "questionType": 2,
+      "question": "How does risk response planning differ in agile projects compared to traditional projects?",
+      "points": 2,
+      "sourceImage": 27,
+      "answers": [
+        {
+          "text": "Conducted by project managers only",
+          "correct": false
+        },
+        {
+          "text": "Happens at the beginning of each project phase",
+          "correct": false
+        },
+        {
+          "text": "Involves the entire team and occurs more frequently",
+          "correct": true
+        },
+        {
+          "text": "Is less intensive than in traditional projects",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C2-02",
+      "section": "C2",
+      "topic": "Managing risks",
+      "questionType": 3,
+      "question": "Describe key components of an exception plan in agile risk management.",
+      "points": 8,
+      "sourceImage": 28,
+      "answers": [
+        {
+          "text": "Circumstances for the exception, causes of the circumstance, tolerance limits, possible solutions, recommended solutions, and a request for stakeholder decision.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C4-01",
+      "section": "C4",
+      "topic": "Analyzing, monitoring, and controlling risks",
+      "questionType": 1,
+      "question": "How is risk analysis typically performed in agile projects?",
+      "points": 1,
+      "sourceImage": 29,
+      "answers": [
+        {
+          "text": "Quantitative risk analysis",
+          "correct": false
+        },
+        {
+          "text": "Qualitative risk analysis",
+          "correct": true
+        },
+        {
+          "text": "Both quantitative and qualitative risk analysis",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C4-02",
+      "section": "C4",
+      "topic": "Analyzing, monitoring, and controlling risks",
+      "questionType": 1,
+      "question": "What does a risk burndown chart track over time in an agile project?",
+      "points": 1,
+      "sourceImage": 30,
+      "answers": [
+        {
+          "text": "Severity of different project risks",
+          "correct": true
+        },
+        {
+          "text": "Team velocity",
+          "correct": false
+        },
+        {
+          "text": "Customer satisfaction ratings",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C4-03",
+      "section": "C4",
+      "topic": "Analyzing, monitoring, and controlling risks",
+      "questionType": 1,
+      "question": "What is the purpose of a spike in agile development?",
+      "points": 1,
+      "sourceImage": 31,
+      "answers": [
+        {
+          "text": "To complete a user story",
+          "correct": false
+        },
+        {
+          "text": "To resolve technical uncertainties quickly",
+          "correct": true
+        },
+        {
+          "text": "To document project risks formally",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C4-04",
+      "section": "C4",
+      "topic": "Analyzing, monitoring, and controlling risks",
+      "questionType": 1,
+      "question": "How are risks monitored in agile teams?",
+      "points": 1,
+      "sourceImage": 32,
+      "answers": [
+        {
+          "text": "Recorded in a formal risk register",
+          "correct": false
+        },
+        {
+          "text": "Monitored using highly visible information radiators",
+          "correct": true
+        },
+        {
+          "text": "Discussed only during iteration review meetings",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "C4-05",
+      "section": "C4",
+      "topic": "Analyzing, monitoring, and controlling risks",
+      "questionType": 3,
+      "question": "Explain the role of landing zones in agile risk management.",
+      "points": 6,
+      "sourceImage": 33,
+      "answers": [
+        {
+          "text": "Landing zones define an acceptable range of product functionality and characteristics agreed upon by the team and customer during planning.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "C4-06",
+      "section": "C4",
+      "topic": "Analyzing, monitoring, and controlling risks",
+      "questionType": 3,
+      "question": "What is a short, fixed-length sprint called in which a team examines a solution aspect or builds a prototype to demonstrate feasibility?",
+      "points": 1,
+      "sourceImage": 34,
+      "answers": [
+        {
+          "text": "Spike",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "D3-01",
+      "section": "D3",
+      "topic": "Agile quality management",
+      "questionType": 2,
+      "question": "Who is responsible for verifying and continually improving product quality in an agile project?",
+      "points": 2,
+      "sourceImage": 35,
+      "answers": [
+        {
+          "text": "Developers",
+          "correct": true
+        },
+        {
+          "text": "Quality assurance staff only",
+          "correct": false
+        },
+        {
+          "text": "All project team members",
+          "correct": true
+        },
+        {
+          "text": "Project managers",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "D3-02",
+      "section": "D3",
+      "topic": "Agile quality management",
+      "questionType": 2,
+      "question": "What is the purpose of quality control in agile development?",
+      "points": 2,
+      "sourceImage": 36,
+      "answers": [
+        {
+          "text": "Preventing defects",
+          "correct": false
+        },
+        {
+          "text": "Identifying and resolving defects",
+          "correct": true
+        },
+        {
+          "text": "Executing acceptance tests",
+          "correct": false
+        },
+        {
+          "text": "Writing and executing unit tests",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "D3-03",
+      "section": "D3",
+      "topic": "Agile quality management",
+      "questionType": 2,
+      "question": "Besides product quality, what are the other main areas where quality is important in agile projects?",
+      "points": 2,
+      "sourceImage": 37,
+      "answers": [
+        {
+          "text": "Budget management",
+          "correct": false
+        },
+        {
+          "text": "Communications",
+          "correct": true
+        },
+        {
+          "text": "Human resources",
+          "correct": false
+        },
+        {
+          "text": "Conduct and compliance",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "D3-04",
+      "section": "D3",
+      "topic": "Agile quality management",
+      "questionType": 2,
+      "question": "What is technical debt in the context of agile projects?",
+      "points": 2,
+      "sourceImage": 38,
+      "answers": [
+        {
+          "text": "Financial debt incurred by the project team",
+          "correct": false
+        },
+        {
+          "text": "Consequences of taking technical shortcuts during development",
+          "correct": true
+        },
+        {
+          "text": "Interest paid on project delays",
+          "correct": false
+        },
+        {
+          "text": "Quality defects identified during testing",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "D3-05",
+      "section": "D3",
+      "topic": "Agile quality management",
+      "questionType": 3,
+      "question": "Explain the concept of escaped defects in quality assurance.",
+      "points": 8,
+      "sourceImage": 39,
+      "answers": [
+        {
+          "text": "Defects that bypassed quality assurance processes and were identified after product release or during subsequent iterations.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "E1-01",
+      "section": "E1",
+      "topic": "Agile contracts",
+      "questionType": 2,
+      "question": "Why are fixed-price contracts generally not considered suitable for agile projects?",
+      "points": 2,
+      "sourceImage": 40,
+      "answers": [
+        {
+          "text": "They allow for flexibility in scope",
+          "correct": false
+        },
+        {
+          "text": "They align well with changing requirements",
+          "correct": false
+        },
+        {
+          "text": "They place risk on the project team",
+          "correct": true
+        },
+        {
+          "text": "They do not sufficiently address customer requirements",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "E1-02",
+      "section": "E1",
+      "topic": "Agile contracts",
+      "questionType": 2,
+      "question": "Which types of contract operate on a pay-as-you-use basis in agile projects?",
+      "points": 2,
+      "sourceImage": 41,
+      "answers": [
+        {
+          "text": "Fixed-price contract",
+          "correct": false
+        },
+        {
+          "text": "Cost-reimbursable contract",
+          "correct": true
+        },
+        {
+          "text": "Service contract",
+          "correct": false
+        },
+        {
+          "text": "Time-and-materials contract",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "F1-01",
+      "section": "F1",
+      "topic": "Misconceptions about agility",
+      "questionType": 2,
+      "question": "Which myths about agile project management are commonly misconceived?",
+      "points": 2,
+      "sourceImage": 42,
+      "answers": [
+        {
+          "text": "Agile project management cannot work with other plan-driven or process models",
+          "correct": true
+        },
+        {
+          "text": "Agile project management requires no documentation",
+          "correct": false
+        },
+        {
+          "text": "Agile project management is specific to software development",
+          "correct": true
+        },
+        {
+          "text": "Agile projects do not require planning",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "F1-02",
+      "section": "F1",
+      "topic": "Misconceptions about agility",
+      "questionType": 2,
+      "question": "What misconceptions exist about documentation in agile project management?",
+      "points": 2,
+      "sourceImage": 43,
+      "answers": [
+        {
+          "text": "Agile projects require comprehensive documentation",
+          "correct": false
+        },
+        {
+          "text": "Agile teams do not create any documentation",
+          "correct": true
+        },
+        {
+          "text": "Agile projects involve excessive planning documents",
+          "correct": false
+        },
+        {
+          "text": "Agile projects require detailed work breakdown structures",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "F1-03",
+      "section": "F1",
+      "topic": "Misconceptions about agility",
+      "questionType": 2,
+      "question": "How should organizations approach transitioning from traditional to agile project management?",
+      "points": 2,
+      "sourceImage": 44,
+      "answers": [
+        {
+          "text": "Abandon all traditional practices immediately",
+          "correct": false
+        },
+        {
+          "text": "Combine agile and traditional principles gradually",
+          "correct": true
+        },
+        {
+          "text": "Stick exclusively to agile practices",
+          "correct": false
+        },
+        {
+          "text": "Implement agile practices without any planning",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "F2-01",
+      "section": "F2",
+      "topic": "Misconceptions about agility",
+      "questionType": 3,
+      "question": "Summarize the key points about Capability Maturity Model Integration (CMMI).",
+      "points": 8,
+      "sourceImage": 45,
+      "answers": [
+        {
+          "text": "CMMI provides discipline through defined activities, goals, and practices for process enhancement.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "F3-01",
+      "section": "F3",
+      "topic": "Transition to agility",
+      "questionType": 3,
+      "question": "What does the term project criticality refer to?",
+      "points": 8,
+      "sourceImage": 46,
+      "answers": [
+        {
+          "text": "The severity of the impact that a project's failure could have on stakeholders such as customers.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "F3-02",
+      "section": "F3",
+      "topic": "Transition to agility",
+      "questionType": 1,
+      "question": "What type of organizational structure is most conducive to implementing an agile methodology?",
+      "points": 1,
+      "sourceImage": 47,
+      "answers": [
+        {
+          "text": "Cooperative",
+          "correct": true
+        },
+        {
+          "text": "Hybrid of hierarchical and cooperative",
+          "correct": false
+        },
+        {
+          "text": "Project-based",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "F3-03",
+      "section": "F3",
+      "topic": "Transition to agility",
+      "questionType": 1,
+      "question": "What does the term project criticality refer to?",
+      "points": 1,
+      "sourceImage": 48,
+      "answers": [
+        {
+          "text": "The size and complexity of a project",
+          "correct": false
+        },
+        {
+          "text": "The severity of impact a project's failure could have",
+          "correct": true
+        },
+        {
+          "text": "The level of stakeholder involvement in a project",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "F3-04",
+      "section": "F3",
+      "topic": "Transition to agility",
+      "questionType": 2,
+      "question": "What characteristics make a project best suited for an agile methodology?",
+      "points": 2,
+      "sourceImage": 49,
+      "answers": [
+        {
+          "text": "Low level of internal uncertainty",
+          "correct": false
+        },
+        {
+          "text": "Lack of a well-defined scope",
+          "correct": true
+        },
+        {
+          "text": "Requires ongoing customer feedback",
+          "correct": true
+        },
+        {
+          "text": "Does not require frequent reviews and adjustments",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "F3-05",
+      "section": "F3",
+      "topic": "Transition to agility",
+      "questionType": 2,
+      "question": "What are some potential impacts of using an agile methodology on a project?",
+      "points": 2,
+      "sourceImage": 50,
+      "answers": [
+        {
+          "text": "Weakly defined development cycles",
+          "correct": false
+        },
+        {
+          "text": "Improved quality and efficiency",
+          "correct": true
+        },
+        {
+          "text": "Avoidance of unnecessary communication",
+          "correct": false
+        },
+        {
+          "text": "Better customer satisfaction",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "F3-06",
+      "section": "F3",
+      "topic": "Transition to agility",
+      "questionType": 3,
+      "question": "Why is continuous customer involvement crucial in agile methodologies?",
+      "points": 8,
+      "sourceImage": 51,
+      "answers": [
+        {
+          "text": "It allows requirements to evolve as work progresses and helps ensure that the final product meets the customer's needs effectively.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "F3-07",
+      "section": "F3",
+      "topic": "Transition to agility",
+      "questionType": 2,
+      "question": "When is an agile approach especially suitable for a project?",
+      "points": 2,
+      "sourceImage": 52,
+      "answers": [
+        {
+          "text": "When a project has a well-defined scope",
+          "correct": false
+        },
+        {
+          "text": "When a project involves a high level of internal uncertainty",
+          "correct": true
+        },
+        {
+          "text": "When a project benefits from customer feedback",
+          "correct": true
+        },
+        {
+          "text": "When a project has a rigid and fixed timeline",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "F3-08",
+      "section": "F3",
+      "topic": "Transition to agility",
+      "questionType": 2,
+      "question": "Which structural and cultural characteristics are likely to make it easier for an organization to transition to an agile methodology?",
+      "points": 2,
+      "sourceImage": 53,
+      "answers": [
+        {
+          "text": "Employees work in small teams and are accustomed to deciding how best to complete their tasks",
+          "correct": true
+        },
+        {
+          "text": "Employees have clear roles and are given detailed work instructions",
+          "correct": false
+        },
+        {
+          "text": "Employees do not compete with one another to achieve the best results",
+          "correct": true
+        },
+        {
+          "text": "Employees are given only the information they need to get their work done",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "G1-01",
+      "section": "G1",
+      "topic": "Scrum",
+      "questionType": 3,
+      "question": "Who in the Scrum team is responsible for providing a clear vision for the product to be developed?",
+      "points": 2,
+      "sourceImage": 54,
+      "answers": [
+        {
+          "text": "Product owner",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "G1-02",
+      "section": "G1",
+      "topic": "Scrum",
+      "questionType": 1,
+      "question": "Who in the Scrum team ensures that the delivered product meets customer requirements, a role often assumed by a local customer or customer representative?",
+      "points": 1,
+      "sourceImage": 55,
+      "answers": [
+        {
+          "text": "Lead programmer",
+          "correct": false
+        },
+        {
+          "text": "Project Manager",
+          "correct": false
+        },
+        {
+          "text": "Product Owner",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "G1-03",
+      "section": "G1",
+      "topic": "Scrum",
+      "questionType": 2,
+      "question": "What do you expect from a Scrum Master?",
+      "points": 2,
+      "sourceImage": 56,
+      "answers": [
+        {
+          "text": "They ensure that new product features are explained to the customer clearly and in a catchy manner",
+          "correct": false
+        },
+        {
+          "text": "They explain to customers the needs and constraints of the project team",
+          "correct": false
+        },
+        {
+          "text": "They are responsible for tracking and monitoring project progress",
+          "correct": true
+        },
+        {
+          "text": "They help team members achieve project goals and ensure that a project moves in the right direction",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "G4-01",
+      "section": "G4",
+      "topic": "Scrum",
+      "questionType": 1,
+      "question": "What is the meeting called in which team members discuss the previous 24 hours, the next 24 hours, and any obstacles?",
+      "points": 1,
+      "sourceImage": 57,
+      "answers": [
+        {
+          "text": "Sprint standup",
+          "correct": false
+        },
+        {
+          "text": "Daily standby meeting",
+          "correct": false
+        },
+        {
+          "text": "Daily Scrum",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "G4-02",
+      "section": "G4",
+      "topic": "Scrum",
+      "questionType": 3,
+      "question": "What is a Scrum meeting called that coordinates work across multiple teams in a large project?",
+      "points": 2,
+      "sourceImage": 58,
+      "answers": [
+        {
+          "text": "Scrum of Scrums",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "G4-03",
+      "section": "G4",
+      "topic": "Scrum",
+      "questionType": 3,
+      "question": "What is the Scrum activity called in which the team defines the tasks and goals for the upcoming iteration?",
+      "points": 2,
+      "sourceImage": 59,
+      "answers": [
+        {
+          "text": "Sprint planning",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "G4-04",
+      "section": "G4",
+      "topic": "Scrum",
+      "questionType": 2,
+      "question": "In a Scrum team, Mike ensures that the delivered product meets customer requirements. Which roles or responsibilities does Mike have?",
+      "points": 2,
+      "sourceImage": 60,
+      "answers": [
+        {
+          "text": "He is the product owner",
+          "correct": true
+        },
+        {
+          "text": "He is responsible for tracking and monitoring project progress",
+          "correct": false
+        },
+        {
+          "text": "He is the main author of user stories",
+          "correct": true
+        },
+        {
+          "text": "He organizes the burndown charts",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "G4-05",
+      "section": "G4",
+      "topic": "Scrum",
+      "questionType": 1,
+      "question": "Which Scrum role helps team members achieve project goals and ensures that a project is moving in the right direction?",
+      "points": 1,
+      "sourceImage": 61,
+      "answers": [
+        {
+          "text": "Scrum Master",
+          "correct": true
+        },
+        {
+          "text": "Project Leader",
+          "correct": false
+        },
+        {
+          "text": "Project Manager",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "G4-06",
+      "section": "G4",
+      "topic": "Scrum",
+      "questionType": 3,
+      "question": "What is the meeting at the end of each sprint in which the Scrum team evaluates the sprint results?",
+      "points": 3,
+      "sourceImage": 62,
+      "answers": [
+        {
+          "text": "Sprint review meeting",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "G4-07",
+      "section": "G4",
+      "topic": "Scrum",
+      "questionType": 3,
+      "question": "Who in the Scrum team measures how well a project performs in terms of return on investment?",
+      "points": 2,
+      "sourceImage": 63,
+      "answers": [
+        {
+          "text": "Product owner",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "G4-08",
+      "section": "G4",
+      "topic": "Scrum",
+      "questionType": 3,
+      "question": "What is the role called that the Scrum Master adopts to facilitate collaboration, encourage participation and shared responsibility, and remove organizational impediments?",
+      "points": 2,
+      "sourceImage": 64,
+      "answers": [
+        {
+          "text": "Servant leader",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "G4-09",
+      "section": "G4",
+      "topic": "Scrum",
+      "questionType": 2,
+      "question": "Which are characteristics of the optimal Scrum team?",
+      "points": 2,
+      "sourceImage": 65,
+      "answers": [
+        {
+          "text": "Self-reliant",
+          "correct": false
+        },
+        {
+          "text": "Cross-competent",
+          "correct": false
+        },
+        {
+          "text": "Self-organizing",
+          "correct": true
+        },
+        {
+          "text": "Cross-functional",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "G4-10",
+      "section": "G4",
+      "topic": "Scrum",
+      "questionType": 3,
+      "question": "What is the meeting called in which the Scrum Master and development team discuss how the sprint went and how it could improve?",
+      "points": 2,
+      "sourceImage": 66,
+      "answers": [
+        {
+          "text": "Sprint retrospective",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "G4-11",
+      "section": "G4",
+      "topic": "Scrum",
+      "questionType": 2,
+      "question": "Which instruments does a Scrum team use to track its progress?",
+      "points": 2,
+      "sourceImage": 67,
+      "answers": [
+        {
+          "text": "Story points burndowns",
+          "correct": false
+        },
+        {
+          "text": "Burnup charts",
+          "correct": true
+        },
+        {
+          "text": "Progressive charts",
+          "correct": false
+        },
+        {
+          "text": "Burndown charts",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "G4-12",
+      "section": "G4",
+      "topic": "Scrum",
+      "questionType": 1,
+      "question": "Which of the following is a valid metric used in Scrum?",
+      "points": 1,
+      "sourceImage": 68,
+      "answers": [
+        {
+          "text": "Lines of code",
+          "correct": false
+        },
+        {
+          "text": "Standards violation",
+          "correct": true
+        },
+        {
+          "text": "Scrum points",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "G4-13",
+      "section": "G4",
+      "topic": "Phases in agile projects",
+      "questionType": 3,
+      "question": "Name the five phases of the agile project management cycle in the correct order.",
+      "points": 5,
+      "sourceImage": 69,
+      "answers": [
+        {
+          "text": "Envisioning, speculation, exploring, adapting, closing.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "H1-01",
+      "section": "H1",
+      "topic": "Phases in agile projects",
+      "questionType": 2,
+      "question": "Identify the differences between the agile Adapting phase and the traditional Controlling phase.",
+      "points": 2,
+      "sourceImage": 70,
+      "answers": [
+        {
+          "text": "Adapting involves reassessing project deliverables, whereas Controlling involves working according to a predefined project plan",
+          "correct": true
+        },
+        {
+          "text": "Adapting begins when the product meets all customer specifications, whereas Controlling involves planning every phase of a project",
+          "correct": false
+        },
+        {
+          "text": "Adapting involves coordinating project work, whereas Controlling involves reassessing deliverables",
+          "correct": true
+        },
+        {
+          "text": "Adapting begins when project objectives are determined, whereas Controlling begins when a detailed project plan is created",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "H1-02",
+      "section": "H1",
+      "topic": "Phases in agile projects",
+      "questionType": 1,
+      "question": "What is the primary focus during the envisioning phase of an agile project?",
+      "points": 1,
+      "sourceImage": 71,
+      "answers": [
+        {
+          "text": "Creating a detailed project plan",
+          "correct": false
+        },
+        {
+          "text": "Determining and refining the project's vision and scope",
+          "correct": true
+        },
+        {
+          "text": "Managing team interactions with stakeholders",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "H1-03",
+      "section": "H1",
+      "topic": "Phases in agile projects",
+      "questionType": 2,
+      "question": "How does the closing phase in agile projects differ from traditional project management?",
+      "points": 2,
+      "sourceImage": 72,
+      "answers": [
+        {
+          "text": "It involves completing all project work and recording lessons learned",
+          "correct": false
+        },
+        {
+          "text": "It only begins after several iterations with deliverables handed to the customer",
+          "correct": true
+        },
+        {
+          "text": "It focuses primarily on handing over final deliverables to the project sponsor",
+          "correct": true
+        },
+        {
+          "text": "It is not typically included in agile project methodologies",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "H1-04",
+      "section": "H1",
+      "topic": "Phases in agile projects",
+      "questionType": 2,
+      "question": "What are some key differences between agile and traditional project management phases?",
+      "points": 2,
+      "sourceImage": 73,
+      "answers": [
+        {
+          "text": "Agile projects emphasize ongoing customer involvement and iterative review",
+          "correct": true
+        },
+        {
+          "text": "Traditional projects often have a fixed, detailed project scope from the start",
+          "correct": true
+        },
+        {
+          "text": "Agile teams are self-organizing and require extensive customer involvement",
+          "correct": false
+        },
+        {
+          "text": "Traditional projects focus more on executing according to a predefined plan",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "H1-05",
+      "section": "H1",
+      "topic": "Phases in agile projects",
+      "questionType": 3,
+      "question": "Which phase of an agile project involves designing, building, and testing features in increments useful to the customer?",
+      "points": 2,
+      "sourceImage": 74,
+      "answers": [
+        {
+          "text": "Exploring",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "H1-06",
+      "section": "H1",
+      "topic": "Phases in agile projects",
+      "questionType": 1,
+      "question": "What activities are typically conducted during the speculating phase in agile projects?",
+      "points": 1,
+      "sourceImage": 75,
+      "answers": [
+        {
+          "text": "Building and testing features",
+          "correct": false
+        },
+        {
+          "text": "Developing rough project and release plans",
+          "correct": true
+        },
+        {
+          "text": "Adapting product features based on feedback",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "H1-07",
+      "section": "H1",
+      "topic": "Phases in agile projects",
+      "questionType": 3,
+      "question": "In the adapting phase of an agile project, what are the primary responsibilities of the project leader?",
+      "points": 6,
+      "sourceImage": 76,
+      "answers": [
+        {
+          "text": "Make adjustments based on feedback and team dynamics.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "I9-01",
+      "section": "I9",
+      "topic": "XP",
+      "questionType": 3,
+      "question": "Name three important principles propagated by XP.",
+      "points": 6,
+      "sourceImage": 77,
+      "answers": [
+        {
+          "text": "Pair programming, sustainable pace, ongoing automated testing.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "I9-02",
+      "section": "I9",
+      "topic": "Agile methods",
+      "questionType": 3,
+      "question": "Which methodology encourages no more than 40 hours of work per week to maintain a sustainable work pace?",
+      "points": 2,
+      "sourceImage": 78,
+      "answers": [
+        {
+          "text": "XP / Extreme Programming",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "I9-03",
+      "section": "I9",
+      "topic": "Adaptive Software Development (ASD)",
+      "questionType": 1,
+      "question": "Which phases are part of the Adaptive Software Development methodology?",
+      "points": 1,
+      "sourceImage": 79,
+      "answers": [
+        {
+          "text": "Analyze, Build, Control",
+          "correct": false
+        },
+        {
+          "text": "Speculate, Collaborate, Learn",
+          "correct": true
+        },
+        {
+          "text": "Plan, Do, Check",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "I9-04",
+      "section": "I9",
+      "topic": "Crystal",
+      "questionType": 3,
+      "question": "What is a project in the Crystal methodology called when it includes up to around six co-located members?",
+      "points": 2,
+      "sourceImage": 80,
+      "answers": [
+        {
+          "text": "Crystal Clear",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "I9-05",
+      "section": "I9",
+      "topic": "Dynamic Systems Development Method (DSDM)",
+      "questionType": 1,
+      "question": "Which stage is part of the DSDM project life cycle?",
+      "points": 1,
+      "sourceImage": 81,
+      "answers": [
+        {
+          "text": "Initial Planning",
+          "correct": false
+        },
+        {
+          "text": "Business Study",
+          "correct": true
+        },
+        {
+          "text": "Post-Implementation Review",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "I9-06",
+      "section": "I9",
+      "topic": "Agile methods",
+      "questionType": 1,
+      "question": "Which methodology encourages no more than 40 hours of work per week to maintain a sustainable work pace?",
+      "points": 1,
+      "sourceImage": 82,
+      "answers": [
+        {
+          "text": "Scrum",
+          "correct": false
+        },
+        {
+          "text": "XP",
+          "correct": true
+        },
+        {
+          "text": "FDD",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "I9-07",
+      "section": "I9",
+      "topic": "Adaptive Software Development (ASD)",
+      "questionType": 3,
+      "question": "What is the ASD phase called that includes feedback from end users who have tried the developed software?",
+      "points": 1,
+      "sourceImage": 83,
+      "answers": [
+        {
+          "text": "Learn",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "I9-08",
+      "section": "I9",
+      "topic": "Crystal",
+      "questionType": 3,
+      "question": "What are the specific roles defined in a Crystal Clear project team?",
+      "points": 6,
+      "sourceImage": 84,
+      "answers": [
+        {
+          "text": "Sponsor, senior designer, programmer.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "I9-09",
+      "section": "I9",
+      "topic": "Lean development",
+      "questionType": 1,
+      "question": "What is a core principle of Lean software development?",
+      "points": 1,
+      "sourceImage": 85,
+      "answers": [
+        {
+          "text": "Encouraging long development cycles",
+          "correct": false
+        },
+        {
+          "text": "Emphasizing unnecessary documentation",
+          "correct": false
+        },
+        {
+          "text": "Focusing on system integrity",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "I9-10",
+      "section": "I9",
+      "topic": "Lean development",
+      "questionType": 1,
+      "question": "According to Lean development, how does the principle of delivering software quickly translate into practice?",
+      "points": 1,
+      "sourceImage": 86,
+      "answers": [
+        {
+          "text": "Anticipating future customer needs",
+          "correct": false
+        },
+        {
+          "text": "Identifying and maintaining bottlenecks in the process",
+          "correct": false
+        },
+        {
+          "text": "Planning smaller releases of software after shorter periods",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "I9-11",
+      "section": "I9",
+      "topic": "Lean development",
+      "questionType": 3,
+      "question": "Briefly explain the principle of eliminating waste in Lean development.",
+      "points": 6,
+      "sourceImage": 87,
+      "answers": [
+        {
+          "text": "Removing unnecessary activities, documentation, and product features that do not add direct value to the end product.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "I9-12",
+      "section": "I9",
+      "topic": "XP",
+      "questionType": 3,
+      "question": "What is meant by sustainable pace in the context of XP?",
+      "points": 6,
+      "sourceImage": 88,
+      "answers": [
+        {
+          "text": "Team members work no more than 40 hours per week to ensure consistent and reliable software delivery, avoid burnout, and maintain high-quality output.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "I9-13",
+      "section": "I9",
+      "topic": "Feature-Driven Development (FDD)",
+      "questionType": 1,
+      "question": "What is a distinguishing feature of Feature-Driven Development?",
+      "points": 1,
+      "sourceImage": 89,
+      "answers": [
+        {
+          "text": "It is unstructured but highly adaptive",
+          "correct": false
+        },
+        {
+          "text": "It emphasizes a business perspective more than a technical one",
+          "correct": false
+        },
+        {
+          "text": "It provides a prescriptive model that is managed at the level of individual features",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "I9-14",
+      "section": "I9",
+      "topic": "Unified Process (UP)",
+      "questionType": 1,
+      "question": "During which phase of the Unified Process does the project proceed with iterations focused on developing small, production-worthy pieces of software?",
+      "points": 1,
+      "sourceImage": 90,
+      "answers": [
+        {
+          "text": "Inception",
+          "correct": false
+        },
+        {
+          "text": "Elaboration",
+          "correct": false
+        },
+        {
+          "text": "Construction",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}
