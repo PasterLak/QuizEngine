@@ -1,0 +1,13 @@
+{
+  "category": "A",
+  "topic": "Fundamentals",
+  "question": "How does Agile project management handle change management? [1]",
+  "options": [
+    "Through Integrated Change Control",
+    "Through separate change request processes",
+    "By integrating change into short cycles"
+  ],
+  "answer": [
+    "By integrating change into short cycles"
+  ]
+}

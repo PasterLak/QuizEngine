@@ -1,0 +1,14 @@
+{
+  "category": "A",
+  "topic": "Agile principles",
+  "question": "According to agile principles, what is the primary measure of progress in software development? [2]",
+  "options": [
+    "Completion of project phases",
+    "Customer satisfaction surveys",
+    "Delivery of fully functional software",
+    "Number of meetings held"
+  ],
+  "answer": [
+    "Delivery of fully functional software"
+  ]
+}

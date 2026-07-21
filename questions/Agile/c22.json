@@ -1,0 +1,6 @@
+{
+  "category": "C",
+  "topic": "Managing risks",
+  "question": "Describe key components of an \"exception plan\" in agile risk management (max. 20 words). [8]",
+  "answer": "Circumstances for the exception, causes of the circumstance, tolerance limits, possible solutions, recommended solutions, Request for stakeholder decision."
+}

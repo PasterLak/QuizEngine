@@ -1,0 +1,17 @@
+
+
+{
+  "category": "A",
+  "topic": "Peer-to-peer networks",
+  "question": "What are advantages of peer-to-peer networks? [2]",
+  "options": [
+    "Single point of failure",
+    "Mutability",
+    "Velocity",
+    "Transparency"
+  ],
+  "answer": [
+    "Velocity",
+    "Transparency"
+  ]
+}

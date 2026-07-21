@@ -1,0 +1,6 @@
+{
+  "category": "A",
+  "topic": "Fundamentals",
+  "question": "Describe the concept of incremental approach in Agile project management (max. one phrase). [6]",
+  "answer": "Involves developing a product in increments based on feature priority, which allows for frequent delivery of usable Components and facilitates adaption to changing requirements throughout the project lifecycle."
+}

@@ -1,0 +1,13 @@
+{
+  "category": "B",
+  "topic": "Roles in agile teams",
+  "question": "Who assumes much of the responsibility of a traditional project manager in agile projects? [1]",
+  "options": [
+    "Business analyst",
+    "Scrum master",
+    "Project leader"
+  ],
+  "answer": [
+    "Project leader"
+  ]
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="setup-container">
+        <h2>Quiz Setup</h2>
+        <div id="setup-controls">
+            <div class="control-row">
+                <select id="subject-select" disabled>
+                    <option value="">Select subject...</option>
+                </select>
+            </div>
+            <div class="control-row">
+                <select id="category-select" disabled>
+                    <option value="All">All Categories</option>
+                </select>
+            </div>
+            <div class="control-row checkboxes">
+                <label><input type="checkbox" id="shuffle-questions" checked> Shuffle Questions</label>
+                <label><input type="checkbox" id="shuffle-options" checked> Shuffle Options</label>
+            </div>
+            <div id="question-count-display"></div>
+            <button id="start-btn" disabled>Start Quiz</button>
+        </div>
+        <div id="setup-error"></div>
+    </div>
+
+    <div id="quiz-container" style="display: none;">
+        <div id="header">
+            <div id="category-box">
+                <span id="category-letter"></span>
+                <span id="category-topic"></span>
+                <span id="question-filename"></span>
+            </div>
+            <div id="progress-text"></div>
+        </div>
+        <div id="question-text"></div>
+        <div id="input-container"></div>
+        <button id="submit-btn">Submit</button>
+        <button id="next-btn" style="display: none;">Next</button>
+        <div id="result-area"></div>
+        <div id="bottom-actions">
+            <button id="exit-btn">Exit to Menu</button>
+            <button id="retry-btn" style="display: none;">Retry Incorrect</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

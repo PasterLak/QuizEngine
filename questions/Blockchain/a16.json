@@ -1,0 +1,17 @@
+
+
+{
+  "category": "A",
+  "topic": "Decentralized systems",
+  "question": "What are the primary advantages of decentralized systems compared to centralized ones? [2]",
+  "options": [
+    "Higher coordination effort",
+    "Lower security concerns",
+    "Higher reliability",
+    "Higher computing power"
+  ],
+  "answer": [
+    "Higher reliability",
+    "Higher computing power"
+  ]
+}

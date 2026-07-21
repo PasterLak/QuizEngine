@@ -1,0 +1,15 @@
+{
+  "category": "C",
+  "topic": "Managing risks",
+  "question": "How does risk response planning differ in agile projects compared to traditional projects? [2]",
+  "options": [
+    "Conducted by project managers only",
+    "Happens at the beginning of each project phase",
+    "Involves the entire team and occurs more frequently",
+    "Is less intensive than in traditional projects"
+  ],
+  "answer": [
+    "Involves the entire team and occurs more frequently",
+    "Is less intensive than in traditional projects"
+  ]
+}

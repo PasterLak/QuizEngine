@@ -1,0 +1,15 @@
+{
+  "category": "A",
+  "topic": "Fundamentals",
+  "question": "What are the primary values of the Agile Manifesto? [2]",
+  "options": [
+    "Individuals and interactions",
+    "Process and tools",
+    "Comprehensive documentation",
+    "Responding to change"
+  ],
+  "answer": [
+    "Individuals and interactions",
+    "Responding to change"
+  ]
+}

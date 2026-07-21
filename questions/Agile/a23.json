@@ -1,0 +1,16 @@
+
+{
+  "category": "A",
+  "topic": "Agile principles",
+  "question": "What are key aspects of face-to-face communication in agile development? [2]",
+  "options": [
+    "It is always conducted in a formal meeting setting",
+    "It is essential for effective information sharing among team members",
+    "It is the primary communication method regardless of circumstances",
+    "It is used alongside other communication media when necessary"
+  ],
+  "answer": [
+    "It is essential for effective information sharing among team members",
+    "It is used alongside other communication media when necessary"
+  ]
+}

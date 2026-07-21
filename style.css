@@ -1,0 +1,242 @@
+body {
+    background-color: #ffffff;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+#setup-container, #quiz-container {
+    background-color: #f1efeb;
+    width: 800px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+#setup-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.control-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.checkboxes {
+    background: #e6e3da;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+select {
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    min-width: 250px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%;
+    background-size: 12px auto;
+}
+
+select:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    outline: none;
+}
+
+select:disabled {
+    background-color: #eee;
+    cursor: not-allowed;
+    opacity: 0.7;
+    background-image: none;
+}
+
+#question-count-display {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2e7d32;
+    padding: 10px 0;
+}
+
+#setup-error {
+    color: #c62828;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+#header {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    background-color: #e6e3da;
+    margin-bottom: 30px;
+}
+
+#category-box {
+    display: flex;
+    flex-grow: 1;
+}
+
+#category-letter {
+    font-size: 60px;
+    color: #a4a4a4;
+    padding: 10px 20px;
+    border-right: 2px solid #ccc;
+    font-weight: 300;
+}
+
+#category-topic {
+    font-size: 24px;
+    color: #555;
+    padding: 20px;
+    background-color: #fcfcfc;
+    flex-grow: 1;
+    margin: 10px 10px 10px 0;
+}
+
+#question-filename {
+    font-size: 16px;
+    color: #fff;
+    background-color: #777;
+    padding: 5px 15px;
+    border-radius: 20px;
+    align-self: center;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+#progress-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    align-self: center;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.score-green {
+    color: #2e7d32;
+}
+
+.score-red {
+    color: #c62828;
+}
+
+.score-divider {
+    color: #999;
+    font-weight: normal;
+}
+
+#bottom-actions {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+}
+
+#exit-btn {
+    padding: 10px 20px;
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#retry-btn {
+    padding: 10px 20px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#question-text {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #222;
+}
+
+.option-label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.correct-choice {
+    color: #006400;
+    font-weight: bold;
+}
+
+.incorrect-choice {
+    color: #8B0000;
+    font-weight: bold;
+    text-decoration: line-through;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 15px;
+    transform: scale(1.2);
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+button:disabled {
+    background-color: #a5d6a7;
+    cursor: not-allowed;
+}
+
+#next-btn {
+    background-color: #2196F3;
+}
+
+#result-area {
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 16px;
+}
+
+.correct {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.incorrect {
+    color: #c62828;
+    font-weight: bold;
+}

@@ -1,0 +1,15 @@
+{
+  "category": "A",
+  "topic": "Fundamentals",
+  "question": "What are the benefits of Agile project management compared to traditional approaches? [2]",
+  "options": [
+    "Increase in project scope",
+    "Speed up delivery",
+    "Reduce risk",
+    "Add more complexity"
+  ],
+  "answer": [
+    "Speed up delivery",
+    "Reduce risk"
+  ]
+}

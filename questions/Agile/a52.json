@@ -1,0 +1,15 @@
+{
+  "category": "A",
+  "topic": "Agile triangle",
+  "question": "According to the agile iron triangle, what is the main goal of project success? [2]",
+  "options": [
+    "Adapting to fixed plans",
+    "Meeting predefined scope and cost",
+    "Delivering value to the customer",
+    "Following a strict schedule"
+  ],
+  "answer": [
+    "Adapting to fixed plans",
+    "Delivering value to the customer"
+  ]
+}
