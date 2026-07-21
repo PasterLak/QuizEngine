@@ -49,6 +49,7 @@ document.getElementById('subject-select').addEventListener('change', async (even
     if (!subject) {
         document.getElementById('category-select').disabled = true;
         document.getElementById('start-btn').disabled = true;
+        document.getElementById('open-editor-btn').disabled = true;
         document.getElementById('question-count-display').textContent = '';
         return;
     }
@@ -56,6 +57,7 @@ document.getElementById('subject-select').addEventListener('change', async (even
     document.getElementById('setup-error').textContent = 'Loading...';
     document.getElementById('category-select').disabled = true;
     document.getElementById('start-btn').disabled = true;
+    document.getElementById('open-editor-btn').disabled = true;
     document.getElementById('question-count-display').textContent = '';
     allQuestions = [];
     
@@ -78,7 +80,20 @@ document.getElementById('subject-select').addEventListener('change', async (even
     setupCategories();
     document.getElementById('category-select').disabled = false;
     document.getElementById('start-btn').disabled = false;
+    document.getElementById('open-editor-btn').disabled = false;
     updateQuestionCountDisplay();
+});
+
+document.getElementById('open-editor-btn').addEventListener('click', () => {
+    const subject = document.getElementById('subject-select').value;
+    if (!subject) return;
+    window.open(`editor.html?subject=${encodeURIComponent(subject)}`, '_blank');
+});
+
+document.getElementById('quiz-open-editor-btn').addEventListener('click', () => {
+    const subject = document.getElementById('subject-select').value;
+    if (!subject) return;
+    window.open(`editor.html?subject=${encodeURIComponent(subject)}`, '_blank');
 });
 
 function setupCategories() {
@@ -86,9 +101,10 @@ function setupCategories() {
     const select = document.getElementById('category-select');
     select.innerHTML = '<option value="All">All Categories</option>';
     categories.forEach(cat => {
+        const count = allQuestions.filter(q => q.section === cat).length;
         const option = document.createElement('option');
         option.value = cat;
-        option.textContent = `Category ${cat}`;
+        option.textContent = `Category ${cat} [${count}]`;
         select.appendChild(option);
     });
 }
@@ -145,6 +161,7 @@ function updateProgressDisplay() {
 function updateRetryButtonsVisibility() {
     if (incorrectCount > 0) {
         document.getElementById('retry-btn').style.display = 'inline-block';
+        document.getElementById('retry-btn').style.marginLeft = '15px';
     } else {
         document.getElementById('retry-btn').style.display = 'none';
     }

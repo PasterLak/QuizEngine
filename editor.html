@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Editor</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="editor-style.css">
+</head>
+<body>
+    <div id="editor-header">
+        <span id="editor-subject-title"></span>
+        <button id="save-btn">Save</button>
+    </div>
+    <div id="editor-container">
+        <textarea id="json-textarea" spellcheck="false"></textarea>
+        <pre id="highlighting" aria-hidden="true"><code id="highlighting-content" class="language-json"></code></pre>
+    </div>
+    <script src="editor-script.js"></script>
+</body>
+</html>
