@@ -399,9 +399,7 @@ button:disabled {
         justify-content: center;
     }
 
-    #quiz-open-editor-btn {
-        width: 100%;
-    }
+ 
 
     @media (max-width: 768px) {
     #bottom-actions {
@@ -410,14 +408,15 @@ button:disabled {
         align-items: center;
     }
 
-    #quiz-open-editor-btn {
-        width: auto;
+     #quiz-open-editor-btn {
         flex-shrink: 0;
+        width: auto;
+        margin-left : auto;
     }
-
     #exit-btn {
         width: auto;
         flex-shrink: 0;
+         margin-left: auto;
     }
 }
 
