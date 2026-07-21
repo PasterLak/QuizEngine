@@ -132,10 +132,11 @@ async function init() {
         
         select.disabled = false;
         const lastSubject = localStorage.getItem('last_subject');
-        if (lastSubject && subjects.includes(lastSubject)) {
-            select.value = lastSubject;
-            select.dispatchEvent(new Event('change'));
-        }
+        if (lastSubject && subjects.some(s => s.folder === lastSubject)) {
+    select.value = lastSubject;
+    select.dispatchEvent(new Event('change'));
+}
+
 
         updateResumeButtonVisibility();
     } catch (error) {
