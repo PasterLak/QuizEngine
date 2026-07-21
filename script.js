@@ -661,7 +661,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {
         
         isCorrect = sim >= 80;
          var c = isCorrect ? '<span class="correct">Correct!</span>' : `<span class="incorrect">Incorrect</span> | `;
-        feedback = c + `Similarity: <strong>${sim.toFixed(1)}%</strong><br><br>The correct answer is: ${correctAnswer}`;
+        feedback = c + `Similarity: <strong>${sim.toFixed(1)}%</strong><br><br><u>The correct answer is: </u>${correctAnswer}`;
     }
 
     if (isCorrect) {
