@@ -332,4 +332,47 @@ document.getElementById('next-btn').addEventListener('click', () => {
     showQuestion();
 });
 
+window.updateQuizData = function(jsonString) {
+    try {
+        const data = JSON.parse(jsonString);
+        allQuestions = data.questions || [];
+        
+        if (document.getElementById('setup-container').style.display !== 'none') {
+            setupCategories();
+            updateQuestionCountDisplay();
+        } else {
+            for (let i = 0; i < filteredQuestions.length; i++) {
+                const updatedQ = allQuestions.find(q => q.id === filteredQuestions[i].id);
+                if (updatedQ) {
+                    filteredQuestions[i] = updatedQ;
+                }
+            }
+            
+            for (let i = 0; i < incorrectQuestions.length; i++) {
+                const updatedQ = allQuestions.find(q => q.id === incorrectQuestions[i].id);
+                if (updatedQ) {
+                    incorrectQuestions[i] = updatedQ;
+                }
+            }
+            
+            if (currentQuestionIndex < filteredQuestions.length) {
+                const q = filteredQuestions[currentQuestionIndex];
+                
+                if (document.getElementById('submit-btn').style.display === 'none' && document.getElementById('next-btn').style.display !== 'none') {
+                    const resultHTML = document.getElementById('result-area').innerHTML;
+                    if (resultHTML.includes('correct">Correct!')) {
+                        correctCount = Math.max(0, correctCount - 1);
+                    } else {
+                        incorrectCount = Math.max(0, incorrectCount - 1);
+                        incorrectQuestions = incorrectQuestions.filter(iq => iq.id !== q.id);
+                    }
+                }
+                
+                showQuestion();
+            }
+        }
+    } catch (e) {
+    }
+};
+
 window.onload = init;

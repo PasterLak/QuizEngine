@@ -82,6 +82,10 @@ document.getElementById('save-btn').addEventListener('click', () => {
     }
 
     try {
+        if (window.opener && !window.opener.closed && typeof window.opener.updateQuizData === 'function') {
+            window.opener.updateQuizData(text);
+        }
+
         const blob = new Blob([text], { type: 'application/json' });
         const a = document.createElement('a');
         
@@ -94,7 +98,7 @@ document.getElementById('save-btn').addEventListener('click', () => {
         
         URL.revokeObjectURL(a.href);
         
-        alert('File downloaded! Please replace the old questions.json file in your folder with this new one.');
+        alert('Data updated live in the quiz! File downloaded to replace the old questions.json.');
     } catch (err) {
         alert('Save operation failed: ' + err.message);
     }
