@@ -6,8 +6,8 @@ import { startQuizFlow, resumeQuizFlow, showQuestion, submitAnswer } from './qui
 async function init() {
     storage.load();
     try {
-        const res = await fetch('subjects.json');
-        if (!res.ok) throw new Error('subjects.json not found');
+        const res = await fetch('questions/subjects.json');
+        if (!res.ok) throw new Error('questions/subjects.json not found');
         const subjects = await res.json();
         
         const select = document.getElementById('subject-select');
