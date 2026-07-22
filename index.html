@@ -21,50 +21,56 @@
                     <option value="All">📚 All Categories</option>
                 </select>
             </div>
-            <div class="control-row checkboxes">
+            <div class="checkboxes">
                 <label><input type="checkbox" id="shuffle-questions" checked> Shuffle Questions</label>
                 <label><input type="checkbox" id="shuffle-options" checked> Shuffle Options</label>
                 <label><input type="checkbox" id="study-mode"> Study Mode</label>
             </div>
             <div id="question-count-display"></div>
-            <button id="start-btn" disabled>Start New Quiz</button>
-            <button id="resume-progress-btn" style="display: none; background-color: #607D8B; color: white;">Resume Last Quiz</button>
-            <button id="practice-incorrect-btn" style="display: none; background-color: #ff9800; color: white;">Practice Incorrect [0]</button>
-            <button id="clear-stats-btn" style="display: none; background-color: #f44336; color: white;">Delete Last Quiz</button>
-            <button id="open-editor-btn" disabled>Open JSON Editor</button>
-            <span id="version-info" style="text-align: center;">Version 1.7 | Made in Schmalle with ☕</span>
+            
+            <div class="setup-actions">
+                <button id="start-btn" class="btn-green" disabled>Start New Quiz</button>
+                <button id="resume-progress-btn" class="btn-blue-grey" style="display: none;">Resume Last Quiz</button>
+                <button id="practice-incorrect-btn" class="btn-orange" style="display: none;">Practice Incorrect [0]</button>
+                <button id="clear-stats-btn" class="btn-red" style="display: none;">Delete Last Quiz</button>
+                <button id="open-editor-btn" class="btn-green" disabled>Open JSON Editor</button>
+            </div>
+            
+            <span id="version-info">Version 1.8 | Made in Schmalle with ☕</span>
         </div>
         <div id="setup-error"></div>
     </div>
 
     <div id="quiz-container" style="display: none;">
         <div id="header">
-            <div id="category-box">
-                <span id="category-letter"></span>
-                <span id="category-topic"></span>
+            <div id="category-letter"></div>
+            <div id="category-topic"></div>
+            <div id="header-badges">
                 <span id="question-filename"></span>
+                <div id="progress-text"></div>
             </div>
-            <div id="progress-text"></div>
         </div>
+        
         <div id="question-text"></div>
         <div id="input-container"></div>
+        
         <div class="action-buttons-group">
             <div class="left-actions">
-                <button id="prev-btn" style="display: none;">Previous</button>
-                <button id="submit-btn">Submit</button>
-                <button id="next-btn" style="display: none;">Next</button>
+                <button id="prev-btn" class="btn-blue" style="display: none;">Previous</button>
+                <button id="submit-btn" class="btn-blue">Submit</button>
+                <button id="next-btn" class="btn-blue" style="display: none;">Next</button>
             </div>
             <div id="star-container" class="star-container" style="display: none;">
                 <span class="star-label">Mark</span>
                 <span id="star-btn" class="star-icon">☆</span>
             </div>
         </div>
+        
         <div id="result-area"></div>
+        
         <div id="bottom-actions">
-            <div class="left-bottom-actions">
-                <button id="exit-btn">Back to Menu</button>
-                <button id="quiz-open-editor-btn" style="background-color: #2196F3; color: white;">JSON Editor</button>
-            </div>
+            <button id="exit-btn" class="btn-red">Back to Menu</button>
+            <button id="quiz-open-editor-btn" class="btn-blue">JSON Editor</button>
         </div>
     </div>
     
