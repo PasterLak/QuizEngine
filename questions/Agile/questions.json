@@ -83,7 +83,7 @@
       "sourceImage": 4,
       "answers": [
         {
-          "text": "Integrating customer feedback from each iteration into subsequent cycles to enhance the product over time, while adapting to changing requirements and improving features through continuous evaluation.",
+          "text": "Integrating customer feedback from each iteration into subsequent cycles to enhance the product over time. Focus on adapting to changing requirements and improving features based on continuous evaluation.",
           "correct": true
         }
       ]
@@ -300,7 +300,7 @@
       "section": "A3",
       "topic": "From waterfall to agile",
       "questionType": 3,
-      "question": "Describe the key differences between a waterfall model and an agile model in their approach to software development(max. one phrase).",
+      "question": "Describe the key differences between a waterfall model and an agile model in terms of their approach to software development(max. one phrase).",
       "points": 6,
       "sourceImage": 14,
       "answers": [
@@ -506,7 +506,7 @@
       "section": "B1",
       "topic": "Roles in agile teams",
       "questionType": 3,
-      "question": "Briefly describe the role of a product manager or product owner in agile projects(max. two phrase).",
+      "question": "Briefly describe the role of a product manager (or product owner) in agile projects(max. two phrase).",
       "points": 6,
       "sourceImage": 24,
       "answers": [
@@ -835,7 +835,7 @@
       "section": "D3",
       "topic": "Agile quality management",
       "questionType": 3,
-      "question": "Explain the concept of escaped defects in quality assurance.(max. one phrase)",
+      "question": "Explain the concept of 'escaped defects' in quality assurance.(max. one phrase)",
       "points": 8,
       "sourceImage": 39,
       "answers": [
@@ -940,7 +940,7 @@
           "correct": false
         },
         {
-          "text": "Agile teams do not create any documentation",
+          "text": "Agile teams don't create any documentation",
           "correct": true
         },
         {
@@ -1000,7 +1000,7 @@
       "section": "F3",
       "topic": "Transition to agility",
       "questionType": 3,
-      "question": "What does the term project criticality refer to?(max. one phrase)",
+      "question": "What does the term 'project criticality' refer to?(max. one phrase)",
       "points": 8,
       "sourceImage": 46,
       "answers": [
@@ -1038,7 +1038,7 @@
       "section": "F3",
       "topic": "Transition to agility",
       "questionType": 1,
-      "question": "What does the term project criticality refer to?",
+      "question": "What does the term 'project criticality' refer to?",
       "points": 1,
       "sourceImage": 48,
       "answers": [
@@ -1157,7 +1157,7 @@
       "section": "F3",
       "topic": "Transition to agility",
       "questionType": 2,
-      "question": "Which structural and cultural characteristics are likely to make it easier for an organization to transition to an agile methodology?",
+      "question": "Which structural and cultural characteristics are likely to make it easier for an organization to transition into using an agile methodology?",
       "points": 2,
       "sourceImage": 53,
       "answers": [
@@ -1272,7 +1272,7 @@
       "section": "G4",
       "topic": "Scrum",
       "questionType": 3,
-      "question": "How is a meeting called in Scrum that takes place in large projects with multiple teams, to coordinate the work of the teams?",
+      "question": "How is a meeting called in Scrum that takes place in large projects with multiple teams, to coordinate the work of the teams? (max. 3 words)",
       "points": 2,
       "sourceImage": 58,
       "answers": [
@@ -1382,7 +1382,7 @@
       "section": "G4",
       "topic": "Scrum",
       "questionType": 3,
-      "question": "What is the name of the role the Scrum master adopts in order to facilitate collaboration, support everyone’s best thinking and work ,encourage the team’s participation ,undestanding ,and shared responsibility, and to change or remove organizational impediments(max. 2 words)",
+      "question": "What is the name of the role the Scrum master adopts in order to facilitate collaboration, support everyone’s best thinking and work ,encourage the team’s participation ,undestanding ,and shared responsibility, and to change or remove organizational impediments? (max. 2 words)",
       "points": 2,
       "sourceImage": 64,
       "answers": [
@@ -1466,7 +1466,7 @@
       "section": "G4",
       "topic": "Scrum",
       "questionType": 1,
-      "question": "Which of the following is a valid metric used in Scrum?",
+      "question": "As well as charts, you can use various metrics to track and report on the progress of a Scrum project. Which of the following is a valid metric used in Scrum?",
       "points": 1,
       "sourceImage": 68,
       "answers": [
@@ -1494,7 +1494,7 @@
       "sourceImage": 69,
       "answers": [
         {
-          "text": "Envisioning, speculation, exploring, adapting, closing.",
+          "text": "Envisioning, speculation, exploring, adapting, closing",
           "correct": true
         }
       ]
@@ -1866,7 +1866,7 @@
       "section": "I9",
       "topic": "XP",
       "questionType": 3,
-      "question": "What is meant by sustainable pace in the context of XP?(max. one phrase)",
+      "question": "What is meant by 'sustainable pace' in the context of XP?(max. one phrase)",
       "points": 6,
       "sourceImage": 88,
       "answers": [
