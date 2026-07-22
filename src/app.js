@@ -155,6 +155,8 @@ document.getElementById('start-btn').addEventListener('click', () => {
         store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 1);
     } else if (selectedCategory === 'Type: Multiple Choice') {
         store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 2);
+    } else if (selectedCategory === 'Single+Multiple Choice') {
+        store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 1 || q.questionType === 2);
     } else if (selectedCategory === 'Type: Text Input') {
         store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3);
     } else if (selectedCategory === 'Short Text Questions') {

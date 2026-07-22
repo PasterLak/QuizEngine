@@ -26,6 +26,7 @@ export function getFilteredCount(category) {
     if (category === 'All') return store.allQuestions.length;
     if (category === 'Type: Single Choice') return store.allQuestions.filter(q => q.questionType === 1).length;
     if (category === 'Type: Multiple Choice') return store.allQuestions.filter(q => q.questionType === 2).length;
+    if (category === 'Single+Multiple Choice') return store.allQuestions.filter(q => q.questionType === 1 || q.questionType === 2).length;
     if (category === 'Type: Text Input') return store.allQuestions.filter(q => q.questionType === 3).length;
     if (category === 'Short Text Questions') return store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= 3).length;
     if (category === 'Long Text Questions') return store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > 3).length;
@@ -75,6 +76,14 @@ export function setupCategories() {
         const opt = document.createElement('option');
         opt.value = 'Type: Multiple Choice';
         opt.textContent = `☑️ Multiple Choice Only [${multiCount}]`;
+        select.appendChild(opt);
+    }
+
+    const singleMultiCount = store.allQuestions.filter(q => q.questionType === 1 || q.questionType === 2).length;
+    if (singleMultiCount > 0) {
+        const opt = document.createElement('option');
+        opt.value = 'Single+Multiple Choice';
+        opt.textContent = `🔘☑️ Single + Multiple Choice [${singleMultiCount}]`;
         select.appendChild(opt);
     }
 
