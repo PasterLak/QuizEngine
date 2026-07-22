@@ -33,12 +33,14 @@ export function showQuestion() {
                 <h2 style="font-size:32px; margin-bottom:20px;">
                     ${store.studyMode ? 'Study Mode Finished' : 'Quiz Finished!'}
                 </h2>
-                <div style="font-size:48px; font-weight:bold; margin-bottom:20px;">
-                    ${percent}%
-                </div>
         `;
 
         if (!store.studyMode) {
+            html += `
+                <div style="font-size:48px; font-weight:bold; margin-bottom:20px;">
+                    ${percent}%
+                </div>
+            `;
             if (percent === 100) html += `<div style="font-size:22px; margin-top:20px;">Congratulations, all answers are correct! 🚀</div>`;
             else if (percent >= 80) html += `<div style="font-size:22px; margin-top:20px;">Great job, you got almost everything right! 🔥</div>`;
             else if (percent >= 60) html += `<div style="font-size:22px; margin-top:20px;">Good work, keep pushing and you'll master it! 💪</div>`;
@@ -58,6 +60,9 @@ export function showQuestion() {
         document.getElementById('category-topic').textContent = '';
         document.getElementById('question-filename').textContent = '';
         document.getElementById('star-container').style.display = 'none';
+        
+        const pointsEl = document.getElementById('question-points');
+        if (pointsEl) pointsEl.style.display = 'none';
 
         document.getElementById('progress-text').innerHTML = store.studyMode
             ? 'Study Mode'
@@ -86,7 +91,17 @@ export function showQuestion() {
     document.getElementById('category-letter').textContent = q.section || '';
     document.getElementById('category-topic').textContent = q.topic || '';
     document.getElementById('question-filename').textContent = q.id || '';
-    document.getElementById('question-text').textContent = `${q.question} [${q.points} points]`;
+    document.getElementById('question-text').textContent = q.question;
+    
+    const pointsEl = document.getElementById('question-points');
+    if (pointsEl) {
+        if (q.points !== undefined && q.points !== null) {
+            pointsEl.textContent = `${q.points} pts`;
+            pointsEl.style.display = 'inline-block';
+        } else {
+            pointsEl.style.display = 'none';
+        }
+    }
 
     const inputContainer = document.getElementById('input-container');
     inputContainer.innerHTML = '';
