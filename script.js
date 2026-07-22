@@ -111,6 +111,10 @@ function saveStarredIds(data) {
     } catch(e) {}
 }
 
+function getWordCount(text) {
+    return (text || '').trim().split(/\s+/).filter(w => w.length > 0).length;
+}
+
 let incorrectIdsBySubject = getIncorrectIds();
 let starredIdsBySubject = getStarredIds();
 quizProgress = getQuizProgress();
@@ -133,10 +137,9 @@ async function init() {
         select.disabled = false;
         const lastSubject = localStorage.getItem('last_subject');
         if (lastSubject && subjects.some(s => s.folder === lastSubject)) {
-    select.value = lastSubject;
-    select.dispatchEvent(new Event('change'));
-}
-
+            select.value = lastSubject;
+            select.dispatchEvent(new Event('change'));
+        }
 
         updateResumeButtonVisibility();
     } catch (error) {
@@ -149,6 +152,8 @@ function getFilteredCount(category) {
     if (category === 'Type: Single Choice') return allQuestions.filter(q => q.questionType === 1).length;
     if (category === 'Type: Multiple Choice') return allQuestions.filter(q => q.questionType === 2).length;
     if (category === 'Type: Text Input') return allQuestions.filter(q => q.questionType === 3).length;
+    if (category === 'Short Text Questions') return allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= 3).length;
+    if (category === 'Long Text Questions') return allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > 3).length;
     if (category === 'Starred') {
         const subject = document.getElementById('subject-select').value;
         const starred = starredIdsBySubject[subject] || [];
@@ -232,6 +237,7 @@ document.getElementById('subject-select').addEventListener('change', async (even
     updateQuestionCountDisplay();
     updateResumeButtonVisibility();
 });
+
 document.getElementById('open-editor-btn').addEventListener('click', () => {
     const subject = document.getElementById('subject-select').value;
     if (!subject) return;
@@ -320,6 +326,24 @@ function setupCategories() {
         select.appendChild(opt);
     }
 
+    // Изменение здесь: проверка количества слов в ответе
+    const shortTextCount = allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= 3).length;
+    if (shortTextCount > 0) {
+        const opt = document.createElement('option');
+        opt.value = 'Short Text Questions';
+        opt.textContent = `📝 Short Text Input (Answer ≤3 words) [${shortTextCount}]`;
+        select.appendChild(opt);
+    }
+
+    // Изменение здесь: проверка количества слов в ответе
+    const longTextCount = allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > 3).length;
+    if (longTextCount > 0) {
+        const opt = document.createElement('option');
+        opt.value = 'Long Text Questions';
+        opt.textContent = `📜 Long Text Input (Answer >3 words) [${longTextCount}]`;
+        select.appendChild(opt);
+    }
+
     categories.forEach(cat => {
         const count = allQuestions.filter(q => q.section === cat).length;
         const option = document.createElement('option');
@@ -340,6 +364,10 @@ document.getElementById('start-btn').addEventListener('click', () => {
         filteredQuestions = allQuestions.filter(q => q.questionType === 2);
     } else if (selectedCategory === 'Type: Text Input') {
         filteredQuestions = allQuestions.filter(q => q.questionType === 3);
+    } else if (selectedCategory === 'Short Text Questions') {
+        filteredQuestions = allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= 3);
+    } else if (selectedCategory === 'Long Text Questions') {
+        filteredQuestions = allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > 3);
     } else if (selectedCategory === 'Starred') {
         const subject = document.getElementById('subject-select').value;
         const starred = starredIdsBySubject[subject] || [];
@@ -425,6 +453,7 @@ function resumeQuizFlow(progress) {
     saveQuizProgress();
     showQuestion();
 }
+
 document.getElementById('exit-btn').addEventListener('click', () => {
     document.getElementById('quiz-container').style.display = 'none';
     document.getElementById('setup-container').style.display = 'block';
@@ -467,82 +496,80 @@ function showQuestion() {
 
     if (currentQuestionIndex >= filteredQuestions.length) {
 
-    const percent = filteredQuestions.length === 0 
-        ? 0 
-        : Math.round((correctCount / filteredQuestions.length) * 100);
+        const percent = filteredQuestions.length === 0 
+            ? 0 
+            : Math.round((correctCount / filteredQuestions.length) * 100);
 
-    let html = `
-        <div style="text-align:center; margin-top:40px;">
-            <h2 style="font-size:32px; margin-bottom:20px;">
-                ${studyMode ? 'Study Mode Finished' : 'Quiz Finished!'}
-            </h2>
+        let html = `
+            <div style="text-align:center; margin-top:40px;">
+                <h2 style="font-size:32px; margin-bottom:20px;">
+                    ${studyMode ? 'Study Mode Finished' : 'Quiz Finished!'}
+                </h2>
 
-            <div style="font-size:48px; font-weight:bold; margin-bottom:20px;">
-                ${percent}%
-            </div>
-    `;
+                <div style="font-size:48px; font-weight:bold; margin-bottom:20px;">
+                    ${percent}%
+                </div>
+        `;
 
-   if (!studyMode) {
-    if (percent === 100) {
-        html += `
-            <div style="font-size:22px; margin-top:20px;">
-                Congratulations, all answers are correct! 🚀
-            </div>
-        `;
-    } else if (percent >= 80) {
-        html += `
-            <div style="font-size:22px; margin-top:20px;">
-                Great job, you got almost everything right! 🔥
-            </div>
-        `;
-    } else if (percent >= 60) {
-        html += `
-            <div style="font-size:22px; margin-top:20px;">
-                Good work, keep pushing and you'll master it! 💪
-            </div>
-        `;
-    } else if (percent >= 40) {
-        html += `
-            <div style="font-size:22px; margin-top:20px;">
-                Not bad, but there’s room for improvement. Keep practicing! 📘
-            </div>
-        `;
-    } else if (percent >= 20) {
-        html += `
-            <div style="font-size:22px; margin-top:20px;">
-                You’re getting started — keep going, you can do better! 🌱
-            </div>
-        `;
-    } else {
-        html += `
-            <div style="font-size:22px; margin-top:20px;">
-                Don’t give up — you can improve with practice! ⭐
-            </div>
-        `;
+        if (!studyMode) {
+            if (percent === 100) {
+                html += `
+                    <div style="font-size:22px; margin-top:20px;">
+                        Congratulations, all answers are correct! 🚀
+                    </div>
+                `;
+            } else if (percent >= 80) {
+                html += `
+                    <div style="font-size:22px; margin-top:20px;">
+                        Great job, you got almost everything right! 🔥
+                    </div>
+                `;
+            } else if (percent >= 60) {
+                html += `
+                    <div style="font-size:22px; margin-top:20px;">
+                        Good work, keep pushing and you'll master it! 💪
+                    </div>
+                `;
+            } else if (percent >= 40) {
+                html += `
+                    <div style="font-size:22px; margin-top:20px;">
+                        Not bad, but there’s room for improvement. Keep practicing! 📘
+                    </div>
+                `;
+            } else if (percent >= 20) {
+                html += `
+                    <div style="font-size:22px; margin-top:20px;">
+                        You’re getting started — keep going, you can do better! 🌱
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div style="font-size:22px; margin-top:20px;">
+                        Don’t give up — you can improve with practice! ⭐
+                    </div>
+                `;
+            }
+        }
+
+        html += `</div>`;
+
+        document.getElementById('question-text').innerHTML = html;
+        document.getElementById('input-container').innerHTML = '';
+        document.getElementById('submit-btn').style.display = 'none';
+        document.getElementById('next-btn').style.display = 'none';
+        document.getElementById('prev-btn').style.display = 'none';
+        document.getElementById('category-letter').textContent = '';
+        document.getElementById('category-topic').textContent = '';
+        document.getElementById('question-filename').textContent = '';
+        document.getElementById('star-container').style.display = 'none';
+
+        document.getElementById('progress-text').innerHTML = studyMode
+            ? 'Study Mode'
+            : `<span class="score-green">${correctCount}</span> / <span class="score-red">${incorrectCount}</span>`;
+
+        clearQuizProgress();
+        return;
     }
-}
-
-
-    html += `</div>`;
-
-    document.getElementById('question-text').innerHTML = html;
-    document.getElementById('input-container').innerHTML = '';
-    document.getElementById('submit-btn').style.display = 'none';
-    document.getElementById('next-btn').style.display = 'none';
-    document.getElementById('prev-btn').style.display = 'none';
-    document.getElementById('category-letter').textContent = '';
-    document.getElementById('category-topic').textContent = '';
-    document.getElementById('question-filename').textContent = '';
-    document.getElementById('star-container').style.display = 'none';
-
-    document.getElementById('progress-text').innerHTML = studyMode
-        ? 'Study Mode'
-        : `<span class="score-green">${correctCount}</span> / <span class="score-red">${incorrectCount}</span>`;
-
-    clearQuizProgress();
-    return;
-}
-
 
     const q = filteredQuestions[currentQuestionIndex];
     currentQuestionType = q.questionType;
@@ -606,21 +633,20 @@ function showQuestion() {
         return;
     }
 
- if (wasAnswered) {
-    document.getElementById('submit-btn').style.display = 'none';
-    document.getElementById('next-btn').style.display = 'inline-block';
+    if (wasAnswered) {
+        document.getElementById('submit-btn').style.display = 'none';
+        document.getElementById('next-btn').style.display = 'inline-block';
 
-    if (wasAnswered.isCorrect) {
-        document.getElementById('result-area').innerHTML = '<span class="correct">Correct!</span>';
-    } else {
-        const correctAnswer = q.answers[0].text;
-        const yourAnswer = wasAnswered.selected || '';
-        document.getElementById('result-area').innerHTML =
-            `<span class="incorrect">Incorrect.</span><br><br>
-             Correct answer: ${correctAnswer}`;
+        if (wasAnswered.isCorrect) {
+            document.getElementById('result-area').innerHTML = '<span class="correct">Correct!</span>';
+        } else {
+            const correctAnswer = q.answers[0].text;
+            const yourAnswer = wasAnswered.selected || '';
+            document.getElementById('result-area').innerHTML =
+                `<span class="incorrect">Incorrect.</span><br><br>
+                 Correct answer: ${correctAnswer}`;
+        }
     }
-}
-
 
     if (currentQuestionType === 1 || currentQuestionType === 2) {
         const inputType = currentQuestionType === 1 ? 'radio' : 'checkbox';
@@ -663,14 +689,14 @@ function showQuestion() {
         textarea.id = 'text-answer';
 
         if (wasAnswered) {
-    textarea.value = wasAnswered.selected || '';
-    textarea.disabled = true;
-}
-
+            textarea.value = wasAnswered.selected || '';
+            textarea.disabled = true;
+        }
 
         inputContainer.appendChild(textarea);
     }
 }
+
 document.getElementById('submit-btn').addEventListener('click', () => {
     if (studyMode) return;
 
@@ -713,8 +739,6 @@ document.getElementById('submit-btn').addEventListener('click', () => {
 
         isCorrect = selected.length === correctAnswers.length && selected.every(val => correctAnswers.includes(val));
 
-
-
         feedback = isCorrect ? '<span class="correct">Correct!</span>' : `<span class="incorrect">Incorrect or not all options selected</span>`;
     } else {
         const textVal = document.getElementById('text-answer').value;
@@ -722,7 +746,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {
         const sim = calculateSimilarity(textVal, correctAnswer);
         
         isCorrect = sim >= 80;
-         var c = isCorrect ? '<span class="correct">Correct!</span>' : `<span class="incorrect">Incorrect</span> | `;
+        var c = isCorrect ? '<span class="correct">Correct!</span>' : `<span class="incorrect">Incorrect</span> | `;
         feedback = c + `Similarity: <strong>${sim.toFixed(1)}%</strong><br><br><u>The correct answer is: </u>${correctAnswer}`;
     }
 
@@ -750,7 +774,6 @@ document.getElementById('submit-btn').addEventListener('click', () => {
     currentQuestionType === 3
         ? document.getElementById('text-answer').value.trim()
         : Array.from(document.querySelectorAll('input[name="quiz-option"]:checked')).map(el => el.value);
-
 
     answeredQuestions[q.id] = {
         isCorrect,
@@ -815,7 +838,6 @@ function calculateSimilarity(s1, s2) {
     if (longerLength === 0) return 100;
     return ((longerLength - editDistance(longer, shorter)) / parseFloat(longerLength)) * 100;
 }
-
 
 window.updateQuizData = function(jsonString) {
     try {
