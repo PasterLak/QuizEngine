@@ -3,6 +3,27 @@ import { getWordCount } from './utils.js';
 import { setupCategories, updateQuestionCountDisplay, updateResumeButtonVisibility } from './menu.js';
 import { startQuizFlow, resumeQuizFlow, showQuestion, submitAnswer } from './quiz.js';
 
+const themeBtn = document.getElementById('theme-toggle-btn');
+const savedTheme = localStorage.getItem('theme') || 'light';
+if (savedTheme === 'dark') {
+    themeBtn.textContent = '☀️';
+} else {
+    themeBtn.textContent = '🌙';
+}
+
+themeBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        themeBtn.textContent = '🌙';
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeBtn.textContent = '☀️';
+    }
+});
+
 async function init() {
     storage.load();
     try {

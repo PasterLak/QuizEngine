@@ -6,10 +6,17 @@
     <title>Quiz</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="style/style.css">
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    </script>
 </head>
 <body>
     <div id="setup-container">
-        <h2>Quiz Setup</h2>
+        <div id="setup-header-row">
+            <h2>Quiz Setup</h2>
+            <button id="theme-toggle-btn" class="icon-btn" title="Toggle Dark Mode">🌙</button>
+        </div>
         <div id="setup-controls">
             <div class="control-row">
                 <select id="subject-select" disabled>
@@ -36,7 +43,7 @@
                 <button id="open-editor-btn" class="btn-green" disabled>Open JSON Editor</button>
             </div>
             
-            <span id="version-info">Version 2 | Made in Schmalle with ☕</span>
+            <span id="version-info">Version 2.1 | Made in Schmalle with ☕</span>
         </div>
         <div id="setup-error"></div>
     </div>
