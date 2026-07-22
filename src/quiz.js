@@ -100,11 +100,9 @@ export function showQuestion() {
         document.getElementById('submit-btn').style.display = 'none';
         document.getElementById('next-btn').style.display = 'inline-block';
 
-        if (wasAnswered.isCorrect) {
-            document.getElementById('result-area').innerHTML = '<span class="correct">Correct!</span>';
-        } else {
-            if (store.currentQuestionType === 1 || store.currentQuestionType === 2) {
-                document.getElementById('result-area').innerHTML = '<span class="incorrect">Incorrect.</span>';
+        if (store.currentQuestionType === 3) {
+            if (wasAnswered.isCorrect) {
+                document.getElementById('result-area').innerHTML = '<span class="correct">Correct!</span>';
             } else {
                 const correctAnswer = q.answers[0].text;
                 document.getElementById('result-area').innerHTML =
@@ -192,7 +190,6 @@ export function submitAnswer() {
             if (!isCorrect) {
                 selected.parentElement.classList.add('incorrect-choice');
             }
-            feedback = isCorrect ? '<span class="correct">Correct!</span>' : `<span class="incorrect">Incorrect.</span>`;
         }
     } else if (store.currentQuestionType === 2) {
         const selectedElements = Array.from(document.querySelectorAll('input[name="quiz-option"]:checked'));
@@ -208,7 +205,6 @@ export function submitAnswer() {
         });
 
         isCorrect = selected.length === correctAnswers.length && selected.every(val => correctAnswers.includes(val));
-        feedback = isCorrect ? '<span class="correct">Correct!</span>' : `<span class="incorrect">Incorrect or not all options selected</span>`;
     } else {
         const textVal = document.getElementById('text-answer').value;
         const correctAnswer = q.answers[0].text;
