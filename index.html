@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <div id="setup-container">
@@ -32,7 +32,7 @@
             <button id="practice-incorrect-btn" style="display: none; background-color: #ff9800; color: white;">Practice Incorrect [0]</button>
             <button id="clear-stats-btn" style="display: none; background-color: #f44336; color: white;">Delete Last Quiz</button>
             <button id="open-editor-btn" disabled>Open JSON Editor</button>
-             <span id="version-info" style="text-align: center;">Version v1.4</span>
+            <span id="version-info" style="text-align: center;">Version v1.5</span>
         </div>
         <div id="setup-error"></div>
     </div>
@@ -50,10 +50,9 @@
         <div id="input-container"></div>
         <div class="action-buttons-group">
             <div class="left-actions">
-                              <button id="prev-btn" style="display: none;">Previous</button>
+                <button id="prev-btn" style="display: none;">Previous</button>
                 <button id="submit-btn">Submit</button>
                 <button id="next-btn" style="display: none;">Next</button>
-  
             </div>
             <div id="star-container" class="star-container" style="display: none;">
                 <span class="star-label">Mark</span>
@@ -64,17 +63,11 @@
         <div id="bottom-actions">
             <div class="left-bottom-actions">
                 <button id="exit-btn">Back to Menu</button>
-               
                 <button id="quiz-open-editor-btn" style="background-color: #2196F3; color: white;">JSON Editor</button>
             </div>
-            
-        
         </div>
-      
-       
-    
     </div>
     
-    <script src="script.js"></script>
+    <script type="module" src="src/app.js"></script>
 </body>
 </html>

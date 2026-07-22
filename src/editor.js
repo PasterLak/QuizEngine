@@ -25,11 +25,7 @@ function initEditor() {
 
 async function loadJsonFile() {
     try {
-        if (
-            window.opener &&
-            !window.opener.closed &&
-            typeof window.opener.getCurrentQuestionsJson === 'function'
-        ) {
+        if (window.opener && !window.opener.closed && typeof window.opener.getCurrentQuestionsJson === 'function') {
             const text = window.opener.getCurrentQuestionsJson();
             if (text) {
                 document.getElementById('json-textarea').value = text;
@@ -42,8 +38,7 @@ async function loadJsonFile() {
         const path = `questions/${currentSubject}/questions.json`;
         const res = await fetch(path);
 
-        if (!res.ok)
-            throw new Error('File not found');
+        if (!res.ok) throw new Error('File not found');
 
         const text = await res.text();
 

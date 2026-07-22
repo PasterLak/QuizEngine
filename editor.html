@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON Editor</title>
     <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="editor-style.css">
+    <link rel="stylesheet" href="style/editor-style.css">
 </head>
 <body>
     <div id="editor-header">
@@ -20,6 +20,6 @@
         <textarea id="json-textarea" spellcheck="false"></textarea>
         <pre id="highlighting" aria-hidden="true"><code id="highlighting-content" class="language-json"></code></pre>
     </div>
-    <script src="editor-script.js"></script>
+    <script type="module" src="src/editor.js"></script>
 </body>
 </html>
