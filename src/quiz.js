@@ -94,50 +94,9 @@ export function showQuestion() {
     const wasAnswered = store.answeredQuestions[q.id];
 
     if (store.studyMode) {
-        const hint = document.createElement('div');
-        hint.className = 'study-answer-box';
-
-        if (store.currentQuestionType === 1 || store.currentQuestionType === 2) {
-            const correctAnswers = q.answers.filter(a => a.correct).map(a => a.text);
-            const label = document.createElement('div');
-            label.className = 'study-answer-label';
-            label.textContent = correctAnswers.length > 1 ? 'Correct answers:' : 'Correct answer:';
-
-            const value = document.createElement('div');
-            value.className = 'study-answer-value';
-            
-            if (store.currentQuestionType === 2) {
-                correctAnswers.forEach((ans, idx) => {
-                    if (idx > 0) value.appendChild(document.createElement('br'));
-                    value.appendChild(document.createTextNode(ans));
-                });
-            } else {
-                value.textContent = correctAnswers.join(', ');
-            }
-
-            hint.appendChild(label);
-            hint.appendChild(value);
-        } else {
-            const correctAnswer = q.answers[0] ? q.answers[0].text : '';
-            const label = document.createElement('div');
-            label.className = 'study-answer-label';
-            label.textContent = 'Correct answer:';
-
-            const value = document.createElement('div');
-            value.className = 'study-answer-value';
-            value.textContent = correctAnswer;
-
-            hint.appendChild(label);
-            hint.appendChild(value);
-        }
-
-        inputContainer.appendChild(hint);
         document.getElementById('result-area').innerHTML = '<span class="study-mode-note">Study Mode active: Only the correct answers are shown.</span>';
         storage.saveProgress({ pendingAdvance: false });
-        return;
-    }
-
-    if (wasAnswered) {
+    } else if (wasAnswered) {
         document.getElementById('submit-btn').style.display = 'none';
         document.getElementById('next-btn').style.display = 'inline-block';
 
@@ -171,17 +130,20 @@ export function showQuestion() {
             input.name = 'quiz-option';
             input.value = opt.text;
 
-            if (wasAnswered) {
+            if (store.studyMode) {
                 input.disabled = true;
-
+                if (opt.correct) {
+                    label.classList.add('correct-choice');
+                    input.checked = true;
+                }
+            } else if (wasAnswered) {
+                input.disabled = true;
                 if (opt.correct) {
                     label.classList.add('correct-choice');
                 }
-
                 if (!opt.correct && wasAnswered.selected.includes(opt.text)) {
                     label.classList.add('incorrect-choice');
                 }
-
                 if (wasAnswered.selected.includes(opt.text)) {
                     input.checked = true;
                 }
@@ -195,7 +157,10 @@ export function showQuestion() {
         const textarea = document.createElement('textarea');
         textarea.id = 'text-answer';
 
-        if (wasAnswered) {
+        if (store.studyMode) {
+            textarea.value = q.answers[0] ? q.answers[0].text : '';
+            textarea.disabled = true;
+        } else if (wasAnswered) {
             textarea.value = wasAnswered.selected || '';
             textarea.disabled = true;
         }
