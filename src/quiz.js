@@ -105,7 +105,15 @@ export function showQuestion() {
 
             const value = document.createElement('div');
             value.className = 'study-answer-value';
-            value.textContent = correctAnswers.join(', ');
+            
+            if (store.currentQuestionType === 2) {
+                correctAnswers.forEach((ans, idx) => {
+                    if (idx > 0) value.appendChild(document.createElement('br'));
+                    value.appendChild(document.createTextNode(ans));
+                });
+            } else {
+                value.textContent = correctAnswers.join(', ');
+            }
 
             hint.appendChild(label);
             hint.appendChild(value);
@@ -136,10 +144,14 @@ export function showQuestion() {
         if (wasAnswered.isCorrect) {
             document.getElementById('result-area').innerHTML = '<span class="correct">Correct!</span>';
         } else {
-            const correctAnswer = q.answers[0].text;
-            document.getElementById('result-area').innerHTML =
-                `<span class="incorrect">Incorrect.</span><br><br>
-                 Correct answer: ${correctAnswer}`;
+            if (store.currentQuestionType === 1 || store.currentQuestionType === 2) {
+                document.getElementById('result-area').innerHTML = '<span class="incorrect">Incorrect.</span>';
+            } else {
+                const correctAnswer = q.answers[0].text;
+                document.getElementById('result-area').innerHTML =
+                    `<span class="incorrect">Incorrect.</span><br><br>
+                     <u>The correct answer is:</u><br>${correctAnswer}`;
+            }
         }
     }
 
@@ -239,7 +251,7 @@ export function submitAnswer() {
         
         isCorrect = sim >= 80;
         var c = isCorrect ? '<span class="correct">Correct!</span>' : `<span class="incorrect">Incorrect</span> | `;
-        feedback = c + `Similarity: <strong>${sim.toFixed(1)}%</strong><br><br><u>The correct answer is: </u>${correctAnswer}`;
+        feedback = c + `Similarity: <strong>${sim.toFixed(1)}%</strong><br><br><u>The correct answer is: </u><br>${correctAnswer}`;
     }
 
     if (isCorrect) {
@@ -276,6 +288,13 @@ export function submitAnswer() {
     resultArea.innerHTML = feedback;
     document.getElementById('submit-btn').style.display = 'none';
     document.getElementById('next-btn').style.display = 'inline-block';
+    
+    document.querySelectorAll('input[name="quiz-option"]').forEach(input => {
+        input.disabled = true;
+    });
+    const textAnswer = document.getElementById('text-answer');
+    if (textAnswer) textAnswer.disabled = true;
+
     storage.saveProgress({ pendingAdvance: true });
 }
 
