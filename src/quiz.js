@@ -117,7 +117,7 @@ export function showQuestion() {
 
         if (store.currentQuestionType === 3) {
             if (wasAnswered.isCorrect) {
-                document.getElementById('result-area').innerHTML = '<span class="correct">Correct!</span>';
+                document.getElementById('result-area').innerHTML = '<span class="correct">Correct! </span>';
             } else {
                 const correctAnswer = q.answers[0].text;
                 document.getElementById('result-area').innerHTML =
@@ -226,7 +226,7 @@ export function submitAnswer() {
         const sim = calculateSimilarity(textVal, correctAnswer);
         
         isCorrect = sim >= 80;
-        var c = isCorrect ? '<span class="correct">Correct!</span>' : `<span class="incorrect">Incorrect</span> | `;
+        var c = isCorrect ? '<span class="correct">Correct!</span> | '  : `<span class="incorrect">Incorrect</span> | `;
         feedback = c + `Similarity: <strong>${sim.toFixed(1)}%</strong><br><br><u>The correct answer is: </u><br>${correctAnswer}`;
     }
 

@@ -229,6 +229,7 @@ button.btn-blue:not(:disabled):hover { background-color: var(--color-blue-hover)
     display: block;
     margin-top: 15px;
     font-size: 13px;
+    text-align: center;
     color: var(--text-muted);
 }
 
