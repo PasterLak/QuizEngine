@@ -53,7 +53,10 @@ async function init() {
     }
 }
 
-document.getElementById('category-select').addEventListener('change', updateQuestionCountDisplay);
+document.getElementById('category-select').addEventListener('change', (event) => {
+    localStorage.setItem('last_category', event.target.value);
+    updateQuestionCountDisplay();
+});
 
 document.getElementById('subject-select').addEventListener('change', async (event) => {
     const subject = event.target.value;

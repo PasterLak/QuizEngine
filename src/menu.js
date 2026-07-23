@@ -118,4 +118,11 @@ export function setupCategories() {
         option.textContent = `Category ${cat} [${count}]`;
         select.appendChild(option);
     });
+
+    const savedCategory = localStorage.getItem('last_category');
+    if (savedCategory && Array.from(select.options).some(opt => opt.value === savedCategory)) {
+        select.value = savedCategory;
+    } else {
+        select.value = 'All';
+    }
 }
