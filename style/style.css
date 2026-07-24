@@ -61,6 +61,11 @@
     --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
+html, body {
+    overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
+    touch-action: manipulation; /* Отключаем приближение двойным кликом (zoom) */
+}
+
 body {
     background-color: var(--bg-main);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -70,7 +75,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    padding: 20px;
+    padding: 15px;
     box-sizing: border-box;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -79,7 +84,7 @@ body {
     background-color: var(--bg-panel);
     width: 100%;
     max-width: 820px;
-    padding: 40px;
+    padding: 30px 40px;
     box-sizing: border-box;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
@@ -90,7 +95,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 h2 {
@@ -122,7 +127,7 @@ h2 {
 #setup-controls {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px; /* Уменьшен отступ для компактности */
 }
 
 .control-row {
@@ -133,8 +138,8 @@ h2 {
 
 select {
     width: 100%;
-    padding: 14px 18px;
-    font-size: 16px;
+    padding: 12px 16px;
+    font-size: 15px;
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     background-color: var(--bg-input);
@@ -166,23 +171,23 @@ select:disabled {
 
 .checkboxes {
     background: var(--bg-checkboxes);
-    padding: 18px;
+    padding: 12px;
     border-radius: var(--radius-md);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    gap: 10px;
     border: 1px solid var(--border-color);
 }
 
 .checkboxes label {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 12px;
-    font-size: 15px;
+    justify-content: center; /* Центрируем элементы внутри островка */
+    gap: 8px;
+    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 10px 8px;
     background: var(--bg-badge);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
@@ -190,6 +195,7 @@ select:disabled {
     box-shadow: var(--shadow-sm);
     width: 100%;
     box-sizing: border-box;
+    white-space: nowrap; /* Запрещаем перенос текста на новую строку */
 }
 
 .checkboxes label:hover {
@@ -202,8 +208,8 @@ input[type="checkbox"],
 input[type="radio"] {
     appearance: none;
     -webkit-appearance: none;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     border: 2px solid var(--border-color);
     background-color: var(--bg-input);
     margin: 0;
@@ -225,8 +231,8 @@ input[type="radio"] {
 input[type="checkbox"]::before,
 input[type="radio"]::before {
     content: "";
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     transform: scale(0);
     transition: 0.2s transform ease-in-out;
     box-shadow: inset 1em 1em #ffffff;
@@ -260,34 +266,34 @@ input[type="radio"]:disabled {
 }
 
 #exam-mode-info {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--color-orange);
     font-weight: 600;
     background: rgba(255, 152, 0, 0.1);
-    padding: 14px;
+    padding: 12px;
     border-radius: var(--radius-md);
     border: 1px solid var(--color-orange);
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 #question-count-display {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--color-green);
-    margin: 8px 0;
+    margin: 5px 0;
     text-align: center;
 }
 
 .setup-actions {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 button {
     width: 100%;
-    padding: 16px 20px;
-    font-size: 16px;
+    padding: 12px 16px; /* Более компактные кнопки */
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     color: #ffffff;
@@ -321,23 +327,23 @@ button.btn-blue:not(:disabled):hover { background-color: var(--color-blue-hover)
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 35px;
-    padding-top: 25px;
+    margin-top: 25px;
+    padding-top: 20px;
     border-top: 1px solid var(--border-color);
 }
 
 .btn-utility {
     width: auto;
-    padding: 10px 18px;
+    padding: 10px 16px;
     font-size: 14px;
     border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 #version-info {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--text-muted);
 }
 
@@ -354,23 +360,24 @@ button.btn-blue:not(:disabled):hover { background-color: var(--color-blue-hover)
     background: var(--bg-header);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
-    padding: 16px 20px;
-    gap: 16px;
+    padding: 12px 16px;
+    gap: 12px;
+    flex-wrap: wrap; /* Позволяем переноситься при нехватке места */
 }
 
 #category-letter {
-    font-size: 32px;
+    font-size: 28px;
     color: #a4a4a4;
     font-weight: 300;
-    padding-right: 16px;
+    padding-right: 12px;
     border-right: 1px solid var(--border-color);
 }
 
 #category-topic {
-    font-size: 18px;
+    font-size: 16px;
     color: var(--text-muted);
     flex-grow: 1;
     font-weight: 600;
@@ -380,14 +387,15 @@ button.btn-blue:not(:disabled):hover { background-color: var(--color-blue-hover)
 #header-badges {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
+    flex-wrap: wrap; /* Чтобы очки не вылазили за пределы экрана! */
 }
 
 #question-points {
-    font-size: 13px;
+    font-size: 12px;
     color: #fff;
     background-color: var(--color-orange);
-    padding: 6px 12px;
+    padding: 4px 10px;
     border-radius: 20px;
     font-weight: 600;
     white-space: nowrap;
@@ -395,45 +403,45 @@ button.btn-blue:not(:disabled):hover { background-color: var(--color-blue-hover)
 }
 
 #question-filename {
-    font-size: 13px;
+    font-size: 12px;
     color: #ffffff;
     background-color: #888888;
-    padding: 6px 12px;
+    padding: 4px 10px;
     border-radius: 20px;
     font-weight: 600;
     white-space: nowrap;
 }
 
 #progress-text {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     color: var(--text-main);
     background: var(--bg-badge);
-    padding: 8px 16px;
+    padding: 6px 12px;
     border-radius: var(--radius-md);
     white-space: nowrap;
 }
 
 .score-green { color: var(--color-correct); }
 .score-red { color: var(--color-incorrect); }
-.score-divider { color: #aaaaaa; font-weight: normal; margin: 0 6px; }
+.score-divider { color: #aaaaaa; font-weight: normal; margin: 0 4px; }
 
 #question-text {
-    font-size: 18px;
-    margin-bottom: 30px;
+    font-size: 17px;
+    margin-bottom: 20px;
     color: var(--text-main);
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 .option-label {
     display: flex;
     align-items: center;
-    gap: 14px;
-    margin-bottom: 14px;
-    font-size: 17px;
+    gap: 12px;
+    margin-bottom: 10px; /* Сделали более компактным по высоте */
+    font-size: 15px; /* Чуть меньше шрифт */
     cursor: pointer;
-    line-height: 1.5;
-    padding: 16px 20px;
+    line-height: 1.4;
+    padding: 12px 16px; /* Более тонкие кнопки ответов */
     border-radius: var(--radius-md);
     border: 1px solid var(--border-color);
     background: var(--bg-badge);
@@ -443,7 +451,7 @@ button.btn-blue:not(:disabled):hover { background-color: var(--color-blue-hover)
 
 .option-label:hover {
     border-color: var(--color-blue);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: var(--shadow-md);
 }
 
@@ -464,10 +472,10 @@ button.btn-blue:not(:disabled):hover { background-color: var(--color-blue-hover)
 
 textarea {
     width: 100%;
-    height: 120px;
-    padding: 16px;
+    height: 100px; /* Уменьшили высоту текстового поля */
+    padding: 12px;
     font-family: inherit;
-    font-size: 16px;
+    font-size: 15px;
     border: 1px solid var(--border-color);
     resize: vertical;
     box-sizing: border-box;
@@ -487,17 +495,17 @@ textarea:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .left-actions {
     display: flex;
-    gap: 12px;
+    gap: 10px;
 }
 
 .left-actions button {
     width: auto;
-    padding: 12px 28px;
+    padding: 10px 24px;
 }
 
 .star-container {
@@ -515,14 +523,14 @@ textarea:focus {
 }
 
 .star-label {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--text-muted);
     user-select: none;
 }
 
 .star-icon {
-    font-size: 28px;
+    font-size: 26px;
     color: #dddddd;
     user-select: none;
     transition: transform 0.2s, color 0.2s;
@@ -538,9 +546,9 @@ textarea:focus {
 }
 
 #result-area {
-    margin-top: 25px;
-    font-size: 16px;
-    line-height: 1.6;
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1.5;
 }
 
 .correct { color: var(--color-correct); font-weight: bold; }
@@ -549,18 +557,19 @@ textarea:focus {
 .override-container {
     display: inline-flex;
     align-items: center;
-    gap: 14px;
-    margin-bottom: 20px;
+    gap: 12px;
+    margin-bottom: 16px;
     background: var(--bg-badge);
-    padding: 10px 18px;
+    padding: 10px 14px;
     border-radius: var(--radius-md);
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
+    flex-wrap: wrap; /* На мобилках элементы могут переноситься */
 }
 
 .override-btn {
-    padding: 8px 16px;
-    font-size: 15px;
+    padding: 8px 14px;
+    font-size: 14px;
     font-weight: bold;
     border: 2px solid transparent;
     border-radius: var(--radius-sm);
@@ -570,7 +579,7 @@ textarea:focus {
     margin: 0;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .override-btn.correct-override {
@@ -594,7 +603,7 @@ textarea:focus {
 }
 
 .override-hint {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--text-muted);
     font-style: italic;
 }
@@ -603,17 +612,17 @@ textarea:focus {
     display: inline-block;
     background: var(--study-bg);
     color: var(--study-text);
-    padding: 12px 20px;
+    padding: 10px 18px;
     border-radius: 20px;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 14px;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
 }
 
 #bottom-actions {
-    margin-top: 40px;
-    padding-top: 25px;
+    margin-top: 30px;
+    padding-top: 20px;
     border-top: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
@@ -622,54 +631,61 @@ textarea:focus {
 
 #bottom-actions button {
     width: auto;
-    padding: 12px 24px;
+    padding: 10px 20px;
     min-width: 140px;
 }
 
 @media (max-width: 600px) {
     body {
-        padding: 15px;
+        padding: 10px; /* Чтобы контейнер занимал максимум места */
     }
 
     #setup-container, #quiz-container {
-        padding: 24px 20px;
+        padding: 20px 16px;
         border-radius: var(--radius-lg);
     }
     
     .checkboxes {
-        padding: 14px;
-        gap: 10px;
+        padding: 10px;
+        gap: 8px;
     }
     
     .checkboxes label {
-        padding: 12px 10px;
-        font-size: 13px;
-        gap: 8px;
+        padding: 10px 6px;
+        font-size: 13px; /* Меньший шрифт чтобы влезали иконки и текст */
+        gap: 6px;
     }
 
     #header {
         flex-direction: column;
         align-items: flex-start;
-        padding: 18px;
-        gap: 14px;
+        padding: 14px;
+        gap: 10px;
     }
 
     #category-letter {
         border-right: none;
         padding-right: 0;
-        font-size: 26px;
+        font-size: 22px;
         display: none; 
     }
 
     #header-badges {
         width: 100%;
-        justify-content: space-between;
+        justify-content: flex-start; /* Более плотное размещение бэйджей */
+    }
+
+    .option-label {
+        padding: 10px 14px;
+        font-size: 14px;
+        margin-bottom: 8px;
     }
 
     .action-buttons-group {
         flex-direction: column-reverse;
         align-items: stretch;
-        gap: 18px;
+        gap: 15px;
+        margin-top: 15px;
     }
 
     .left-actions {
@@ -684,19 +700,21 @@ textarea:focus {
     .star-container {
         justify-content: center;
         background: var(--hover-bg);
-        padding: 12px;
+        padding: 10px;
     }
 
     .override-container {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 8px;
     }
 
     .setup-footer {
         flex-direction: column-reverse;
         gap: 15px;
         text-align: center;
+        margin-top: 20px;
+        padding-top: 15px;
     }
     
     .setup-footer .btn-utility {
@@ -705,17 +723,17 @@ textarea:focus {
     }
 
     #bottom-actions {
-        margin-top: 30px; 
-        padding-top: 20px;
+        margin-top: 25px; 
+        padding-top: 15px;
         flex-direction: row;
         justify-content: space-between;
-        gap: 12px;
+        gap: 10px;
     }
 
     #bottom-actions button {
         flex: 1;
         min-width: 0;
-        padding: 14px 10px;
+        padding: 12px 10px;
         font-size: 14px;
     }
 }
