@@ -9,6 +9,71 @@ function getQuestionPoints(q) {
     return 1;
 }
 
+function renderTextFeedback(q) {
+    const resultArea = document.getElementById('result-area');
+    const ansState = store.answeredQuestions[q.id];
+    const isCorrect = ansState.isCorrect;
+    const textVal = ansState.selected || '';
+    const correctAnswer = q.answers[0].text;
+    const sim = calculateSimilarity(textVal, correctAnswer);
+    
+    let btnClass = isCorrect ? 'correct-override' : 'incorrect-override';
+    let btnText = isCorrect ? 'Correct ✓' : 'Incorrect ✗';
+    
+    let html = `
+        <div class="override-container">
+            <button id="override-correctness-btn" class="override-btn ${btnClass}">
+                ${btnText}
+            </button>
+            <span class="override-hint">Self-check: Click to override if auto-grading is wrong</span>
+        </div>
+        <div>Similarity: <strong>${sim.toFixed(1)}%</strong></div><br>
+        <div><u>The correct answer is:</u><br>${correctAnswer}</div>
+    `;
+    
+    resultArea.innerHTML = html;
+    
+    const overrideBtn = document.getElementById('override-correctness-btn');
+    overrideBtn.addEventListener('click', () => {
+        const subject = document.getElementById('subject-select').value;
+        const wasCorrect = store.answeredQuestions[q.id].isCorrect;
+        const isNowCorrect = !wasCorrect;
+        
+        store.answeredQuestions[q.id].isCorrect = isNowCorrect;
+        
+        if (isNowCorrect) {
+            store.correctCount++;
+            store.incorrectCount = Math.max(0, store.incorrectCount - 1);
+            if (store.examMode) store.examEarnedPoints += getQuestionPoints(q);
+            
+            store.incorrectQuestions = store.incorrectQuestions.filter(iq => iq.id !== q.id);
+            if (store.incorrectIdsBySubject[subject]) {
+                store.incorrectIdsBySubject[subject] = store.incorrectIdsBySubject[subject].filter(id => id !== q.id);
+            }
+        } else {
+            store.correctCount = Math.max(0, store.correctCount - 1);
+            store.incorrectCount++;
+            if (store.examMode) {
+                store.examEarnedPoints = Math.max(0, store.examEarnedPoints - getQuestionPoints(q));
+            }
+            
+            if (!store.incorrectQuestions.some(iq => iq.id === q.id)) {
+                store.incorrectQuestions.push(q);
+            }
+            if (!store.incorrectIdsBySubject[subject]) store.incorrectIdsBySubject[subject] = [];
+            if (!store.incorrectIdsBySubject[subject].includes(q.id)) {
+                store.incorrectIdsBySubject[subject].push(q.id);
+            }
+        }
+        
+        storage.saveIncorrect();
+        storage.saveProgress({ pendingAdvance: document.getElementById('submit-btn').style.display === 'none' });
+        
+        updateProgressDisplay();
+        renderTextFeedback(q);
+    });
+}
+
 export function updateProgressDisplay() {
     if (store.currentQuestionIndex >= store.filteredQuestions.length) return;
     const progressText = `${store.currentQuestionIndex + 1} / ${store.filteredQuestions.length}`;
@@ -153,14 +218,7 @@ export function showQuestion() {
         document.getElementById('next-btn').style.display = 'inline-block';
 
         if (store.currentQuestionType === 3) {
-            if (wasAnswered.isCorrect) {
-                document.getElementById('result-area').innerHTML = '<span class="correct">Correct! </span>';
-            } else {
-                const correctAnswer = q.answers[0].text;
-                document.getElementById('result-area').innerHTML =
-                    `<span class="incorrect">Incorrect.</span><br><br>
-                     <u>The correct answer is:</u><br>${correctAnswer}`;
-            }
+            renderTextFeedback(q);
         }
     }
 
@@ -224,7 +282,6 @@ export function submitAnswer() {
     const resultArea = document.getElementById('result-area');
     const subject = document.getElementById('subject-select').value;
     let isCorrect = false;
-    let feedback = '';
 
     if (store.currentQuestionType === 1) {
         const selected = document.querySelector('input[name="quiz-option"]:checked');
@@ -263,8 +320,6 @@ export function submitAnswer() {
         const sim = calculateSimilarity(textVal, correctAnswer);
         
         isCorrect = sim >= 80;
-        var c = isCorrect ? '<span class="correct">Correct!</span> | '  : `<span class="incorrect">Incorrect</span> | `;
-        feedback = c + `Similarity: <strong>${sim.toFixed(1)}%</strong><br><br><u>The correct answer is: </u><br>${correctAnswer}`;
     }
 
     if (isCorrect) {
@@ -277,6 +332,18 @@ export function submitAnswer() {
             storage.saveIncorrect();
         }
     } else {
+        if (store.examMode && store.currentQuestionType === 2) {
+            const selectedElements = Array.from(document.querySelectorAll('input[name="quiz-option"]:checked'));
+            const selected = selectedElements.map(el => el.value);
+            const correctAnswers = q.answers.filter(a => a.correct).map(a => a.text);
+            const correctSelected = selected.filter(val => correctAnswers.includes(val)).length;
+            const incorrectSelected = selected.filter(val => !correctAnswers.includes(val)).length;
+            const earned = Math.min(getQuestionPoints(q), Math.max(0, correctSelected - incorrectSelected));
+            if (earned > 0) {
+                store.examEarnedPoints += earned;
+            }
+        }
+
         store.incorrectCount++;
         if (!store.incorrectQuestions.includes(q)) {
             store.incorrectQuestions.push(q);
@@ -301,7 +368,12 @@ export function submitAnswer() {
 
     updateProgressDisplay();
     
-    resultArea.innerHTML = feedback;
+    if (store.currentQuestionType === 3) {
+        renderTextFeedback(q);
+    } else {
+        resultArea.innerHTML = '';
+    }
+    
     document.getElementById('submit-btn').style.display = 'none';
     document.getElementById('next-btn').style.display = 'inline-block';
     
