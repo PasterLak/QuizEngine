@@ -24,6 +24,34 @@ themeBtn.addEventListener('click', () => {
     }
 });
 
+document.getElementById('study-mode').addEventListener('change', (e) => {
+    if (e.target.checked) {
+        document.getElementById('exam-mode').checked = false;
+        document.getElementById('exam-mode-info').style.display = 'none';
+        document.getElementById('category-select').disabled = false;
+        document.getElementById('shuffle-questions').disabled = false;
+        document.getElementById('shuffle-options').disabled = false;
+    }
+});
+
+document.getElementById('exam-mode').addEventListener('change', (e) => {
+    const info = document.getElementById('exam-mode-info');
+    const shuffleQs = document.getElementById('shuffle-questions');
+    const shuffleOpts = document.getElementById('shuffle-options');
+    if (e.target.checked) {
+        document.getElementById('study-mode').checked = false;
+        info.style.display = 'block';
+        document.getElementById('category-select').disabled = true;
+        shuffleQs.disabled = true;
+        shuffleOpts.disabled = true;
+    } else {
+        info.style.display = 'none';
+        document.getElementById('category-select').disabled = false;
+        shuffleQs.disabled = false;
+        shuffleOpts.disabled = false;
+    }
+});
+
 async function init() {
     storage.load();
     try {
@@ -114,7 +142,11 @@ document.getElementById('subject-select').addEventListener('change', async (even
 
     document.getElementById('setup-error').textContent = '';
     setupCategories();
-    document.getElementById('category-select').disabled = false;
+    
+    if (!document.getElementById('exam-mode').checked) {
+        document.getElementById('category-select').disabled = false;
+    }
+    
     document.getElementById('start-btn').disabled = false;
     document.getElementById('open-editor-btn').disabled = false;
     updateQuestionCountDisplay();
@@ -171,28 +203,30 @@ document.getElementById('star-container').addEventListener('click', () => {
 });
 
 document.getElementById('start-btn').addEventListener('click', () => {
-    const selectedCategory = document.getElementById('category-select').value;
-    
-    if (selectedCategory === 'All') {
-        store.filteredQuestions = [...store.allQuestions];
-    } else if (selectedCategory === 'Type: Single Choice') {
-        store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 1);
-    } else if (selectedCategory === 'Type: Multiple Choice') {
-        store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 2);
-    } else if (selectedCategory === 'Single+Multiple Choice') {
-        store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 1 || q.questionType === 2);
-    } else if (selectedCategory === 'Type: Text Input') {
-        store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3);
-    } else if (selectedCategory === 'Short Text Questions') {
-        store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= 3);
-    } else if (selectedCategory === 'Long Text Questions') {
-        store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > 3);
-    } else if (selectedCategory === 'Starred') {
-        const subject = document.getElementById('subject-select').value;
-        const starred = store.starredIdsBySubject[subject] || [];
-        store.filteredQuestions = store.allQuestions.filter(q => starred.includes(q.id));
-    } else {
-        store.filteredQuestions = store.allQuestions.filter(q => q.section === selectedCategory);
+    if (!document.getElementById('exam-mode').checked) {
+        const selectedCategory = document.getElementById('category-select').value;
+        
+        if (selectedCategory === 'All') {
+            store.filteredQuestions = [...store.allQuestions];
+        } else if (selectedCategory === 'Type: Single Choice') {
+            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 1);
+        } else if (selectedCategory === 'Type: Multiple Choice') {
+            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 2);
+        } else if (selectedCategory === 'Single+Multiple Choice') {
+            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 1 || q.questionType === 2);
+        } else if (selectedCategory === 'Type: Text Input') {
+            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3);
+        } else if (selectedCategory === 'Short Text Questions') {
+            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= 3);
+        } else if (selectedCategory === 'Long Text Questions') {
+            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > 3);
+        } else if (selectedCategory === 'Starred') {
+            const subject = document.getElementById('subject-select').value;
+            const starred = store.starredIdsBySubject[subject] || [];
+            store.filteredQuestions = store.allQuestions.filter(q => starred.includes(q.id));
+        } else {
+            store.filteredQuestions = store.allQuestions.filter(q => q.section === selectedCategory);
+        }
     }
     
     store.answeredQuestions = {};
@@ -221,6 +255,13 @@ document.getElementById('practice-incorrect-btn').addEventListener('click', () =
     store.filteredQuestions = store.allQuestions.filter(q => store.incorrectIdsBySubject[subject].includes(q.id));
     storage.clearProgress();
     store.answeredQuestions = {};
+    
+    document.getElementById('exam-mode').checked = false;
+    document.getElementById('exam-mode-info').style.display = 'none';
+    document.getElementById('category-select').disabled = false;
+    document.getElementById('shuffle-questions').disabled = false;
+    document.getElementById('shuffle-options').disabled = false;
+    
     startQuizFlow();
 });
 

@@ -1,9 +1,22 @@
 import { store, storage } from './store.js';
 import { calculateSimilarity } from './utils.js';
 
+function getQuestionPoints(q) {
+    if (q.points !== undefined && q.points !== null) return Number(q.points);
+    if (q.questionType === 1) return 1;
+    if (q.questionType === 2) return 2;
+    if (q.questionType === 3) return 5;
+    return 1;
+}
+
 export function updateProgressDisplay() {
     if (store.currentQuestionIndex >= store.filteredQuestions.length) return;
     const progressText = `${store.currentQuestionIndex + 1} / ${store.filteredQuestions.length}`;
+
+    if (store.examMode) {
+        document.getElementById('progress-text').innerHTML = `Exam: <span class="score-green">${store.examEarnedPoints}</span> / ${store.examTotalPoints} <span class="score-divider">|</span> ${progressText}`;
+        return;
+    }
 
     if (store.studyMode) {
         document.getElementById('progress-text').textContent = `Study Mode | ${progressText}`;
@@ -24,32 +37,55 @@ export function showQuestion() {
     document.getElementById('prev-btn').style.display = store.currentQuestionIndex > 0 ? 'inline-block' : 'none';
 
     if (store.currentQuestionIndex >= store.filteredQuestions.length) {
-        const percent = store.filteredQuestions.length === 0 
-            ? 0 
-            : Math.round((store.correctCount / store.filteredQuestions.length) * 100);
-
-        let html = `
-            <div style="text-align:center; margin-top:40px;">
-                <h2 style="font-size:32px; margin-bottom:20px;">
-                    ${store.studyMode ? 'Study Mode Finished' : 'Quiz Finished!'}
-                </h2>
-        `;
-
-        if (!store.studyMode) {
-            html += `
-                <div style="font-size:48px; font-weight:bold; margin-bottom:20px;">
-                    ${percent}%
+        let html = '';
+        
+        if (store.examMode) {
+            const passed = store.examEarnedPoints >= 50;
+            const resultColor = passed ? '#4CAF50' : '#f44336';
+            const resultText = passed ? 'Passed! 🎉' : 'Failed 😢';
+            
+            html = `
+                <div style="text-align:center; margin-top:40px;">
+                    <h2 style="font-size:32px; margin-bottom:20px;">Exam Finished!</h2>
+                    <div style="font-size:48px; font-weight:bold; margin-bottom:10px; color: ${resultColor};">
+                        ${resultText}
+                    </div>
+                    <div style="font-size:24px; margin-bottom:20px;">
+                        Score: <strong>${store.examEarnedPoints} / ${store.examTotalPoints}</strong>
+                    </div>
+                    <div style="font-size:18px; margin-top:20px; color: var(--text-muted);">
+                        ${passed ? 'Great job, you have enough points to pass the exam!' : 'You need at least 50 points to pass. Keep practicing!'}
+                    </div>
                 </div>
             `;
-            if (percent === 100) html += `<div style="font-size:22px; margin-top:20px;">Congratulations, all answers are correct! 🚀</div>`;
-            else if (percent >= 80) html += `<div style="font-size:22px; margin-top:20px;">Great job, you got almost everything right! 🔥</div>`;
-            else if (percent >= 60) html += `<div style="font-size:22px; margin-top:20px;">Good work, keep pushing and you'll master it! 💪</div>`;
-            else if (percent >= 40) html += `<div style="font-size:22px; margin-top:20px;">Not bad, but there’s room for improvement. Keep practicing! 📘</div>`;
-            else if (percent >= 20) html += `<div style="font-size:22px; margin-top:20px;">You’re getting started — keep going, you can do better! 🌱</div>`;
-            else html += `<div style="font-size:22px; margin-top:20px;">Don’t give up — you can improve with practice! ⭐</div>`;
-        }
+        } else {
+            const percent = store.filteredQuestions.length === 0 
+                ? 0 
+                : Math.round((store.correctCount / store.filteredQuestions.length) * 100);
 
-        html += `</div>`;
+            html = `
+                <div style="text-align:center; margin-top:40px;">
+                    <h2 style="font-size:32px; margin-bottom:20px;">
+                        ${store.studyMode ? 'Study Mode Finished' : 'Quiz Finished!'}
+                    </h2>
+            `;
+
+            if (!store.studyMode) {
+                html += `
+                    <div style="font-size:48px; font-weight:bold; margin-bottom:20px;">
+                        ${percent}%
+                    </div>
+                `;
+                if (percent === 100) html += `<div style="font-size:22px; margin-top:20px;">Congratulations, all answers are correct! 🚀</div>`;
+                else if (percent >= 80) html += `<div style="font-size:22px; margin-top:20px;">Great job, you got almost everything right! 🔥</div>`;
+                else if (percent >= 60) html += `<div style="font-size:22px; margin-top:20px;">Good work, keep pushing and you'll master it! 💪</div>`;
+                else if (percent >= 40) html += `<div style="font-size:22px; margin-top:20px;">Not bad, but there’s room for improvement. Keep practicing! 📘</div>`;
+                else if (percent >= 20) html += `<div style="font-size:22px; margin-top:20px;">You’re getting started — keep going, you can do better! 🌱</div>`;
+                else html += `<div style="font-size:22px; margin-top:20px;">Don’t give up — you can improve with practice! ⭐</div>`;
+            }
+
+            html += `</div>`;
+        }
 
         document.getElementById('question-text').innerHTML = html;
         document.getElementById('input-container').innerHTML = '';
@@ -64,9 +100,13 @@ export function showQuestion() {
         const pointsEl = document.getElementById('question-points');
         if (pointsEl) pointsEl.style.display = 'none';
 
-        document.getElementById('progress-text').innerHTML = store.studyMode
-            ? 'Study Mode'
-            : `<span class="score-green">${store.correctCount}</span> / <span class="score-red">${store.incorrectCount}</span>`;
+        if (store.examMode) {
+            document.getElementById('progress-text').innerHTML = `Exam: <span class="score-green">${store.examEarnedPoints}</span> / ${store.examTotalPoints}`;
+        } else {
+            document.getElementById('progress-text').innerHTML = store.studyMode
+                ? 'Study Mode'
+                : `<span class="score-green">${store.correctCount}</span> / <span class="score-red">${store.incorrectCount}</span>`;
+        }
 
         storage.clearProgress();
         return;
@@ -95,12 +135,9 @@ export function showQuestion() {
     
     const pointsEl = document.getElementById('question-points');
     if (pointsEl) {
-        if (q.points !== undefined && q.points !== null) {
-            pointsEl.textContent = `${q.points} pts`;
-            pointsEl.style.display = 'inline-block';
-        } else {
-            pointsEl.style.display = 'none';
-        }
+        const pts = getQuestionPoints(q);
+        pointsEl.textContent = `${pts} pts`;
+        pointsEl.style.display = 'inline-block';
     }
 
     const inputContainer = document.getElementById('input-container');
@@ -232,6 +269,9 @@ export function submitAnswer() {
 
     if (isCorrect) {
         store.correctCount++;
+        if (store.examMode) {
+            store.examEarnedPoints += getQuestionPoints(q);
+        }
         if (store.incorrectIdsBySubject[subject]) {
             store.incorrectIdsBySubject[subject] = store.incorrectIdsBySubject[subject].filter(id => id !== q.id);
             storage.saveIncorrect();
@@ -277,8 +317,49 @@ export function submitAnswer() {
 export function startQuizFlow() {
     storage.clearProgress();
     store.studyMode = document.getElementById('study-mode').checked;
+    store.examMode = document.getElementById('exam-mode').checked;
+    
+    store.examEarnedPoints = 0;
+    store.examTotalPoints = 0;
 
-    if (document.getElementById('shuffle-questions').checked) {
+    if (store.examMode) {
+        let choiceQs = store.allQuestions.filter(q => q.questionType === 1 || q.questionType === 2).sort(() => Math.random() - 0.5);
+        let textQs = store.allQuestions.filter(q => q.questionType === 3).sort(() => Math.random() - 0.5);
+        
+        let selectedForExam = [];
+        let totalPoints = 0;
+        let choicePoints = 0;
+        
+        for (let q of choiceQs) {
+            let pts = getQuestionPoints(q);
+            if (choicePoints + pts <= 45 && totalPoints + pts <= 100) {
+                selectedForExam.push(q);
+                choicePoints += pts;
+                totalPoints += pts;
+            }
+        }
+        
+        for (let q of textQs) {
+            let pts = getQuestionPoints(q);
+            if (totalPoints + pts <= 100) {
+                selectedForExam.push(q);
+                totalPoints += pts;
+            }
+        }
+        
+        let remainingQs = store.allQuestions.filter(q => !selectedForExam.includes(q)).sort(() => Math.random() - 0.5);
+        for (let q of remainingQs) {
+            let pts = getQuestionPoints(q);
+            if (totalPoints + pts <= 100) {
+                selectedForExam.push(q);
+                totalPoints += pts;
+            }
+            if (totalPoints === 100) break;
+        }
+
+        store.filteredQuestions = selectedForExam.sort(() => Math.random() - 0.5);
+        store.examTotalPoints = totalPoints;
+    } else if (document.getElementById('shuffle-questions').checked) {
         store.filteredQuestions.sort(() => Math.random() - 0.5);
     }
     
@@ -302,9 +383,28 @@ export function resumeQuizFlow(progress) {
     categorySelect.value = progress.category || 'All';
     document.getElementById('shuffle-questions').checked = !!progress.shuffleQuestions;
     document.getElementById('shuffle-options').checked = !!progress.shuffleOptions;
-    document.getElementById('study-mode').checked = !!progress.studyMode;
-
+    
     store.studyMode = !!progress.studyMode;
+    document.getElementById('study-mode').checked = store.studyMode;
+    
+    store.examMode = !!progress.examMode;
+    document.getElementById('exam-mode').checked = store.examMode;
+    
+    const info = document.getElementById('exam-mode-info');
+    if (store.examMode) {
+        info.style.display = 'block';
+        document.getElementById('category-select').disabled = true;
+        document.getElementById('shuffle-questions').disabled = true;
+        document.getElementById('shuffle-options').disabled = true;
+    } else {
+        info.style.display = 'none';
+        document.getElementById('category-select').disabled = false;
+        document.getElementById('shuffle-questions').disabled = false;
+        document.getElementById('shuffle-options').disabled = false;
+    }
+    
+    store.examEarnedPoints = progress.examEarnedPoints || 0;
+    store.examTotalPoints = progress.examTotalPoints || 0;
 
     const questionIds = Array.isArray(progress.questionIds) ? progress.questionIds : [];
     store.filteredQuestions = questionIds
