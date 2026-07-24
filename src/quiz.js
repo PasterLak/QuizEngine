@@ -463,16 +463,23 @@ export function resumeQuizFlow(progress) {
     document.getElementById('exam-mode').checked = store.examMode;
     
     const info = document.getElementById('exam-mode-info');
+    const countDisplay = document.getElementById('question-count-display');
+    const startBtn = document.getElementById('start-btn');
+    
     if (store.examMode) {
         info.style.display = 'block';
         document.getElementById('category-select').disabled = true;
         document.getElementById('shuffle-questions').disabled = true;
         document.getElementById('shuffle-options').disabled = true;
+        startBtn.textContent = 'Start Exam';
+        countDisplay.style.display = 'none';
     } else {
         info.style.display = 'none';
         document.getElementById('category-select').disabled = false;
         document.getElementById('shuffle-questions').disabled = false;
         document.getElementById('shuffle-options').disabled = false;
+        startBtn.textContent = 'Start New Quiz';
+        countDisplay.style.display = 'block';
     }
     
     store.examEarnedPoints = progress.examEarnedPoints || 0;

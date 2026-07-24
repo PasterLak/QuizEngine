@@ -31,6 +31,14 @@ document.getElementById('study-mode').addEventListener('change', (e) => {
         document.getElementById('category-select').disabled = false;
         document.getElementById('shuffle-questions').disabled = false;
         document.getElementById('shuffle-options').disabled = false;
+        document.getElementById('start-btn').textContent = 'Start New Quiz';
+        document.getElementById('question-count-display').style.display = 'block';
+        
+        updateResumeButtonVisibility();
+        const subject = document.getElementById('subject-select').value;
+        if (subject && store.incorrectIdsBySubject[subject] && store.incorrectIdsBySubject[subject].length > 0) {
+            document.getElementById('practice-incorrect-btn').style.display = 'inline-block';
+        }
     }
 });
 
@@ -38,17 +46,37 @@ document.getElementById('exam-mode').addEventListener('change', (e) => {
     const info = document.getElementById('exam-mode-info');
     const shuffleQs = document.getElementById('shuffle-questions');
     const shuffleOpts = document.getElementById('shuffle-options');
+    const startBtn = document.getElementById('start-btn');
+    const countDisplay = document.getElementById('question-count-display');
+    const resumeBtn = document.getElementById('resume-progress-btn');
+    const clearBtn = document.getElementById('clear-stats-btn');
+    const practiceBtn = document.getElementById('practice-incorrect-btn');
+    const subject = document.getElementById('subject-select').value;
+    
     if (e.target.checked) {
         document.getElementById('study-mode').checked = false;
         info.style.display = 'block';
         document.getElementById('category-select').disabled = true;
         shuffleQs.disabled = true;
         shuffleOpts.disabled = true;
+        startBtn.textContent = '🎓 Start Exam';
+        countDisplay.style.display = 'none';
+        
+        resumeBtn.style.display = 'none';
+        clearBtn.style.display = 'none';
+        practiceBtn.style.display = 'none';
     } else {
         info.style.display = 'none';
         document.getElementById('category-select').disabled = false;
         shuffleQs.disabled = false;
         shuffleOpts.disabled = false;
+        startBtn.textContent = 'Start New Quiz';
+        countDisplay.style.display = 'block';
+        
+        updateResumeButtonVisibility();
+        if (subject && store.incorrectIdsBySubject[subject] && store.incorrectIdsBySubject[subject].length > 0) {
+            practiceBtn.style.display = 'inline-block';
+        }
     }
 });
 
@@ -76,6 +104,12 @@ async function init() {
         }
 
         updateResumeButtonVisibility();
+        
+        if (document.getElementById('exam-mode').checked) {
+            document.getElementById('resume-progress-btn').style.display = 'none';
+            document.getElementById('clear-stats-btn').style.display = 'none';
+            document.getElementById('practice-incorrect-btn').style.display = 'none';
+        }
     } catch (error) {
         document.getElementById('setup-error').textContent = 'Error: Create subjects.json file with subject folder names.';
     }
@@ -151,6 +185,12 @@ document.getElementById('subject-select').addEventListener('change', async (even
     document.getElementById('open-editor-btn').disabled = false;
     updateQuestionCountDisplay();
     updateResumeButtonVisibility();
+    
+    if (document.getElementById('exam-mode').checked) {
+        document.getElementById('resume-progress-btn').style.display = 'none';
+        document.getElementById('clear-stats-btn').style.display = 'none';
+        practiceBtn.style.display = 'none';
+    }
 });
 
 document.getElementById('open-editor-btn').addEventListener('click', () => {
@@ -246,6 +286,11 @@ document.getElementById('clear-stats-btn').addEventListener('click', () => {
     practiceBtn.style.display = 'none';
     practiceBtn.textContent = 'Practice Incorrect [0]';
     updateResumeButtonVisibility();
+    
+    if (document.getElementById('exam-mode').checked) {
+        document.getElementById('resume-progress-btn').style.display = 'none';
+        document.getElementById('clear-stats-btn').style.display = 'none';
+    }
 });
 
 document.getElementById('practice-incorrect-btn').addEventListener('click', () => {
@@ -261,6 +306,8 @@ document.getElementById('practice-incorrect-btn').addEventListener('click', () =
     document.getElementById('category-select').disabled = false;
     document.getElementById('shuffle-questions').disabled = false;
     document.getElementById('shuffle-options').disabled = false;
+    document.getElementById('start-btn').textContent = 'Start New Quiz';
+    document.getElementById('question-count-display').style.display = 'block';
     
     startQuizFlow();
 });
@@ -300,6 +347,13 @@ document.getElementById('exit-btn').addEventListener('click', () => {
 
     storage.saveProgress({ pendingAdvance: document.getElementById('submit-btn').style.display === 'none' });
     setupCategories(); 
+    updateResumeButtonVisibility();
+    
+    if (document.getElementById('exam-mode').checked) {
+        document.getElementById('resume-progress-btn').style.display = 'none';
+        document.getElementById('clear-stats-btn').style.display = 'none';
+        practiceBtn.style.display = 'none';
+    }
 });
 
 window.updateQuizData = function(jsonString) {
