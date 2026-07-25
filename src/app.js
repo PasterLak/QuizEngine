@@ -265,9 +265,9 @@ document.getElementById('start-btn').addEventListener('click', () => {
         } else if (selectedCategory === 'Type: Text Input') {
             store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3);
         } else if (selectedCategory === 'Short Text Questions') {
-            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= 3);
+            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= 4);
         } else if (selectedCategory === 'Long Text Questions') {
-            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > 3);
+            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > 4);
         } else if (selectedCategory === 'Starred') {
             const subject = document.getElementById('subject-select').value;
             const starred = store.starredIdsBySubject[subject] || [];

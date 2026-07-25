@@ -94,20 +94,20 @@ export function setupCategories() {
         opt.textContent = `✍️ Text Input Only [${textCount}]`;
         select.appendChild(opt);
     }
-
-    const shortTextCount = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= 3).length;
+    const shortWordLength = 4;
+    const shortTextCount = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= shortWordLength).length;
     if (shortTextCount > 0) {
         const opt = document.createElement('option');
         opt.value = 'Short Text Questions';
-        opt.textContent = `📝 Short Text Input (Answer ≤3 words) [${shortTextCount}]`;
+        opt.textContent = `📝 Short Text Input (Answer ≤${shortWordLength} words) [${shortTextCount}]`;
         select.appendChild(opt);
     }
 
-    const longTextCount = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > 3).length;
+    const longTextCount = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > shortWordLength).length;
     if (longTextCount > 0) {
         const opt = document.createElement('option');
         opt.value = 'Long Text Questions';
-        opt.textContent = `📜 Long Text Input (Answer >3 words) [${longTextCount}]`;
+        opt.textContent = `📜 Long Text Input (Answer >${shortWordLength} words) [${longTextCount}]`;
         select.appendChild(opt);
     }
 
