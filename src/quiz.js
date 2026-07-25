@@ -1,5 +1,5 @@
 import { store, storage } from './store.js';
-import { calculateSimilarity } from './utils.js';
+import { calculateSimilarity, getWordCount } from './utils.js';
 
 function getQuestionPoints(q) {
     if (q.points !== undefined && q.points !== null) return Number(q.points);
@@ -415,7 +415,17 @@ export function startQuizFlow() {
 
     if (store.examMode) {
         let choiceQs = store.allQuestions.filter(q => q.questionType === 1 || q.questionType === 2).sort(() => Math.random() - 0.5);
-        let textQs = store.allQuestions.filter(q => q.questionType === 3).sort(() => Math.random() - 0.5);
+        
+        let shortTextQs = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= 4).sort(() => Math.random() - 0.5);
+        let longTextQs = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > 4).sort(() => Math.random() - 0.5);
+        
+        let textQs = [];
+        let shortIdx = 0;
+        let longIdx = 0;
+        while(shortIdx < shortTextQs.length || longIdx < longTextQs.length) {
+            if (shortIdx < shortTextQs.length) textQs.push(shortTextQs[shortIdx++]);
+            if (longIdx < longTextQs.length) textQs.push(longTextQs[longIdx++]);
+        }
         
         let selectedForExam = [];
         let totalPoints = 0;
