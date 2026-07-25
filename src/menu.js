@@ -1,5 +1,23 @@
-import { store, storage } from './store.js';
+import { store } from './store.js';
 import { getWordCount } from './utils.js';
+
+const SHORT_WORD_LIMIT = 5;
+
+export function getQuestionsByCategory(category) {
+    if (category === 'All') return [...store.allQuestions];
+    if (category === 'Type: Single Choice') return store.allQuestions.filter(q => q.questionType === 1);
+    if (category === 'Type: Multiple Choice') return store.allQuestions.filter(q => q.questionType === 2);
+    if (category === 'Single+Multiple Choice') return store.allQuestions.filter(q => q.questionType === 1 || q.questionType === 2);
+    if (category === 'Type: Text Input') return store.allQuestions.filter(q => q.questionType === 3);
+    if (category === 'Short Text Questions') return store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= SHORT_WORD_LIMIT);
+    if (category === 'Long Text Questions') return store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > SHORT_WORD_LIMIT);
+    if (category === 'Starred') {
+        const subject = document.getElementById('subject-select').value;
+        const starred = store.starredIdsBySubject[subject] || [];
+        return store.allQuestions.filter(q => starred.includes(q.id));
+    }
+    return store.allQuestions.filter(q => q.section === category);
+}
 
 export function updateResumeButtonVisibility() {
     const resumeBtn = document.getElementById('resume-progress-btn');
@@ -23,19 +41,7 @@ export function updateResumeButtonVisibility() {
 }
 
 export function getFilteredCount(category) {
-    if (category === 'All') return store.allQuestions.length;
-    if (category === 'Type: Single Choice') return store.allQuestions.filter(q => q.questionType === 1).length;
-    if (category === 'Type: Multiple Choice') return store.allQuestions.filter(q => q.questionType === 2).length;
-    if (category === 'Single+Multiple Choice') return store.allQuestions.filter(q => q.questionType === 1 || q.questionType === 2).length;
-    if (category === 'Type: Text Input') return store.allQuestions.filter(q => q.questionType === 3).length;
-    if (category === 'Short Text Questions') return store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= 3).length;
-    if (category === 'Long Text Questions') return store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > 3).length;
-    if (category === 'Starred') {
-        const subject = document.getElementById('subject-select').value;
-        const starred = store.starredIdsBySubject[subject] || [];
-        return store.allQuestions.filter(q => starred.includes(q.id)).length;
-    }
-    return store.allQuestions.filter(q => q.section === category).length;
+    return getQuestionsByCategory(category).length;
 }
 
 export function updateQuestionCountDisplay() {
@@ -53,9 +59,7 @@ export function setupCategories() {
     const select = document.getElementById('category-select');
     select.innerHTML = '<option value="All">📚 All Categories</option>';
     
-    const subject = document.getElementById('subject-select').value;
-    const starred = store.starredIdsBySubject[subject] || [];
-    const starredCount = store.allQuestions.filter(q => starred.includes(q.id)).length;
+    const starredCount = getQuestionsByCategory('Starred').length;
     if (starredCount > 0) {
         const opt = document.createElement('option');
         opt.value = 'Starred';
@@ -63,7 +67,7 @@ export function setupCategories() {
         select.appendChild(opt);
     }
 
-    const singleCount = store.allQuestions.filter(q => q.questionType === 1).length;
+    const singleCount = getQuestionsByCategory('Type: Single Choice').length;
     if (singleCount > 0) {
         const opt = document.createElement('option');
         opt.value = 'Type: Single Choice';
@@ -71,7 +75,7 @@ export function setupCategories() {
         select.appendChild(opt);
     }
 
-    const multiCount = store.allQuestions.filter(q => q.questionType === 2).length;
+    const multiCount = getQuestionsByCategory('Type: Multiple Choice').length;
     if (multiCount > 0) {
         const opt = document.createElement('option');
         opt.value = 'Type: Multiple Choice';
@@ -79,7 +83,7 @@ export function setupCategories() {
         select.appendChild(opt);
     }
 
-    const singleMultiCount = store.allQuestions.filter(q => q.questionType === 1 || q.questionType === 2).length;
+    const singleMultiCount = getQuestionsByCategory('Single+Multiple Choice').length;
     if (singleMultiCount > 0) {
         const opt = document.createElement('option');
         opt.value = 'Single+Multiple Choice';
@@ -87,32 +91,32 @@ export function setupCategories() {
         select.appendChild(opt);
     }
 
-    const textCount = store.allQuestions.filter(q => q.questionType === 3).length;
+    const textCount = getQuestionsByCategory('Type: Text Input').length;
     if (textCount > 0) {
         const opt = document.createElement('option');
         opt.value = 'Type: Text Input';
         opt.textContent = `✍️ Text Input Only [${textCount}]`;
         select.appendChild(opt);
     }
-    const shortWordLength = 4;
-    const shortTextCount = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= shortWordLength).length;
+    
+    const shortTextCount = getQuestionsByCategory('Short Text Questions').length;
     if (shortTextCount > 0) {
         const opt = document.createElement('option');
         opt.value = 'Short Text Questions';
-        opt.textContent = `📝 Short Text Input (Answer ≤${shortWordLength} words) [${shortTextCount}]`;
+        opt.textContent = `📝 Short Text Input (Answer ≤${SHORT_WORD_LIMIT} words) [${shortTextCount}]`;
         select.appendChild(opt);
     }
 
-    const longTextCount = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > shortWordLength).length;
+    const longTextCount = getQuestionsByCategory('Long Text Questions').length;
     if (longTextCount > 0) {
         const opt = document.createElement('option');
         opt.value = 'Long Text Questions';
-        opt.textContent = `📜 Long Text Input (Answer >${shortWordLength} words) [${longTextCount}]`;
+        opt.textContent = `📜 Long Text Input (Answer >${SHORT_WORD_LIMIT} words) [${longTextCount}]`;
         select.appendChild(opt);
     }
 
     categories.forEach(cat => {
-        const count = store.allQuestions.filter(q => q.section === cat).length;
+        const count = getQuestionsByCategory(cat).length;
         const option = document.createElement('option');
         option.value = cat;
         option.textContent = `Category ${cat} [${count}]`;

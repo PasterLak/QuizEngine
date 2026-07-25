@@ -288,7 +288,10 @@ export function showQuestion() {
         inputContainer.appendChild(textarea);
 
         if (!textarea.disabled) {
-            setTimeout(() => textarea.focus(), 0);
+            setTimeout(() => {
+                const ta = document.getElementById('text-answer');
+                if (ta) ta.focus();
+            }, 50);
         }
     }
 }

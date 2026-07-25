@@ -1,6 +1,5 @@
 import { store, storage } from './store.js';
-import { getWordCount } from './utils.js';
-import { setupCategories, updateQuestionCountDisplay, updateResumeButtonVisibility } from './menu.js';
+import { setupCategories, updateQuestionCountDisplay, updateResumeButtonVisibility, getQuestionsByCategory } from './menu.js';
 import { startQuizFlow, resumeQuizFlow, showQuestion, submitAnswer } from './quiz.js';
 
 const themeBtn = document.getElementById('theme-toggle-btn');
@@ -253,28 +252,7 @@ document.getElementById('star-container').addEventListener('click', () => {
 document.getElementById('start-btn').addEventListener('click', () => {
     if (!document.getElementById('exam-mode').checked) {
         const selectedCategory = document.getElementById('category-select').value;
-        
-        if (selectedCategory === 'All') {
-            store.filteredQuestions = [...store.allQuestions];
-        } else if (selectedCategory === 'Type: Single Choice') {
-            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 1);
-        } else if (selectedCategory === 'Type: Multiple Choice') {
-            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 2);
-        } else if (selectedCategory === 'Single+Multiple Choice') {
-            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 1 || q.questionType === 2);
-        } else if (selectedCategory === 'Type: Text Input') {
-            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3);
-        } else if (selectedCategory === 'Short Text Questions') {
-            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') <= 4);
-        } else if (selectedCategory === 'Long Text Questions') {
-            store.filteredQuestions = store.allQuestions.filter(q => q.questionType === 3 && getWordCount(q.answers && q.answers.length > 0 ? q.answers[0].text : '') > 4);
-        } else if (selectedCategory === 'Starred') {
-            const subject = document.getElementById('subject-select').value;
-            const starred = store.starredIdsBySubject[subject] || [];
-            store.filteredQuestions = store.allQuestions.filter(q => starred.includes(q.id));
-        } else {
-            store.filteredQuestions = store.allQuestions.filter(q => q.section === selectedCategory);
-        }
+        store.filteredQuestions = getQuestionsByCategory(selectedCategory);
     }
     
     store.answeredQuestions = {};
@@ -435,11 +413,11 @@ window.addEventListener('keydown', (e) => {
         
         if (e.key === 'Enter' && e.shiftKey) {
             e.preventDefault();
-            document.activeElement.blur();
             const submitBtn = document.getElementById('submit-btn');
             const nextBtn = document.getElementById('next-btn');
             
             if (submitBtn.style.display !== 'none' && !submitBtn.disabled) {
+                document.activeElement.blur();
                 submitBtn.click();
             } else if (nextBtn.style.display !== 'none' && !nextBtn.disabled) {
                 nextBtn.click();
