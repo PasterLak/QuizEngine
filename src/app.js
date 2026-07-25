@@ -423,4 +423,72 @@ window.addEventListener('beforeunload', () => {
     }
 });
 
+window.addEventListener('keydown', (e) => {
+    const quizContainer = document.getElementById('quiz-container');
+    if (quizContainer.style.display === 'none') return;
+
+    if (document.activeElement && document.activeElement.tagName === 'TEXTAREA') {
+        if (e.key === 'Escape') {
+            document.activeElement.blur();
+            return;
+        }
+        
+        if (e.key === 'Enter' && e.shiftKey) {
+            e.preventDefault();
+            document.activeElement.blur();
+            const submitBtn = document.getElementById('submit-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            if (submitBtn.style.display !== 'none' && !submitBtn.disabled) {
+                submitBtn.click();
+            } else if (nextBtn.style.display !== 'none' && !nextBtn.disabled) {
+                nextBtn.click();
+            }
+        }
+        return;
+    }
+
+    if (e.key === 'Escape') {
+        document.getElementById('exit-btn').click();
+        return;
+    }
+    
+    if (e.key === 'Backspace') {
+        e.preventDefault();
+        const prevBtn = document.getElementById('prev-btn');
+        if (prevBtn.style.display !== 'none' && !prevBtn.disabled) {
+            prevBtn.click();
+        }
+        return;
+    }
+
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submit-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        if (submitBtn.style.display !== 'none' && !submitBtn.disabled) {
+            submitBtn.click();
+        } else if (nextBtn.style.display !== 'none' && !nextBtn.disabled) {
+            nextBtn.click();
+        }
+        return;
+    }
+
+    const num = parseInt(e.key);
+    if (num >= 1 && num <= 4) {
+        const inputs = document.querySelectorAll('.option-label input');
+        if (inputs.length >= num) {
+            const targetInput = inputs[num - 1];
+            if (!targetInput.disabled) {
+                if (targetInput.type === 'radio') {
+                    targetInput.checked = true;
+                } else if (targetInput.type === 'checkbox') {
+                    targetInput.checked = !targetInput.checked;
+                }
+            }
+        }
+    }
+});
+
 window.onload = init;
