@@ -67,7 +67,7 @@ document.getElementById('exam-mode').addEventListener('change', (e) => {
         document.getElementById('category-select').disabled = true;
         shuffleQs.disabled = true;
         shuffleOpts.disabled = true;
-        startBtn.textContent = '🎓 Start Exam';
+        startBtn.textContent = 'Start Exam 🎓';
         countDisplay.style.display = 'none';
         
         resumeBtn.style.display = 'none';

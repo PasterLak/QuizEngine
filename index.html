@@ -31,16 +31,16 @@
             <div class="checkboxes">
                 <label><input type="checkbox" id="shuffle-questions" checked> Shuffle Questions</label>
                 <label><input type="checkbox" id="shuffle-options" checked> Shuffle Options</label>
-                <label><input type="checkbox" id="study-mode">Study Mode 📖</label>
-                <label><input type="checkbox" id="exam-mode">Exam Mode 🎓</label>
+                <label><input type="checkbox" id="study-mode"> Study Mode 📖</label>
+                <label><input type="checkbox" id="exam-mode"> Exam Mode 🎓</label>
             </div>
             
             <div id="exam-mode-info" style="display: none;">
-                🎓 Exam Mode active: Category settings are ignored. A 100-point exam will be randomly generated (~45 pts choice, ~55 pts text). You need at least 50 points to pass!
+                Exam Mode active 🎓: Category settings are ignored. A 100-point exam will be randomly generated (~45 pts choice, ~55 pts text). You need at least 50 points to pass!
             </div>
 
             <div id="study-mode-info" style="display: none;">
-                📖 Study Mode active: Correct answers are shown immediately to help you learn. Auto-grading is disabled.
+                Study Mode active 📖: Correct answers are shown immediately to help you learn. Auto-grading is disabled.
             </div>
             
             <div id="question-count-display"></div>
@@ -54,7 +54,7 @@
         </div>
 
         <div class="setup-footer">
-            <span id="version-info">Version 3.1 | Made in Schmalle with ☕</span>
+            <span id="version-info">Version 3.3 | Made in Schmalle with ☕</span>
             <button id="open-editor-btn" class="btn-utility btn-blue" disabled>🔧 JSON Editor</button>
         </div>
         
@@ -69,6 +69,9 @@
                 <span id="question-points"></span>
                 <span id="question-filename"></span>
                 <div id="progress-text"></div>
+            </div>
+            <div id="progress-bar-container">
+                <div id="progress-bar-fill"></div>
             </div>
         </div>
         

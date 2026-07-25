@@ -76,7 +76,12 @@ function renderTextFeedback(q) {
 
 export function updateProgressDisplay() {
     if (store.currentQuestionIndex >= store.filteredQuestions.length) return;
-    const progressText = `${store.currentQuestionIndex + 1} / ${store.filteredQuestions.length}`;
+    const total = store.filteredQuestions.length;
+    const progressText = `${store.currentQuestionIndex + 1} / ${total}`;
+
+    const progressPercent = (store.currentQuestionIndex / total) * 100;
+    const fill = document.getElementById('progress-bar-fill');
+    if (fill) fill.style.width = `${progressPercent}%`;
 
     if (store.examMode) {
         document.getElementById('progress-text').innerHTML = `Exam: <span class="score-green">${store.examEarnedPoints}</span> / ${store.examTotalPoints} <span class="score-divider">|</span> ${progressText}`;
@@ -84,7 +89,7 @@ export function updateProgressDisplay() {
     }
 
     if (store.studyMode) {
-        document.getElementById('progress-text').textContent = `Study Mode | ${progressText}`;
+        document.getElementById('progress-text').innerHTML = `Study Mode 📖 <span class="score-divider">|</span> ${progressText}`;
         return;
     }
 
@@ -100,8 +105,15 @@ export function showQuestion() {
     document.getElementById('submit-btn').style.display = store.studyMode ? 'none' : 'inline-block';
     document.getElementById('next-btn').style.display = store.studyMode ? 'inline-block' : 'none';
     document.getElementById('prev-btn').style.display = store.currentQuestionIndex > 0 ? 'inline-block' : 'none';
+    
+    const barContainer = document.getElementById('progress-bar-container');
+    if (barContainer) barContainer.style.display = 'block';
 
     if (store.currentQuestionIndex >= store.filteredQuestions.length) {
+        const fill = document.getElementById('progress-bar-fill');
+        if (fill) fill.style.width = `100%`;
+        if (barContainer) barContainer.style.display = 'none';
+
         let html = '';
         
         if (store.examMode) {
@@ -131,7 +143,7 @@ export function showQuestion() {
             html = `
                 <div style="text-align:center; margin-top:40px;">
                     <h2 style="font-size:32px; margin-bottom:20px;">
-                        ${store.studyMode ? 'Study Mode Finished' : 'Quiz Finished!'}
+                        ${store.studyMode ? 'Study Mode Finished 📖' : 'Quiz Finished!'}
                     </h2>
             `;
 
@@ -169,7 +181,7 @@ export function showQuestion() {
             document.getElementById('progress-text').innerHTML = `Exam: <span class="score-green">${store.examEarnedPoints}</span> / ${store.examTotalPoints}`;
         } else {
             document.getElementById('progress-text').innerHTML = store.studyMode
-                ? 'Study Mode'
+                ? `Study Mode 📖`
                 : `<span class="score-green">${store.correctCount}</span> / <span class="score-red">${store.incorrectCount}</span>`;
         }
 
@@ -211,7 +223,7 @@ export function showQuestion() {
     const wasAnswered = store.answeredQuestions[q.id];
 
     if (store.studyMode) {
-        document.getElementById('result-area').innerHTML = '<span class="study-mode-note">Study Mode active: Only the correct answers are shown.</span>';
+        document.getElementById('result-area').innerHTML = '<span class="study-mode-note">Study Mode active 📖: Only the correct answers are shown.</span>';
         storage.saveProgress({ pendingAdvance: false });
     } else if (wasAnswered) {
         document.getElementById('submit-btn').style.display = 'none';
@@ -463,18 +475,29 @@ export function resumeQuizFlow(progress) {
     document.getElementById('exam-mode').checked = store.examMode;
     
     const info = document.getElementById('exam-mode-info');
+    const infoStudy = document.getElementById('study-mode-info');
     const countDisplay = document.getElementById('question-count-display');
     const startBtn = document.getElementById('start-btn');
     
     if (store.examMode) {
         info.style.display = 'block';
+        infoStudy.style.display = 'none';
         document.getElementById('category-select').disabled = true;
         document.getElementById('shuffle-questions').disabled = true;
         document.getElementById('shuffle-options').disabled = true;
-        startBtn.textContent = 'Start Exam';
+        startBtn.textContent = 'Start Exam 🎓';
         countDisplay.style.display = 'none';
+    } else if (store.studyMode) {
+        info.style.display = 'none';
+        infoStudy.style.display = 'block';
+        document.getElementById('category-select').disabled = false;
+        document.getElementById('shuffle-questions').disabled = false;
+        document.getElementById('shuffle-options').disabled = false;
+        startBtn.textContent = 'Start New Quiz';
+        countDisplay.style.display = 'block';
     } else {
         info.style.display = 'none';
+        infoStudy.style.display = 'none';
         document.getElementById('category-select').disabled = false;
         document.getElementById('shuffle-questions').disabled = false;
         document.getElementById('shuffle-options').disabled = false;
