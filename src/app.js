@@ -25,9 +25,12 @@ themeBtn.addEventListener('click', () => {
 });
 
 document.getElementById('study-mode').addEventListener('change', (e) => {
+    const infoStudy = document.getElementById('study-mode-info');
     if (e.target.checked) {
         document.getElementById('exam-mode').checked = false;
         document.getElementById('exam-mode-info').style.display = 'none';
+        infoStudy.style.display = 'block';
+        
         document.getElementById('category-select').disabled = false;
         document.getElementById('shuffle-questions').disabled = false;
         document.getElementById('shuffle-options').disabled = false;
@@ -39,11 +42,14 @@ document.getElementById('study-mode').addEventListener('change', (e) => {
         if (subject && store.incorrectIdsBySubject[subject] && store.incorrectIdsBySubject[subject].length > 0) {
             document.getElementById('practice-incorrect-btn').style.display = 'inline-block';
         }
+    } else {
+        infoStudy.style.display = 'none';
     }
 });
 
 document.getElementById('exam-mode').addEventListener('change', (e) => {
     const info = document.getElementById('exam-mode-info');
+    const infoStudy = document.getElementById('study-mode-info');
     const shuffleQs = document.getElementById('shuffle-questions');
     const shuffleOpts = document.getElementById('shuffle-options');
     const startBtn = document.getElementById('start-btn');
@@ -55,6 +61,8 @@ document.getElementById('exam-mode').addEventListener('change', (e) => {
     
     if (e.target.checked) {
         document.getElementById('study-mode').checked = false;
+        infoStudy.style.display = 'none';
+        
         info.style.display = 'block';
         document.getElementById('category-select').disabled = true;
         shuffleQs.disabled = true;
