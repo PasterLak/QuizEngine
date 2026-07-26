@@ -106,10 +106,14 @@ export function showQuestion() {
     document.getElementById('next-btn').style.display = store.studyMode ? 'inline-block' : 'none';
     document.getElementById('prev-btn').style.display = store.currentQuestionIndex > 0 ? 'inline-block' : 'none';
     
+    document.getElementById('header').style.display = 'flex';
+    
     const barContainer = document.getElementById('progress-bar-container');
     if (barContainer) barContainer.style.display = 'block';
 
     if (store.currentQuestionIndex >= store.filteredQuestions.length) {
+        document.getElementById('header').style.display = 'none';
+        
         const fill = document.getElementById('progress-bar-fill');
         if (fill) fill.style.width = `100%`;
         if (barContainer) barContainer.style.display = 'none';
@@ -185,9 +189,22 @@ export function showQuestion() {
                 : `<span class="score-green">${store.correctCount}</span> / <span class="score-red">${store.incorrectCount}</span>`;
         }
 
+        if (!store.studyMode && store.incorrectQuestions.length > 0) {
+            document.getElementById('quiz-open-editor-btn').style.display = 'none';
+            const repeatBtn = document.getElementById('repeat-incorrect-btn');
+            repeatBtn.style.display = 'inline-block';
+            repeatBtn.textContent = `🔁 Repeat Incorrect [${store.incorrectQuestions.length}]`;
+        } else {
+            document.getElementById('quiz-open-editor-btn').style.display = 'inline-block';
+            document.getElementById('repeat-incorrect-btn').style.display = 'none';
+        }
+
         storage.clearProgress();
         return;
     }
+
+    document.getElementById('quiz-open-editor-btn').style.display = 'inline-block';
+    document.getElementById('repeat-incorrect-btn').style.display = 'none';
 
     const q = store.filteredQuestions[store.currentQuestionIndex];
     store.currentQuestionType = q.questionType;
@@ -468,6 +485,33 @@ export function startQuizFlow() {
     store.correctCount = 0;
     store.incorrectCount = 0;
     store.incorrectQuestions = [];
+    
+    document.getElementById('setup-container').style.display = 'none';
+    document.getElementById('quiz-container').style.display = 'block';
+    
+    storage.saveProgress();
+    showQuestion();
+}
+
+export function startRepeatIncorrectFlow() {
+    if (!store.incorrectQuestions || store.incorrectQuestions.length === 0) return;
+    
+    storage.clearProgress();
+    store.filteredQuestions = [...store.incorrectQuestions];
+    store.studyMode = document.getElementById('study-mode').checked;
+    
+    store.examMode = false;
+    document.getElementById('exam-mode').checked = false;
+    
+    if (document.getElementById('shuffle-questions').checked) {
+        store.filteredQuestions.sort(() => Math.random() - 0.5);
+    }
+    
+    store.currentQuestionIndex = 0;
+    store.correctCount = 0;
+    store.incorrectCount = 0;
+    store.incorrectQuestions = [];
+    store.answeredQuestions = {};
     
     document.getElementById('setup-container').style.display = 'none';
     document.getElementById('quiz-container').style.display = 'block';

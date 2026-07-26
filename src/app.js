@@ -1,6 +1,6 @@
 import { store, storage } from './store.js';
 import { setupCategories, updateQuestionCountDisplay, updateResumeButtonVisibility, getQuestionsByCategory } from './menu.js';
-import { startQuizFlow, resumeQuizFlow, showQuestion, submitAnswer } from './quiz.js';
+import { startQuizFlow, resumeQuizFlow, showQuestion, submitAnswer, startRepeatIncorrectFlow } from './quiz.js';
 
 const themeBtn = document.getElementById('theme-toggle-btn');
 const savedTheme = localStorage.getItem('theme') || 'light';
@@ -257,6 +257,10 @@ document.getElementById('start-btn').addEventListener('click', () => {
     
     store.answeredQuestions = {};
     startQuizFlow();
+});
+
+document.getElementById('repeat-incorrect-btn').addEventListener('click', () => {
+    startRepeatIncorrectFlow();
 });
 
 document.getElementById('resume-progress-btn').addEventListener('click', () => {
