@@ -411,7 +411,7 @@ window.addEventListener('keydown', (e) => {
             return;
         }
         
-        if (e.key === 'Enter' && e.shiftKey) {
+        if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             const submitBtn = document.getElementById('submit-btn');
             const nextBtn = document.getElementById('next-btn');
