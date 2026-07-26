@@ -768,3 +768,55 @@ textarea:focus {
         font-size: 14px;
     }
 }
+
+#keyboard-shortcuts {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--bg-panel);
+    padding: 15px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.shortcut-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text-main);
+    text-align: center;
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.shortcut-item {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.key {
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 3px 6px;
+    border-radius: var(--radius-sm);
+    font-family: monospace;
+    font-size: 12px;
+    box-shadow: 0 2px 0 var(--border-color);
+}
+
+@media (max-width: 1050px) {
+    #keyboard-shortcuts {
+        display: none;
+    }
+}

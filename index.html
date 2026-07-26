@@ -54,7 +54,7 @@
         </div>
 
         <div class="setup-footer">
-            <span id="version-info">Version 3.6 | Made in Schmalle with ☕</span>
+            <span id="version-info">Version 3.7 | Made in Schmalle with ☕</span>
             <button id="open-editor-btn" class="btn-utility btn-blue" disabled>🔧 JSON Editor</button>
         </div>
         
@@ -98,7 +98,20 @@
         </div>
     </div>
     
+    <div id="keyboard-shortcuts">
+        <div class="shortcut-title">⌨️ Shortcuts</div>
+        <div class="shortcut-item"><span class="key">1</span>-<span class="key">4</span> Select</div>
+        <div class="shortcut-item"><span class="key">Enter</span> Submit/Next</div>
+        <div class="shortcut-item"><span class="key">Backspace</span> Previous</div>
+        <div class="shortcut-item"><span class="key">Esc</span> Exit</div>
+    </div>
+    
     <script type="module" src="src/app.js"></script>
+    <script>
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            window.goatcounter = {no_onload: true};
+        }
+    </script>
     <script data-goatcounter="https://pasterlak.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
