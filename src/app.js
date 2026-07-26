@@ -112,10 +112,11 @@ async function init() {
 
         updateResumeButtonVisibility();
         
+        if (document.getElementById('study-mode').checked) {
+            document.getElementById('study-mode').dispatchEvent(new Event('change'));
+        }
         if (document.getElementById('exam-mode').checked) {
-            document.getElementById('resume-progress-btn').style.display = 'none';
-            document.getElementById('clear-stats-btn').style.display = 'none';
-            document.getElementById('practice-incorrect-btn').style.display = 'none';
+            document.getElementById('exam-mode').dispatchEvent(new Event('change'));
         }
     } catch (error) {
         document.getElementById('setup-error').textContent = 'Error: Create subjects.json file with subject folder names.';
