@@ -23,32 +23,45 @@ themeBtn.addEventListener('click', () => {
     }
 });
 
-document.getElementById('study-mode').addEventListener('change', (e) => {
+document.getElementById('study-mode')?.addEventListener('change', (e) => {
+    const target = e.target;
     const infoStudy = document.getElementById('study-mode-info');
-    if (e.target.checked) {
-        document.getElementById('exam-mode').checked = false;
-        document.getElementById('exam-mode-info').style.display = 'none';
+    const examMode = document.getElementById('exam-mode');
+    const examModeInfo = document.getElementById('exam-mode-info');
+    const categorySelect = document.getElementById('category-select');
+    const shuffleQuestions = document.getElementById('shuffle-questions');
+    const shuffleOptions = document.getElementById('shuffle-options');
+    const startBtn = document.getElementById('start-btn');
+    const questionCountDisplay = document.getElementById('question-count-display');
+    
+    if (target.checked) {
+        examMode.checked = false;
+        examModeInfo.style.display = 'none';
         infoStudy.style.display = 'block';
         
-        document.getElementById('category-select').disabled = false;
-        document.getElementById('shuffle-questions').disabled = false;
-        document.getElementById('shuffle-options').disabled = false;
-        document.getElementById('start-btn').textContent = 'Start New Quiz';
-        document.getElementById('question-count-display').style.display = 'block';
+        categorySelect.disabled = false;
+        shuffleQuestions.disabled = false;
+        shuffleOptions.disabled = false;
+        startBtn.textContent = 'Start New Quiz';
+        questionCountDisplay.style.display = 'block';
         
         updateResumeButtonVisibility();
         const subject = document.getElementById('subject-select').value;
+        const practiceIncorrectBtn = document.getElementById('practice-incorrect-btn');
         if (subject && store.incorrectIdsBySubject[subject] && store.incorrectIdsBySubject[subject].length > 0) {
-            document.getElementById('practice-incorrect-btn').style.display = 'inline-block';
+            practiceIncorrectBtn.style.display = 'inline-block';
         }
     } else {
         infoStudy.style.display = 'none';
     }
 });
 
-document.getElementById('exam-mode').addEventListener('change', (e) => {
+document.getElementById('exam-mode')?.addEventListener('change', (e) => {
+    const target = e.target;
     const info = document.getElementById('exam-mode-info');
     const infoStudy = document.getElementById('study-mode-info');
+    const studyMode = document.getElementById('study-mode');
+    const categorySelect = document.getElementById('category-select');
     const shuffleQs = document.getElementById('shuffle-questions');
     const shuffleOpts = document.getElementById('shuffle-options');
     const startBtn = document.getElementById('start-btn');
@@ -58,12 +71,12 @@ document.getElementById('exam-mode').addEventListener('change', (e) => {
     const practiceBtn = document.getElementById('practice-incorrect-btn');
     const subject = document.getElementById('subject-select').value;
     
-    if (e.target.checked) {
-        document.getElementById('study-mode').checked = false;
+    if (target.checked) {
+        studyMode.checked = false;
         infoStudy.style.display = 'none';
         
         info.style.display = 'block';
-        document.getElementById('category-select').disabled = true;
+        categorySelect.disabled = true;
         shuffleQs.disabled = true;
         shuffleOpts.disabled = true;
         startBtn.textContent = 'Start Exam 🎓';
@@ -74,7 +87,7 @@ document.getElementById('exam-mode').addEventListener('change', (e) => {
         practiceBtn.style.display = 'none';
     } else {
         info.style.display = 'none';
-        document.getElementById('category-select').disabled = false;
+        categorySelect.disabled = false;
         shuffleQs.disabled = false;
         shuffleOpts.disabled = false;
         startBtn.textContent = 'Start New Quiz';
@@ -96,7 +109,7 @@ async function init() {
         
         const select = document.getElementById('subject-select');
         select.innerHTML = '<option value="">Select subject...</option>';
-        subjects.forEach(sub => {
+        subjects.forEach((sub) => {
             const opt = document.createElement('option');
             opt.value = sub.folder;
             opt.textContent = sub.name;
@@ -105,7 +118,7 @@ async function init() {
         
         select.disabled = false;
         const lastSubject = localStorage.getItem('last_subject');
-        if (lastSubject && subjects.some(s => s.folder === lastSubject)) {
+        if (lastSubject && subjects.some((s) => s.folder === lastSubject)) {
             select.value = lastSubject;
             select.dispatchEvent(new Event('change'));
         }
@@ -113,42 +126,50 @@ async function init() {
         updateResumeButtonVisibility();
         
         if (document.getElementById('study-mode').checked) {
-            document.getElementById('study-mode').dispatchEvent(new Event('change'));
+            document.getElementById('study-mode')?.dispatchEvent(new Event('change'));
         }
         if (document.getElementById('exam-mode').checked) {
-            document.getElementById('exam-mode').dispatchEvent(new Event('change'));
+            document.getElementById('exam-mode')?.dispatchEvent(new Event('change'));
         }
     } catch (error) {
-        document.getElementById('setup-error').textContent = 'Error: Create subjects.json file with subject folder names.';
+        const errEl = document.getElementById('setup-error');
+        if (errEl) errEl.textContent = 'Error: Create subjects.json file with subject folder names.';
     }
 }
 
-document.getElementById('category-select').addEventListener('change', (event) => {
-    localStorage.setItem('last_category', event.target.value);
+document.getElementById('category-select')?.addEventListener('change', (event) => {
+    const target = event.target;
+    localStorage.setItem('last_category', target.value);
     updateQuestionCountDisplay();
 });
 
-document.getElementById('subject-select').addEventListener('change', async (event) => {
-    const subject = event.target.value;
+document.getElementById('subject-select')?.addEventListener('change', async (event) => {
+    const target = event.target;
+    const subject = target.value;
     const practiceBtn = document.getElementById('practice-incorrect-btn');
+    const categorySelect = document.getElementById('category-select');
+    const startBtn = document.getElementById('start-btn');
+    const openEditorBtn = document.getElementById('open-editor-btn');
+    const countDisplay = document.getElementById('question-count-display');
+    const setupError = document.getElementById('setup-error');
     
     practiceBtn.style.display = 'none';
 
     if (!subject) {
-        document.getElementById('category-select').disabled = true;
-        document.getElementById('start-btn').disabled = true;
-        document.getElementById('open-editor-btn').disabled = true;
-        document.getElementById('question-count-display').textContent = '';
+        categorySelect.disabled = true;
+        startBtn.disabled = true;
+        openEditorBtn.disabled = true;
+        countDisplay.textContent = '';
         updateResumeButtonVisibility();
         return;
     }
 
     localStorage.setItem('last_subject', subject);
-    document.getElementById('setup-error').textContent = 'Loading...';
-    document.getElementById('category-select').disabled = true;
-    document.getElementById('start-btn').disabled = true;
-    document.getElementById('open-editor-btn').disabled = true;
-    document.getElementById('question-count-display').textContent = '';
+    setupError.textContent = 'Loading...';
+    categorySelect.disabled = true;
+    startBtn.disabled = true;
+    openEditorBtn.disabled = true;
+    countDisplay.textContent = '';
     store.allQuestions = [];
     
     try {
@@ -162,13 +183,13 @@ document.getElementById('subject-select').addEventListener('change', async (even
     } catch (e) {}
 
     if (store.allQuestions.length === 0) {
-        document.getElementById('setup-error').textContent = `No questions found in questions/${subject}/questions.json`;
+        setupError.textContent = `No questions found in questions/${subject}/questions.json`;
         updateResumeButtonVisibility();
         return;
     }
 
     if (store.incorrectIdsBySubject[subject] && store.incorrectIdsBySubject[subject].length > 0) {
-        store.incorrectIdsBySubject[subject] = store.incorrectIdsBySubject[subject].filter(id => store.allQuestions.some(q => q.id === id));
+        store.incorrectIdsBySubject[subject] = store.incorrectIdsBySubject[subject].filter((id) => store.allQuestions.some((q) => q.id === id));
         storage.saveIncorrect();
         
         if (store.incorrectIdsBySubject[subject].length > 0) {
@@ -178,36 +199,38 @@ document.getElementById('subject-select').addEventListener('change', async (even
     }
 
     if (store.starredIdsBySubject[subject] && store.starredIdsBySubject[subject].length > 0) {
-        store.starredIdsBySubject[subject] = store.starredIdsBySubject[subject].filter(id => store.allQuestions.some(q => q.id === id));
+        store.starredIdsBySubject[subject] = store.starredIdsBySubject[subject].filter((id) => store.allQuestions.some((q) => q.id === id));
         storage.saveStarred();
     }
 
-    document.getElementById('setup-error').textContent = '';
+    setupError.textContent = '';
     setupCategories();
     
     if (!document.getElementById('exam-mode').checked) {
-        document.getElementById('category-select').disabled = false;
+        categorySelect.disabled = false;
     }
     
-    document.getElementById('start-btn').disabled = false;
-    document.getElementById('open-editor-btn').disabled = false;
+    startBtn.disabled = false;
+    openEditorBtn.disabled = false;
     updateQuestionCountDisplay();
     updateResumeButtonVisibility();
     
     if (document.getElementById('exam-mode').checked) {
-        document.getElementById('resume-progress-btn').style.display = 'none';
-        document.getElementById('clear-stats-btn').style.display = 'none';
+        const resumeBtn = document.getElementById('resume-progress-btn');
+        const clearBtn = document.getElementById('clear-stats-btn');
+        if (resumeBtn) resumeBtn.style.display = 'none';
+        if (clearBtn) clearBtn.style.display = 'none';
         practiceBtn.style.display = 'none';
     }
 });
 
-document.getElementById('open-editor-btn').addEventListener('click', () => {
+document.getElementById('open-editor-btn')?.addEventListener('click', () => {
     const subject = document.getElementById('subject-select').value;
     if (!subject) return;
     window.open(`editor.html?subject=${encodeURIComponent(subject)}`, '_blank');
 });
 
-document.getElementById('quiz-open-editor-btn').addEventListener('click', () => {
+document.getElementById('quiz-open-editor-btn')?.addEventListener('click', () => {
     const subject = document.getElementById('subject-select').value;
     if (!subject) return;
     
@@ -223,7 +246,7 @@ document.getElementById('quiz-open-editor-btn').addEventListener('click', () => 
     window.open(url, '_blank');
 });
 
-document.getElementById('star-container').addEventListener('click', () => {
+document.getElementById('star-container')?.addEventListener('click', () => {
     const subject = document.getElementById('subject-select').value;
     if (store.currentQuestionIndex >= store.filteredQuestions.length) return;
     
@@ -250,7 +273,7 @@ document.getElementById('star-container').addEventListener('click', () => {
     storage.saveStarred();
 });
 
-document.getElementById('start-btn').addEventListener('click', () => {
+document.getElementById('start-btn')?.addEventListener('click', () => {
     if (!document.getElementById('exam-mode').checked) {
         const selectedCategory = document.getElementById('category-select').value;
         store.filteredQuestions = getQuestionsByCategory(selectedCategory);
@@ -260,16 +283,16 @@ document.getElementById('start-btn').addEventListener('click', () => {
     startQuizFlow();
 });
 
-document.getElementById('repeat-incorrect-btn').addEventListener('click', () => {
+document.getElementById('repeat-incorrect-btn')?.addEventListener('click', () => {
     startRepeatIncorrectFlow();
 });
 
-document.getElementById('resume-progress-btn').addEventListener('click', () => {
+document.getElementById('resume-progress-btn')?.addEventListener('click', () => {
     if (!store.quizProgress) return;
     resumeQuizFlow(store.quizProgress);
 });
 
-document.getElementById('clear-stats-btn').addEventListener('click', () => {
+document.getElementById('clear-stats-btn')?.addEventListener('click', () => {
     store.incorrectIdsBySubject = {};
     storage.saveIncorrect();
     storage.clearProgress();
@@ -284,11 +307,11 @@ document.getElementById('clear-stats-btn').addEventListener('click', () => {
     }
 });
 
-document.getElementById('practice-incorrect-btn').addEventListener('click', () => {
+document.getElementById('practice-incorrect-btn')?.addEventListener('click', () => {
     const subject = document.getElementById('subject-select').value;
     if (!subject || !store.incorrectIdsBySubject[subject]) return;
     
-    store.filteredQuestions = store.allQuestions.filter(q => store.incorrectIdsBySubject[subject].includes(q.id));
+    store.filteredQuestions = store.allQuestions.filter((q) => store.incorrectIdsBySubject[subject].includes(q.id));
     storage.clearProgress();
     store.answeredQuestions = {};
     
@@ -303,18 +326,18 @@ document.getElementById('practice-incorrect-btn').addEventListener('click', () =
     startQuizFlow();
 });
 
-document.getElementById('submit-btn').addEventListener('click', () => {
+document.getElementById('submit-btn')?.addEventListener('click', () => {
     if (store.studyMode) return;
     submitAnswer();
 });
 
-document.getElementById('next-btn').addEventListener('click', () => {
+document.getElementById('next-btn')?.addEventListener('click', () => {
     store.currentQuestionIndex++;
     storage.saveProgress({ pendingAdvance: false });
     showQuestion();
 });
 
-document.getElementById('prev-btn').addEventListener('click', () => {
+document.getElementById('prev-btn')?.addEventListener('click', () => {
     if (store.currentQuestionIndex > 0) {
         store.currentQuestionIndex--;
         storage.saveProgress({ pendingAdvance: false });
@@ -322,7 +345,7 @@ document.getElementById('prev-btn').addEventListener('click', () => {
     }
 });
 
-document.getElementById('exit-btn').addEventListener('click', () => {
+document.getElementById('exit-btn')?.addEventListener('click', () => {
     document.getElementById('quiz-container').style.display = 'none';
     document.getElementById('setup-container').style.display = 'block';
     
@@ -359,14 +382,14 @@ window.updateQuizData = function(jsonString) {
             updateQuestionCountDisplay();
         } else {
             for (let i = 0; i < store.filteredQuestions.length; i++) {
-                const updatedQ = store.allQuestions.find(q => q.id === store.filteredQuestions[i].id);
+                const updatedQ = store.allQuestions.find((q) => q.id === store.filteredQuestions[i].id);
                 if (updatedQ) {
                     store.filteredQuestions[i] = updatedQ;
                 }
             }
             
             for (let i = 0; i < store.incorrectQuestions.length; i++) {
-                const updatedQ = store.allQuestions.find(q => q.id === store.incorrectQuestions[i].id);
+                const updatedQ = store.allQuestions.find((q) => q.id === store.incorrectQuestions[i].id);
                 if (updatedQ) {
                     store.incorrectQuestions[i] = updatedQ;
                 }
@@ -381,11 +404,11 @@ window.updateQuizData = function(jsonString) {
                         store.correctCount = Math.max(0, store.correctCount - 1);
                     } else {
                         store.incorrectCount = Math.max(0, store.incorrectCount - 1);
-                        store.incorrectQuestions = store.incorrectQuestions.filter(iq => iq.id !== q.id);
+                        store.incorrectQuestions = store.incorrectQuestions.filter((iq) => iq.id !== q.id);
                         
                         const subject = document.getElementById('subject-select').value;
                         if (store.incorrectIdsBySubject[subject]) {
-                            store.incorrectIdsBySubject[subject] = store.incorrectIdsBySubject[subject].filter(id => id !== q.id);
+                            store.incorrectIdsBySubject[subject] = store.incorrectIdsBySubject[subject].filter((id) => id !== q.id);
                             storage.saveIncorrect();
                         }
                     }
@@ -432,7 +455,7 @@ window.addEventListener('keydown', (e) => {
     }
 
     if (e.key === 'Escape') {
-        document.getElementById('exit-btn').click();
+        document.getElementById('exit-btn')?.click();
         return;
     }
     

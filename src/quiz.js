@@ -35,7 +35,8 @@ function renderTextFeedback(q) {
     
     const overrideBtn = document.getElementById('override-correctness-btn');
     overrideBtn.addEventListener('click', () => {
-        const subject = document.getElementById('subject-select').value;
+        const subjectSelect = document.getElementById('subject-select');
+        const subject = subjectSelect.value;
         const wasCorrect = store.answeredQuestions[q.id].isCorrect;
         const isNowCorrect = !wasCorrect;
         
@@ -67,7 +68,9 @@ function renderTextFeedback(q) {
         }
         
         storage.saveIncorrect();
-        storage.saveProgress({ pendingAdvance: document.getElementById('submit-btn').style.display === 'none' });
+        
+        const submitBtn = document.getElementById('submit-btn');
+        storage.saveProgress({ pendingAdvance: submitBtn.style.display === 'none' });
         
         updateProgressDisplay();
         renderTextFeedback(q);
@@ -83,17 +86,18 @@ export function updateProgressDisplay() {
     const fill = document.getElementById('progress-bar-fill');
     if (fill) fill.style.width = `${progressPercent}%`;
 
+    const progressTextEl = document.getElementById('progress-text');
     if (store.examMode) {
-        document.getElementById('progress-text').innerHTML = `Exam: <span class="score-green">${store.examEarnedPoints}</span> / ${store.examTotalPoints} <span class="score-divider">|</span> ${progressText}`;
+        progressTextEl.innerHTML = `Exam: <span class="score-green">${store.examEarnedPoints}</span> / ${store.examTotalPoints} <span class="score-divider">|</span> ${progressText}`;
         return;
     }
 
     if (store.studyMode) {
-        document.getElementById('progress-text').innerHTML = `Study Mode 📖 <span class="score-divider">|</span> ${progressText}`;
+        progressTextEl.innerHTML = `Study Mode 📖 <span class="score-divider">|</span> ${progressText}`;
         return;
     }
 
-    document.getElementById('progress-text').innerHTML = `
+    progressTextEl.innerHTML = `
         <span class="score-green">${store.correctCount}</span> / <span class="score-red">${store.incorrectCount}</span>
         <span class="score-divider">|</span>
         ${progressText}
@@ -101,18 +105,24 @@ export function updateProgressDisplay() {
 }
 
 export function showQuestion() {
-    document.getElementById('result-area').innerHTML = '';
-    document.getElementById('submit-btn').style.display = store.studyMode ? 'none' : 'inline-block';
-    document.getElementById('next-btn').style.display = store.studyMode ? 'inline-block' : 'none';
-    document.getElementById('prev-btn').style.display = store.currentQuestionIndex > 0 ? 'inline-block' : 'none';
+    const resultArea = document.getElementById('result-area');
+    const submitBtn = document.getElementById('submit-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const headerEl = document.getElementById('header');
     
-    document.getElementById('header').style.display = 'flex';
+    resultArea.innerHTML = '';
+    submitBtn.style.display = store.studyMode ? 'none' : 'inline-block';
+    nextBtn.style.display = store.studyMode ? 'inline-block' : 'none';
+    prevBtn.style.display = store.currentQuestionIndex > 0 ? 'inline-block' : 'none';
+    
+    headerEl.style.display = 'flex';
     
     const barContainer = document.getElementById('progress-bar-container');
     if (barContainer) barContainer.style.display = 'block';
 
     if (store.currentQuestionIndex >= store.filteredQuestions.length) {
-        document.getElementById('header').style.display = 'none';
+        headerEl.style.display = 'none';
         
         const fill = document.getElementById('progress-bar-fill');
         if (fill) fill.style.width = `100%`;
@@ -168,47 +178,63 @@ export function showQuestion() {
             html += `</div>`;
         }
 
-        document.getElementById('question-text').innerHTML = html;
-        document.getElementById('input-container').innerHTML = '';
-        document.getElementById('submit-btn').style.display = 'none';
-        document.getElementById('next-btn').style.display = 'none';
-        document.getElementById('prev-btn').style.display = 'none';
-        document.getElementById('category-letter').textContent = '';
-        document.getElementById('category-topic').textContent = '';
-        document.getElementById('question-filename').textContent = '';
-        document.getElementById('star-container').style.display = 'none';
+        const questionTextEl = document.getElementById('question-text');
+        const inputContainer = document.getElementById('input-container');
+        const categoryLetterEl = document.getElementById('category-letter');
+        const categoryTopicEl = document.getElementById('category-topic');
+        const questionFilenameEl = document.getElementById('question-filename');
+        const desktopFilenameEl = document.getElementById('question-filename-desktop');
+        const starContainerEl = document.getElementById('star-container');
+
+        questionTextEl.innerHTML = html;
+        inputContainer.innerHTML = '';
+        submitBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        prevBtn.style.display = 'none';
+        categoryLetterEl.textContent = '';
+        categoryTopicEl.textContent = '';
+        questionFilenameEl.textContent = '';
+        if (desktopFilenameEl) desktopFilenameEl.textContent = '';
+        starContainerEl.style.display = 'none';
         
         const pointsEl = document.getElementById('question-points');
         if (pointsEl) pointsEl.style.display = 'none';
 
+        const progressTextEl = document.getElementById('progress-text');
         if (store.examMode) {
-            document.getElementById('progress-text').innerHTML = `Exam: <span class="score-green">${store.examEarnedPoints}</span> / ${store.examTotalPoints}`;
+            progressTextEl.innerHTML = `Exam: <span class="score-green">${store.examEarnedPoints}</span> / ${store.examTotalPoints}`;
         } else {
-            document.getElementById('progress-text').innerHTML = store.studyMode
+            progressTextEl.innerHTML = store.studyMode
                 ? `Study Mode 📖`
                 : `<span class="score-green">${store.correctCount}</span> / <span class="score-red">${store.incorrectCount}</span>`;
         }
 
+        const quizOpenEditorBtn = document.getElementById('quiz-open-editor-btn');
+        const repeatIncorrectBtn = document.getElementById('repeat-incorrect-btn');
+
         if (!store.studyMode && store.incorrectQuestions.length > 0) {
-            document.getElementById('quiz-open-editor-btn').style.display = 'none';
-            const repeatBtn = document.getElementById('repeat-incorrect-btn');
-            repeatBtn.style.display = 'inline-block';
-            repeatBtn.textContent = `🔁 Repeat Incorrect [${store.incorrectQuestions.length}]`;
+            quizOpenEditorBtn.style.display = 'none';
+            repeatIncorrectBtn.style.display = 'inline-block';
+            repeatIncorrectBtn.textContent = `🔁 Repeat Incorrect [${store.incorrectQuestions.length}]`;
         } else {
-            document.getElementById('quiz-open-editor-btn').style.display = 'inline-block';
-            document.getElementById('repeat-incorrect-btn').style.display = 'none';
+            quizOpenEditorBtn.style.display = 'inline-block';
+            repeatIncorrectBtn.style.display = 'none';
         }
 
         storage.clearProgress();
         return;
     }
 
-    document.getElementById('quiz-open-editor-btn').style.display = 'inline-block';
-    document.getElementById('repeat-incorrect-btn').style.display = 'none';
+    const quizOpenEditorBtn = document.getElementById('quiz-open-editor-btn');
+    const repeatIncorrectBtn = document.getElementById('repeat-incorrect-btn');
+    
+    quizOpenEditorBtn.style.display = 'inline-block';
+    repeatIncorrectBtn.style.display = 'none';
 
     const q = store.filteredQuestions[store.currentQuestionIndex];
     store.currentQuestionType = q.questionType;
-    const subject = document.getElementById('subject-select').value;
+    const subjectSelect = document.getElementById('subject-select');
+    const subject = subjectSelect.value;
     const starBtn = document.getElementById('star-btn');
     const starContainer = document.getElementById('star-container');
 
@@ -222,10 +248,27 @@ export function showQuestion() {
     }
 
     updateProgressDisplay();
-    document.getElementById('category-letter').textContent = q.section || '';
-    document.getElementById('category-topic').textContent = q.topic || '';
-    document.getElementById('question-filename').textContent = q.id || '';
-    document.getElementById('question-text').textContent = q.question;
+    
+    const categoryLetterEl = document.getElementById('category-letter');
+    const categoryTopicEl = document.getElementById('category-topic');
+    const questionFilenameEl = document.getElementById('question-filename');
+    const desktopFilenameEl = document.getElementById('question-filename-desktop');
+    const questionTextEl = document.getElementById('question-text');
+    const inputContainer = document.getElementById('input-container');
+    
+    let rawId = q.id || '';
+    let formattedId = rawId.replace(/-0+(\d+)/g, '-$1');
+    let desktopId = formattedId;
+    if (formattedId.includes('-')) {
+        desktopId = formattedId.split('-').pop();
+    }
+    
+    categoryLetterEl.textContent = q.section || '';
+    categoryTopicEl.textContent = q.topic || '';
+    questionFilenameEl.textContent = formattedId;
+    if (desktopFilenameEl) desktopFilenameEl.textContent = desktopId;
+    
+    questionTextEl.textContent = q.question;
     
     const pointsEl = document.getElementById('question-points');
     if (pointsEl) {
@@ -234,17 +277,16 @@ export function showQuestion() {
         pointsEl.style.display = 'inline-block';
     }
 
-    const inputContainer = document.getElementById('input-container');
     inputContainer.innerHTML = '';
 
     const wasAnswered = store.answeredQuestions[q.id];
 
     if (store.studyMode) {
-        document.getElementById('result-area').innerHTML = '<span class="study-mode-note">Study Mode active 📖: Only the correct answers are shown.</span>';
+        resultArea.innerHTML = '<span class="study-mode-note">Study Mode active 📖: Only the correct answers are shown.</span>';
         storage.saveProgress({ pendingAdvance: false });
     } else if (wasAnswered) {
-        document.getElementById('submit-btn').style.display = 'none';
-        document.getElementById('next-btn').style.display = 'inline-block';
+        submitBtn.style.display = 'none';
+        nextBtn.style.display = 'inline-block';
 
         if (store.currentQuestionType === 3) {
             renderTextFeedback(q);
@@ -255,7 +297,8 @@ export function showQuestion() {
         const inputType = store.currentQuestionType === 1 ? 'radio' : 'checkbox';
         
         let displayOptions = [...q.answers];
-        if (document.getElementById('shuffle-options').checked && !wasAnswered) {
+        const shuffleOptionsCb = document.getElementById('shuffle-options');
+        if (shuffleOptionsCb.checked && !wasAnswered) {
             displayOptions.sort(() => Math.random() - 0.5);
         }
         
@@ -316,7 +359,8 @@ export function showQuestion() {
 export function submitAnswer() {
     const q = store.filteredQuestions[store.currentQuestionIndex];
     const resultArea = document.getElementById('result-area');
-    const subject = document.getElementById('subject-select').value;
+    const subjectSelect = document.getElementById('subject-select');
+    const subject = subjectSelect.value;
     let isCorrect = false;
 
     if (store.currentQuestionType === 1) {
@@ -324,7 +368,7 @@ export function submitAnswer() {
         const correctAnswerObj = q.answers.find(a => a.correct);
         const correctAnswer = correctAnswerObj ? correctAnswerObj.text : '';
         
-        document.querySelectorAll('input[name="quiz-option"]').forEach(input => {
+        document.querySelectorAll('input[name="quiz-option"]').forEach((input) => {
             if (input.value === correctAnswer) {
                 input.parentElement.classList.add('correct-choice');
             }
@@ -341,7 +385,7 @@ export function submitAnswer() {
         const selected = selectedElements.map(el => el.value);
         const correctAnswers = q.answers.filter(a => a.correct).map(a => a.text);
         
-        document.querySelectorAll('input[name="quiz-option"]').forEach(input => {
+        document.querySelectorAll('input[name="quiz-option"]').forEach((input) => {
             if (correctAnswers.includes(input.value)) {
                 input.parentElement.classList.add('correct-choice');
             } else if (input.checked) {
@@ -351,7 +395,8 @@ export function submitAnswer() {
 
         isCorrect = selected.length === correctAnswers.length && selected.every(val => correctAnswers.includes(val));
     } else {
-        const textVal = document.getElementById('text-answer').value;
+        const textAnswerEl = document.getElementById('text-answer');
+        const textVal = textAnswerEl.value;
         const correctAnswer = q.answers[0].text;
         const sim = calculateSimilarity(textVal, correctAnswer);
         
@@ -410,8 +455,10 @@ export function submitAnswer() {
         resultArea.innerHTML = '';
     }
     
-    document.getElementById('submit-btn').style.display = 'none';
-    document.getElementById('next-btn').style.display = 'inline-block';
+    const submitBtn = document.getElementById('submit-btn');
+    const nextBtn = document.getElementById('next-btn');
+    submitBtn.style.display = 'none';
+    nextBtn.style.display = 'inline-block';
     
     document.querySelectorAll('input[name="quiz-option"]').forEach(input => {
         input.disabled = true;
@@ -424,8 +471,10 @@ export function submitAnswer() {
 
 export function startQuizFlow() {
     storage.clearProgress();
-    store.studyMode = document.getElementById('study-mode').checked;
-    store.examMode = document.getElementById('exam-mode').checked;
+    const studyModeCb = document.getElementById('study-mode');
+    const examModeCb = document.getElementById('exam-mode');
+    store.studyMode = studyModeCb.checked;
+    store.examMode = examModeCb.checked;
     
     store.examEarnedPoints = 0;
     store.examTotalPoints = 0;
@@ -477,8 +526,11 @@ export function startQuizFlow() {
 
         store.filteredQuestions = selectedForExam.sort(() => Math.random() - 0.5);
         store.examTotalPoints = totalPoints;
-    } else if (document.getElementById('shuffle-questions').checked) {
-        store.filteredQuestions.sort(() => Math.random() - 0.5);
+    } else {
+        const shuffleQsCb = document.getElementById('shuffle-questions');
+        if (shuffleQsCb.checked) {
+            store.filteredQuestions.sort(() => Math.random() - 0.5);
+        }
     }
     
     store.currentQuestionIndex = 0;
@@ -486,8 +538,10 @@ export function startQuizFlow() {
     store.incorrectCount = 0;
     store.incorrectQuestions = [];
     
-    document.getElementById('setup-container').style.display = 'none';
-    document.getElementById('quiz-container').style.display = 'block';
+    const setupContainer = document.getElementById('setup-container');
+    const quizContainer = document.getElementById('quiz-container');
+    setupContainer.style.display = 'none';
+    quizContainer.style.display = 'block';
     
     storage.saveProgress();
     showQuestion();
@@ -498,12 +552,16 @@ export function startRepeatIncorrectFlow() {
     
     storage.clearProgress();
     store.filteredQuestions = [...store.incorrectQuestions];
-    store.studyMode = document.getElementById('study-mode').checked;
+    
+    const studyModeCb = document.getElementById('study-mode');
+    store.studyMode = studyModeCb.checked;
     
     store.examMode = false;
-    document.getElementById('exam-mode').checked = false;
+    const examModeCb = document.getElementById('exam-mode');
+    examModeCb.checked = false;
     
-    if (document.getElementById('shuffle-questions').checked) {
+    const shuffleQsCb = document.getElementById('shuffle-questions');
+    if (shuffleQsCb.checked) {
         store.filteredQuestions.sort(() => Math.random() - 0.5);
     }
     
@@ -513,19 +571,23 @@ export function startRepeatIncorrectFlow() {
     store.incorrectQuestions = [];
     store.answeredQuestions = {};
     
-    document.getElementById('setup-container').style.display = 'none';
-    document.getElementById('quiz-container').style.display = 'block';
+    const setupContainer = document.getElementById('setup-container');
+    const quizContainer = document.getElementById('quiz-container');
+    setupContainer.style.display = 'none';
+    quizContainer.style.display = 'block';
     
     storage.saveProgress();
     showQuestion();
 }
 
 export function resumeQuizFlow(progress) {
-    const subject = document.getElementById('subject-select').value;
+    const subjectSelect = document.getElementById('subject-select');
+    const subject = subjectSelect.value;
     if (!subject || progress.subject !== subject) return;
 
     const categorySelect = document.getElementById('category-select');
     categorySelect.value = progress.category || 'All';
+    
     document.getElementById('shuffle-questions').checked = !!progress.shuffleQuestions;
     document.getElementById('shuffle-options').checked = !!progress.shuffleOptions;
     
@@ -540,28 +602,32 @@ export function resumeQuizFlow(progress) {
     const countDisplay = document.getElementById('question-count-display');
     const startBtn = document.getElementById('start-btn');
     
+    const catSelectEl = document.getElementById('category-select');
+    const shuffleQsEl = document.getElementById('shuffle-questions');
+    const shuffleOptsEl = document.getElementById('shuffle-options');
+    
     if (store.examMode) {
         info.style.display = 'block';
         infoStudy.style.display = 'none';
-        document.getElementById('category-select').disabled = true;
-        document.getElementById('shuffle-questions').disabled = true;
-        document.getElementById('shuffle-options').disabled = true;
+        catSelectEl.disabled = true;
+        shuffleQsEl.disabled = true;
+        shuffleOptsEl.disabled = true;
         startBtn.textContent = 'Start Exam 🎓';
         countDisplay.style.display = 'none';
     } else if (store.studyMode) {
         info.style.display = 'none';
         infoStudy.style.display = 'block';
-        document.getElementById('category-select').disabled = false;
-        document.getElementById('shuffle-questions').disabled = false;
-        document.getElementById('shuffle-options').disabled = false;
+        catSelectEl.disabled = false;
+        shuffleQsEl.disabled = false;
+        shuffleOptsEl.disabled = false;
         startBtn.textContent = 'Start New Quiz';
         countDisplay.style.display = 'block';
     } else {
         info.style.display = 'none';
         infoStudy.style.display = 'none';
-        document.getElementById('category-select').disabled = false;
-        document.getElementById('shuffle-questions').disabled = false;
-        document.getElementById('shuffle-options').disabled = false;
+        catSelectEl.disabled = false;
+        shuffleQsEl.disabled = false;
+        shuffleOptsEl.disabled = false;
         startBtn.textContent = 'Start New Quiz';
         countDisplay.style.display = 'block';
     }
@@ -571,7 +637,7 @@ export function resumeQuizFlow(progress) {
 
     const questionIds = Array.isArray(progress.questionIds) ? progress.questionIds : [];
     store.filteredQuestions = questionIds
-        .map(questionId => store.allQuestions.find(question => question.id === questionId))
+        .map(questionId => store.allQuestions.find(q => q.id === questionId))
         .filter(Boolean);
 
     if (store.filteredQuestions.length === 0) return;
@@ -584,8 +650,10 @@ export function resumeQuizFlow(progress) {
     store.incorrectCount = progress.incorrectCount || 0;
     store.incorrectQuestions = [];
 
-    document.getElementById('setup-container').style.display = 'none';
-    document.getElementById('quiz-container').style.display = 'block';
+    const setupContainer = document.getElementById('setup-container');
+    const quizContainer = document.getElementById('quiz-container');
+    setupContainer.style.display = 'none';
+    quizContainer.style.display = 'block';
 
     storage.saveProgress();
     showQuestion();

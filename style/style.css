@@ -379,12 +379,26 @@ button.btn-blue:not(:disabled):hover { background-color: var(--color-blue-hover)
     flex-wrap: wrap; 
 }
 
+#category-letter-wrapper {
+    display: flex;
+    align-items: flex-end;
+    padding-right: 15px;
+    border-right: 1px solid var(--border-color);
+}
+
 #category-letter {
     font-size: 28px;
     color: #a4a4a4;
     font-weight: 300;
-    padding-right: 12px;
-    border-right: 1px solid var(--border-color);
+    line-height: 1;
+}
+
+#question-filename-desktop {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: bold;
+    margin-left: 6px;
+    margin-bottom: 2px;
 }
 
 #category-topic {
@@ -421,6 +435,7 @@ button.btn-blue:not(:disabled):hover { background-color: var(--color-blue-hover)
     border-radius: 20px;
     font-weight: 600;
     white-space: nowrap;
+    display: none; /* Hidden by default on desktop */
 }
 
 #progress-text {
@@ -664,6 +679,58 @@ textarea:focus {
     min-width: 140px;
 }
 
+#keyboard-shortcuts {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--bg-panel);
+    padding: 15px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.shortcut-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text-main);
+    text-align: center;
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.shortcut-item {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.key {
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 3px 6px;
+    border-radius: var(--radius-sm);
+    font-family: monospace;
+    font-size: 12px;
+    box-shadow: 0 2px 0 var(--border-color);
+}
+
+@media (max-width: 1050px) {
+    #keyboard-shortcuts {
+        display: none;
+    }
+}
+
 @media (max-width: 600px) {
     body {
         padding: 10px; 
@@ -693,17 +760,18 @@ textarea:focus {
         gap: 10px;
     }
 
-    #category-letter {
-        border-right: none;
-        padding-right: 0;
-        font-size: 22px;
-        display: none; 
+    #category-letter-wrapper {
+        display: none; /* Hide desktop letter wrapper on mobile */
     }
 
     #header-badges {
         width: 100%;
         display: flex; 
         align-items: center;
+    }
+    
+    #question-filename {
+        display: inline-block; /* Show mobile badge instead */
     }
 
     .option-label {
@@ -766,57 +834,5 @@ textarea:focus {
         min-width: 0;
         padding: 12px 10px;
         font-size: 14px;
-    }
-}
-
-#keyboard-shortcuts {
-    position: fixed;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: var(--bg-panel);
-    padding: 15px;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-color);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 1000;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.shortcut-title {
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--text-main);
-    text-align: center;
-    margin-bottom: 5px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 8px;
-}
-
-.shortcut-item {
-    font-size: 13px;
-    color: var(--text-muted);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.key {
-    background-color: var(--bg-input);
-    border: 1px solid var(--border-color);
-    color: var(--text-main);
-    padding: 3px 6px;
-    border-radius: var(--radius-sm);
-    font-family: monospace;
-    font-size: 12px;
-    box-shadow: 0 2px 0 var(--border-color);
-}
-
-@media (max-width: 1050px) {
-    #keyboard-shortcuts {
-        display: none;
     }
 }
