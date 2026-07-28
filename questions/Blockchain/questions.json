@@ -1117,7 +1117,7 @@
       "section": "C3",
       "topic": "Digital signature",
       "questionType": 3,
-      "question": "Explain briefly how digital signatures verify the authenticity of messages.",
+      "question": "Explain briefly how digital signatures verify the authenticity of messages. (max. 6 words)",
       "points": 6,
       "sourceImage": 53,
       "answers": [
@@ -1201,7 +1201,7 @@
       "section": "C3",
       "topic": "Cryptography",
       "questionType": 3,
-      "question": "How does asymmetric cryptography ensure ownership transfer in blockchain transactions?",
+      "question": "How does asymmetric cryptography ensure ownership transfer in blockchain transactions? (max. 6 words)",
       "points": 4,
       "sourceImage": 57,
       "answers": [
@@ -1239,12 +1239,12 @@
       "section": "C4",
       "topic": "Modifying transactions",
       "questionType": 3,
-      "question": "Describe the consequences of modifying a transaction in the blockchain.",
+      "question": "Describe the consequences of modifying a transaction in the blockchain. (max. 4 words)",
       "points": 3,
       "sourceImage": 59,
       "answers": [
         {
-          "text": "The entire blockchain becomes invalid.",
+          "text": "Entire blockchain becomes invalid.",
           "correct": true
         }
       ]
@@ -1331,7 +1331,7 @@
       "section": "C4",
       "topic": "Modifying transactions",
       "questionType": 3,
-      "question": "Explain the process of ensuring data integrity when modifying transactions.",
+      "question": "Explain the process of ensuring data integrity when modifying transactions.(max. 6 words)",
       "points": 4,
       "sourceImage": 63,
       "answers": [
@@ -1392,7 +1392,7 @@
       "section": "D1",
       "topic": "Correctness of transactions",
       "questionType": 2,
-      "question": "Which types of correctness are checked by validators after an actor proposes a transaction for posting?",
+      "question": "After determining the actor entitled to propose a transaction for posting, all other actors in the system take on the role of validators who check the correctness of the transactions. Which of the following are types of correctness that are checked by the validators?",
       "points": 2,
       "sourceImage": 66,
       "answers": [
@@ -1419,7 +1419,7 @@
       "section": "D1",
       "topic": "Solving the puzzle",
       "questionType": 1,
-      "question": "What is the remuneration for solving the blockchain puzzle called?",
+      "question": "The work to solve the puzzle is adequately remunerated. This renumeration is intended to compensate for the energy applied (and the use of special hardware) and also to enable a profit. How is this renumeration called?",
       "points": 1,
       "sourceImage": 67,
       "answers": [
@@ -1442,7 +1442,7 @@
       "section": "D1",
       "topic": "Confirming the authenticity",
       "questionType": 3,
-      "question": "What is the joint confirmation of exchange actions by all actors in a peer-to-peer blockchain network called?",
+      "question": "Instead of a central authority, all actors in the peer-to-peer network of the blockchain application confirm the authenticity of their exchange actions.How is this joint confirmation called? (max. 1 word)",
       "points": 2,
       "sourceImage": 68,
       "answers": [
@@ -1457,12 +1457,12 @@
       "section": "D1",
       "topic": "Confirming the authority",
       "questionType": 3,
-      "question": "What concept describes proving trustworthiness by doing something expensive and difficult?",
+      "question": "Which concept is described here: 'The communication between individuals in which the question arises under which circumstances signals can be honest or dishonest. The candidate has to do something expensive and difficult, such as robbing a store or getting a gang symbol tattooed. Then she or he is considered trustworthy.' Max. two words! ",
       "points": 3,
       "sourceImage": 69,
       "answers": [
         {
-          "text": "Costly signaling",
+          "text": "Costly signaling/costly signalling",
           "correct": true
         }
       ]
@@ -1518,7 +1518,7 @@
       "section": "D1",
       "topic": "Integrity",
       "questionType": 1,
-      "question": "What is one way to punish actors who compromise the integrity of the blockchain?",
+      "question": "What is one way to punish actors who compromising the integrity of the blockchain?",
       "points": 1,
       "sourceImage": 72,
       "answers": [
@@ -1564,7 +1564,7 @@
       "section": "D1",
       "topic": "Consensus",
       "questionType": 3,
-      "question": "Explain the concept of consensus in a blockchain.",
+      "question": "Explain the concept of consensus in a blockchain. (max. 10 words)",
       "points": 6,
       "sourceImage": 74,
       "answers": [
@@ -1579,7 +1579,7 @@
       "section": "D1",
       "topic": "Consensus",
       "questionType": 3,
-      "question": "What is the main drawback of the Proof of Work (PoW) consensus mechanism?",
+      "question": "What is the main drawback of the Proof of Work (PoW) consensus mechanism? (max. 6 words)",
       "points": 6,
       "sourceImage": 75,
       "answers": [
@@ -1594,7 +1594,7 @@
       "section": "D2",
       "topic": "Authorizing chains of transactions",
       "questionType": 3,
-      "question": "Who decides which branch of a blockchain to expand when there is a fork?",
+      "question": "Who decides which branch of a blockchain to expand when there's a fork? (max. 1 phrase)",
       "points": 4,
       "sourceImage": 76,
       "answers": [
@@ -1740,7 +1740,7 @@
           "text": "Orphaned blocks",
           "correct": true
         },
-        {
+        { 
           "text": "Reclaimed remuneration",
           "correct": false
         },
@@ -1801,7 +1801,7 @@
       "section": "E1",
       "topic": "Smart contract",
       "questionType": 3,
-      "question": "What is a smart contract?",
+      "question": "What is a smart contract? Give a brief definition (max. one phrase)",
       "points": 4,
       "sourceImage": 85,
       "answers": [
@@ -1839,7 +1839,7 @@
       "section": "E1",
       "topic": "Security aspects",
       "questionType": 3,
-      "question": "What distinguishes public and private blockchains?",
+      "question": "What distinguishes public and private blockchains? (max. 5 words)",
       "points": 4,
       "sourceImage": 87,
       "answers": [
@@ -1894,7 +1894,7 @@
           "correct": false
         },
         {
-          "text": "Proof of Work vs. Proof of Stake",
+          "text": "Proof-of-Work vs. Proof-of-Stake",
           "correct": false
         }
       ]
@@ -2054,7 +2054,7 @@
       "section": "E1",
       "topic": "Security aspects",
       "questionType": 3,
-      "question": "What is the role of a private key in blockchain security?",
+      "question": "What is the role of a private key in blockchain security? (max. 4 words)",
       "points": 4,
       "sourceImage": 96,
       "answers": [
@@ -2069,7 +2069,7 @@
       "section": "E1",
       "topic": "Consensus algorithm",
       "questionType": 1,
-      "question": "The blockchain trilemma includes security and decentralization. What is the third aspect?",
+      "question": "The consensus algorithm contains the so-called trilemma. Security and decentralization are two aspects of the trilemma. What is the third one?",
       "points": 1,
       "sourceImage": 97,
       "answers": [
@@ -2092,7 +2092,7 @@
       "section": "E3",
       "topic": "Microtransactions",
       "questionType": 3,
-      "question": "What instrument stores the money handled by a smart-contract microtransaction?",
+      "question": "Smart contracts can enable microtransactions for different types of billing. For example, they could be used to control expenses: you can give your daughter/son €20 with the condition that the money cannot be spen on fast food and on cinema tickets only if the screening does not take place in the afternoon, when she/he should actually do her/his homework. What kind of instrument is mentioned here to store the money handled by the microtransaction? Max. two words",
       "points": 2,
       "sourceImage": 98,
       "answers": [
@@ -2157,7 +2157,7 @@
       "section": "E3",
       "topic": "Blockchain and industry",
       "questionType": 3,
-      "question": "How can blockchain technology enhance transparency and efficiency in supply chains?",
+      "question": "How can blockchain technology enhance transparency and efficiency in supply chains? (max. 1 phrase)",
       "points": 6,
       "sourceImage": 101,
       "answers": [
@@ -2249,7 +2249,7 @@
       "section": "E3",
       "topic": "Blockchain integration",
       "questionType": 3,
-      "question": "What are the challenges associated with integrating blockchain into current company systems?",
+      "question": "What are the challenges associated with integrating blockchain into current company systems? (max. 1 phrase)",
       "points": 6,
       "sourceImage": 105,
       "answers": [
@@ -2310,12 +2310,12 @@
       "section": "E3",
       "topic": "Blockchain and industry",
       "questionType": 3,
-      "question": "How can blockchain technology empower workforce management?",
+      "question": "How can blockchain technology empower workforce management? (max. 1 phrase)",
       "points": 6,
       "sourceImage": 108,
       "answers": [
         {
-          "text": "By using smart contracts to automate payroll, benefits, and performance incentives, improving transparency and efficiency.",
+          "text": "By using smart contracts for automating payroll, benefits, and performance incentives, improving transparency and efficiency.",
           "correct": true
         }
       ]
