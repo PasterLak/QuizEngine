@@ -1921,6 +1921,21 @@
           "correct": true
         }
       ]
+    },
+     {
+      "id": "E9-01",
+      "section": "E9",
+      "topic": "Extra",
+      "questionType": 1,
+      "question": "What is refactoring?",
+      "points": 4,
+      "sourceImage": 91,
+      "answers": [
+        {
+          "text": "It keeps the code clean, well-architected and maintainable",
+          "correct": true
+        }
+      ]
     }
   ]
 }
