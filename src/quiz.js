@@ -131,7 +131,15 @@ export function showQuestion() {
         let html = '';
         
         if (store.examMode) {
-            const passed = store.examEarnedPoints >= 50;
+            const percent = store.examTotalPoints > 0 ? (store.examEarnedPoints / store.examTotalPoints) * 100 : 0;
+            const passed = percent >= 50;
+            
+            let grade = 5.0;
+            if (passed) {
+                grade = 4.0 - 3.0 * ((percent - 50) / 50);
+            }
+            
+            const gradeStr = grade.toFixed(1);
             const resultColor = passed ? '#4CAF50' : '#f44336';
             const resultText = passed ? 'Passed! 🎉' : 'Failed 😢';
             
@@ -141,11 +149,14 @@ export function showQuestion() {
                     <div style="font-size:48px; font-weight:bold; margin-bottom:10px; color: ${resultColor};">
                         ${resultText}
                     </div>
+                    <div style="font-size:36px; font-weight:bold; margin-bottom:10px; color: ${resultColor};">
+                        Mark: ${gradeStr}
+                    </div>
                     <div style="font-size:24px; margin-bottom:20px;">
                         Score: <strong>${store.examEarnedPoints} / ${store.examTotalPoints}</strong>
                     </div>
                     <div style="font-size:18px; margin-top:20px; color: var(--text-muted);">
-                        ${passed ? 'Great job, you have enough points to pass the exam!' : 'You need at least 50 points to pass. Keep practicing!'}
+                        ${passed ? 'Great job, you have enough points to pass the exam!' : 'You need at least 50% to pass. Keep practicing!'}
                     </div>
                 </div>
             `;
